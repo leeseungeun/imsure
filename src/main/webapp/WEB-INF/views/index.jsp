@@ -46,13 +46,13 @@
             </a>
           </li>
           <li class="sidebar-nav-item">
-            <a class="nav-a js-scroll-trigger" href="psychologicPage">
+            <a class="nav-a js-scroll-trigger" href="uncertified-user/psychologicPage">
               <i class="icon-heart big-nav-icon"></i>
               <span>심리 지표로 <br/>생명보험 추천받기</span>
             </a>
           </li>
           <li class="sidebar-nav-item">
-            <a class="nav-a js-scroll-trigger" href="demographicPage">
+            <a class="nav-a js-scroll-trigger" href="user/demographicPage">
               <i class="icon-people big-nav-icon"></i>
               <span>인구통계 지표로 <br/>생명보험 추천받기</span>
             </a>
@@ -64,13 +64,13 @@
             </a>
           </li>
           <li class="sidebar-nav-item">
-            <a class="nav-a js-scroll-trigger" href="psychologicResultPage">
+            <a class="nav-a js-scroll-trigger" href="user/psychologicResultPage">
               <i class="icon-list"></i>
               <span>(임시) 심리지표 결과페이지</span>
             </a>
           </li>
           <li class="sidebar-nav-item">
-            <a class="nav-a js-scroll-trigger" href="demographicResultPage">
+            <a class="nav-a js-scroll-trigger" href="user/demographicResultPage">
               <i class="icon-list"></i>
               <span>(임시) 인구통계 결과페이지</span>
             </a>
