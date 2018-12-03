@@ -1,12 +1,8 @@
 package com.hana.imsure.recommendation.controller;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.http.client.ClientProtocolException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -74,17 +70,19 @@ public class RecommendationController {
 		consumes = "application/json",
 		produces = MediaType.APPLICATION_JSON_UTF8_VALUE
 	)
-	public ResponseEntity<Map<String, String>> recommendBasedOnPsychologicalFeatures(
+	public ResponseEntity<List<Map<String, String>>> recommendBasedOnPsychologicalFeatures(
 		@RequestBody Map<String, Object> params
 	) {
 		try {
 			
-			Map<String, String> result = service.recommendBasedOnPsychologicalFeatures(params);
-			return new ResponseEntity<Map<String,String>>(result, HttpStatus.OK);
+			log.debug("recommend based on psychological features called");
+			
+			List<Map<String, String>> result = service.recommendBasedOnPsychologicalFeatures(params);
+			return new ResponseEntity<List<Map<String,String>>>(result, HttpStatus.CREATED);
 		
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseEntity<Map<String,String>>(HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<List<Map<String,String>>>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	} 
 }

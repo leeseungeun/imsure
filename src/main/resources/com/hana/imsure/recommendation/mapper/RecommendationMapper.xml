@@ -25,6 +25,6 @@
 		             #{openness}, 
 		             #{insuranceId1}, 
 		             #{insuranceId2}, 
-		             #{insuranceId3}); 
+		             #{insuranceId3})
 	</insert>
 </mapper>

@@ -2,6 +2,7 @@ package com.hana.imsure.recommendation.service;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.http.client.ClientProtocolException;
@@ -14,7 +15,7 @@ import org.apache.http.client.ClientProtocolException;
  */
 public interface RecommendationService {
 	
-	public Map<String, String> recommendBasedOnPsychologicalFeatures(Map<String, Object> params) 
+	public List<Map<String, String>> recommendBasedOnPsychologicalFeatures(Map<String, Object> params) 
 			throws ClientProtocolException, IOException;
 	
 }

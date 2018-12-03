@@ -17,6 +17,8 @@ import org.apache.http.util.EntityUtils;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
+import com.hana.imsure.common.utils.UTF8;
+import com.hana.imsure.recommendation.mapper.RecommendationMapper;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -45,12 +47,14 @@ public class RecommendationServiceImpl implements RecommendationService {
 	private static final int PRODUCT_TYPE = 2;
 	private static final int DISTANCE = 3;
 	
+	private RecommendationMapper mapper;
+	
 	@Override
-	public Map<String, String> recommendBasedOnPsychologicalFeatures(Map<String, Object> params) 
+	public List<Map<String, String>> recommendBasedOnPsychologicalFeatures(Map<String, Object> params) 
 			throws ClientProtocolException, IOException {
 		// 결과를 담을 변수 선언
 		Map<String, Object> resultForDatabase = new HashMap<String, Object>();
-		Map<String, String> resultForView = new HashMap<String, String>();
+		List<Map<String, String>> resultForView = new ArrayList<Map<String, String>>();
 		
 		// userId와 성격 점수 넣어줌
 		resultForDatabase.put("userId", params.get("userId"));
@@ -76,15 +80,40 @@ public class RecommendationServiceImpl implements RecommendationService {
 		
 		// 결과 값 파싱
 		String responseString = EntityUtils.toString(response.getEntity(), StandardCharsets.UTF_8);
+		// 대괄호 제거 후 상품 별로 나눔
 		String[] results = responseString.trim().substring(1, responseString.trim().length() - 2).split("],?");
-		for (String string : results) {
-			String[] elements = string.trim().substring(1, string.trim().length()).split(",");
-			for (String string2 : elements) {
-				System.out.println(string2);
+		int insuraneIndex = 0;
+		for (String insurance : results) {
+			int insuranceDatumIndex = 0;
+			Map<String, String> insuranceData = new HashMap<String, String>();
+			// 대괄호 제거 후 쉼표를 기준으로 정보를 나눔
+			String[] elements = insurance.trim().substring(1, insurance.trim().length()).split(",");
+			for (String datum : elements) {
+				
+				datum = datum.trim();
+				
+				switch (insuranceDatumIndex) {
+				case PRODUCT_ID:
+					resultForDatabase.put("insuranceId" + (insuraneIndex + 1), datum);
+					insuranceData.put("insurnaceId", datum);
+					break;
+				case PRODUCT_NAME:
+					String decodedProductName = UTF8.decode(datum); 
+					insuranceData.put("insurnaceName", decodedProductName.substring(1, decodedProductName.length() - 1));
+					break;
+				case PRODUCT_TYPE:
+					String decodedProductType = UTF8.decode(datum); 
+					insuranceData.put("insurnaceType", decodedProductType.substring(1, decodedProductType.length() - 1));
+					break;
+				}
+				insuranceDatumIndex++;
 			}
+			resultForView.add(insuranceData);
+			insuraneIndex++;
 		}
+		mapper.insertPsychologicResult(resultForDatabase);
 		
-		return null;
+		return resultForView;
 	}
 
 }

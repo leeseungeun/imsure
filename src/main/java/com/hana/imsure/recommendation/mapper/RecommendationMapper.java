@@ -10,6 +10,6 @@ import java.util.Map;
  */
 public interface RecommendationMapper {
 	
-	public int insertPsychologicResult(Map<String, String> result);
+	public int insertPsychologicResult(Map<String, Object> result);
 	
 }
