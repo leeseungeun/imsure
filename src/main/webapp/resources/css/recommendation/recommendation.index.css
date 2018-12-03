@@ -107,7 +107,8 @@
 .form-horizontal .control-label.type2{
   padding-top:3px
 }
-.form-area .form-group:nth-child(4) {border-bottom: 1px solid #ebebeb}
+/*.form-area .form-group:nth-child(4) {border-bottom: 1px solid #ebebeb}*/
+
 .form-area{
   display:none;
   margin-top:32px;
@@ -327,10 +328,15 @@ p.notice.type2{
 }
 .jobs,
 .uploadInfo{
-  margin-top:20px;
-  padding:10px;
-  background-color:#f7f6f4;
-  overflow:hidden;
+    margin-top: 2%;
+    padding: 5px;
+    background-color: #f7f6f4;
+    overflow: hidden;
+    font-size: 9.5pt;
+    width: 80%;
+    /* position: relative; */
+    float: right;
+}
 }
 .jobs .col-sm-6{
   padding:10px;
@@ -340,6 +346,8 @@ p.notice.type2{
   width:100%;
   height:100%;
   padding:5px;
+  font-size: 10pt;
+  
 }
 .radio.type4::before{
   content:"";

@@ -216,6 +216,7 @@ a:hover, a:focus, a:active {
 }
 
 .insurance-card {
+	padding-bottom : 2%;
 	width: 100%;
 	height: 120px;
 	border-radius: 20px;

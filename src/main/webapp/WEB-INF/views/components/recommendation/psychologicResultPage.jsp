@@ -188,10 +188,10 @@
 			            	tag += '          <div class="insurance-group">'
 								 + '            <label>'+detailList[i].title+'</label><div>'+detailList[i].value+'</div>'
 								 + '          </div>';
-			            	}
-						}									
+			            }
+															
 						 	
-					tag+= '        </div>'
+					tag += '        </div>'
 						+ '      </div>'
 						+ '      <div class="modal-footer">'
 						+ '        <button type="button" class="btn" data-dismiss="modal">닫기 </button>'

@@ -3,10 +3,8 @@
 
 <link rel="stylesheet" type="text/css" href="resources/css/recommendation/recommendation.common.css">
 <link rel="stylesheet" type="text/css" href="resources/css/recommendation/recommendation.index.css">
-<link rel="stylesheet" type="text/css" href="resources/css/recommendation/recommendation.themes.css">
 <link rel="stylesheet" type="text/css" href="resources/css/recommendation/recommendation.custom.common.css">
-
-
+<link rel="stylesheet" type="text/css" href="resources/css/recommendation/recommendation.demographic.css">
 <!-- header -->
 <jsp:include page="../../includes/header.jsp"/>
 
@@ -33,8 +31,8 @@
             <div class="bgChange">
                 <ul class="nav nav-tabs tabType2">
                 <!-- 선택했을때 이벤트 처리! -->
-                    <li class="btn-tab01 shadow">1 STEP</li>
-                    <li class="btn-tab02 on">2 STEP</li>
+                    <li class=".step-tab ">1 STEP</li>
+                    <li class=".step-tab ">2 STEP</li>
                 </ul>
                 <div class="form-area on">
                     <form class="form-horizontal ng-pristine ng-valid ng-valid-maxlength" role="form">
@@ -95,27 +93,17 @@
                                 <li class="custom-li-right">
                                   <input type="radio" id="child-none" name="child" value="무">
                                   <label for="child-none" >무</label>
-                                  </li>
+                                </li>
                               </ul>
+                              <p class="notice is-pl" id="childNotice">
+                                    <small>
+                                        자녀가 성인인 경우는 '무'를 선택해주세요.<br>
+                                    </small>
+                              </p>
                             </div>
-                            <div class="form-group">
-                                <div class="addBox">
-                                    <select class="selectbox ng-pristine ng-untouched ng-valid ng-empty" ng-model="selectSex">
-                                        <option value="" selected="selected">성별</option>
-                                        <option value="남아">남아</option>
-                                        <option value="여아">여아</option>
-                                    </select>
-                                    <input type="text" placeholder="예) 1990212" maxlength="8" ng-model="newAge" class="onlyNumber ng-pristine ng-untouched ng-valid ng-empty ng-valid-maxlength" ng-blur="addChild(selectSex, newAge)">
-                                    <button>자녀추가</button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- 결혼 무 -->
-                        <!-- style="display: block;"추가 -->
-                        <div class="form-group" >
+                            <!-- 결혼무 선택했을 경우 보여줘야함-->
                             <div class="form-group">
                                 <label class="control-label col-sm-2" >부양가족
-                                    
                                 </label>
                                 <ul class="col-sm-10 recommend-chk">
                                     <li class="custom-li-left">
@@ -128,7 +116,7 @@
                                     </li>  
                                 </ul>
                             </div>
-                        </div> 
+                        </div>
                     </form>
                     
                     <div class="btn-block btn-input">
@@ -145,67 +133,85 @@
                 <div class="form-area on">
                     <form class="form-horizontal form-type2 ng-pristine ng-valid ng-valid-maxlength" role="form">
                         <div class="form-group">
-                            <label class="control-label col-sm-4" for="salary">월소득</label>
+                                <label class="control-label col-sm-2" >암가족력
+                                </label>
+                                <ul class="col-sm-10 recommend-chk">
+                                    <li class="custom-li-left">
+                                        <input type="radio" id="cancer-has" name="cancer" value="유">
+                                        <label for="cancer-has" >유</label>
+                                    </li>
+                                    <li class="custom-li-right">
+                                        <input type="radio" id="cancer-none" name="cancer" value="무">
+                                        <label for="cancer-none" >무</label>
+                                    </li>  
+                                </ul>
+                            </div>
+                        <div class="form-group" style="margin-bottom:2%">
+                            <label class="control-label col-sm-4" for="salary">년소득</label>
                             <div class="col-sm-8 input-area">
-                                <input type="text" class="form-control onlyNumber ng-pristine ng-untouched ng-valid ng-not-empty ng-valid-maxlength" id="salary" ng-model="inSalary" maxlength="4" placeholder="예) 220">
+                                <input type="text" class="form-control onlyNumber ng-pristine ng-untouched ng-valid ng-not-empty ng-valid-maxlength" id="salary" ng-model="inSalary" maxlength="4" placeholder="예) 2800">
                                 <span>만원</span>
                                 <p class="notice">
-                                    <small>세금을 제외한 통장에 들어오는 금액을 만원 단위로 입력해 주세요.</small>
+                                    <small>세금을 제외한 금액을 만원 단위로 입력해 주세요.</small>
                                 </p>
                             </div>
                         </div>
                         <!-- 암가족력이 있는지 물어보는거 추가 -->
                         <div class="form-group type-height">
-                            <p class="control-label is-pl">직업군</p>
+                            <label class="control-label col-sm-2" style="float:left">직업군
+                                </label>
                             <ul class="jobs">
                                 <li class="custom-li-left">
-                                    <input type="radio" id="salarymen" name="joblist" value="근로소득자">
-                                    <label for="salarymen" >근로소득자</label>
+                                    <input type="radio" id="manager" name="joblist" value="근로소득자">
+                                    <label for="manager" >관리자</label>
                                 </li>
                                 <li class="custom-li-left">
-                                    <input type="radio" id="business" name="joblist" value="개인사업자">
-                                    <label for="business" >개인사업자</label>
+                                    <input type="radio" id="expert" name="joblist" value="개인사업자">
+                                    <label for="expert" >개인사업자</label>
                                 </li>
                                 <li class="custom-li-left">
-                                    <input type="radio" id="salarymen" name="joblist" value="근로소득자">
-                                    <label for="salarymen" >근로소득자</label>
+                                    <input type="radio" id="clerks" name="joblist" value="근로소득자">
+                                    <label for="clerks" >사무종사자</label>
                                 </li>
                                 <li class="custom-li-left">
-                                    <input type="radio" id="salarymen" name="joblist" value="근로소득자">
-                                    <label for="salarymen" >근로소득자</label>
+                                    <input type="radio" id="service" name="joblist" value="근로소득자">
+                                    <label for="serviceWorker" >서비스 종사자</label>
                                 </li>
-                                <li class="col-sm-6" ng-click="searchDisableRemove()">
-                                    <label for="salarymen" class="radio type4 salarymen">근로소득자</label>
-                                    <input type="radio" id="salarymen" name="joblist" ng-model="inJob" value="근로소득자" class="ng-pristine ng-untouched ng-valid ng-not-empty">
+                                <li class="custom-li-left">
+                                    <input type="radio" id="salesWorker" name="joblist" value="근로소득자">
+                                    <label for="salesWorker" >판매 종사자</label>
                                 </li>
-                                <li class="col-sm-6" ng-click="searchDisableRemove()">
-                                    <label for="business" class="radio type4 business notice on">개인사업자<br>
-                                        <small>(국민연금 지역가입자)</small>
-                                    </label>
-                                    <input type="radio" id="business" name="joblist" ng-model="inJob" value="개인사업자" class="ng-pristine ng-untouched ng-valid ng-not-empty">
+                                <li class="custom-li-left">
+                                    <input type="radio" id="forestryAndFishery" name="joblist" value="근로소득자">
+                                    <label for="forestryAndFishery" >농림어업 숙련 종사자</label>
                                 </li>
-                                <li class="col-sm-6" ng-click="searchDisableRemove()">
-                                    <label for="housewife" class="radio type4 housewife">전업주부</label>
-                                    <input type="radio" id="housewife" name="joblist" ng-model="inJob" value="전업주부" class="ng-pristine ng-untouched ng-valid ng-not-empty">
+                                <li class="custom-li-left">
+                                    <input type="radio" id="technician" name="joblist" value="근로소득자">
+                                    <label for="technician" >기능원 및 관련 종사자</label>
                                 </li>
-                                <li class="col-sm-6" ng-click="searchDisableRemove()">
-                                    <label for="otherjobs" class="radio type4 otherjobs notice">공무원,교사,군인
-                                        <small>(특수직역연금 가입자)</small>
-                                    </label>
-                                    <input type="radio" id="otherjobs" name="joblist" ng-model="inJob" value="공무원" class="ng-pristine ng-untouched ng-valid ng-not-empty">
+                                <li class="custom-li-left">
+                                    <input type="radio" id="mechanicalSkillWorker" name="joblist" value="근로소득자">
+                                    <label for="mechanicalSkillWorker" >기계조작 및 조립 종사자</label>
+                                </li>
+                                <li class="custom-li-left">
+                                    <input type="radio" id="technician" name="joblist" value="근로소득자">
+                                    <label for="labor" >단순노무 종사자</label>
+                                </li>
+                                <li class="custom-li-left">
+                                    <input type="radio" id="technician" name="joblist" value="근로소득자">
+                                    <label for="housewife" >주부</label>
+                                </li>
+                                <li class="custom-li-left">
+                                    <input type="radio" id="technician" name="joblist" value="근로소득자">
+                                    <label for="etc" >기타</label>
                                 </li>
                             </ul>
-                            <p class="notice">
-                                <small>보험상품, 보장금액, 기간산정을 위하여 필요한 정보입니다.</small>
-                            </p>
-
                         </div>
-
                     </form>
                     <div class="btn-block btn-input">
                     <!-- style="display: none;" -->
                         <p class="notice errormsg" >
-                            <small class="ng-binding" style="color: rgb(255, 0, 0);"></small>
+                           <small class="ng-binding" style="color: rgb(255, 0, 0);"></small>
                         </p>
                         <button class="btn btn-prev">이전 단계</button>
                         <button class="btn btn-search" ng-click="sendSugarResult()" ng-readonly="next2Checek()" ng-attr-title="{{next2buttonTitle}}" title="">내게 맞는 보험 찾기
@@ -224,11 +230,8 @@
 
 
 <script>
-console.log("여기 들어옴?")
+//탭을 클릭하면 관련 input이 나오게
 
-$('.ng-pristine ng-untouched ng-valid ng-not-emptygender').on('click', function(){
-	var value = $(this).val;
-	console.log(value);
-});
+
 
 </script>
