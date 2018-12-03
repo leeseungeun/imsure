@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
+
 <link rel="stylesheet" type="text/css"
   href="resources/css/recommendation/recommendation.common.css">
 <link rel="stylesheet" type="text/css"
@@ -38,6 +39,8 @@
   </div>
 </div>
 
+
+
 <!-- 알고리즘 설명 모달 -->
 <div class="modal fade" id="algorithmDescriptionModal" role="dialog">
   <div class="modal-dialog">
@@ -62,53 +65,13 @@
 
 <!-- 보험 상세 모달 -->
 <div class="modal fade" id="insuranceDetailModal" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <span class="modal-title">보험상품 상세보기</span>
-        <button type="button" class="close" data-dismiss="modal"
-          style="width: 5%; margin-right: 0.5%">&times;</button>
-      </div>
-      <div class="modal-body">
-        <div class="containner" id="modal-top">
-          <img src="resources/img/recommendation/hana_logo_small.png" width="20%" height="20%"> 
-          <span>(무)행복knowhowTop3건강보험(보장성)</span>
-        </div>
-
-        <div class="containner" id="modal-bottom">
-          <div class='insurance-group'>
-            <label>보험종류</label><div>질병보장보험</div>
-          </div>
-          <div class='insurance-group'>
-            <label>가입나이</label><div>0~12세</div>
-          </div>
-          <div class='insurance-group'>
-            <label>보장내용</label><div>고액암, 일반암, 교통장해, 일반장해, 입원비, 수술비 등등등등등등등등등등등ㄹ등</div>
-          </div>
-          <div class='insurance-group'>
-            <label>보험종류</label><div>질병보장보험</div>
-          </div>
-          <div class='insurance-group'>
-            <label>보험종류</label><div>질병보장보험</div>
-          </div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn" data-dismiss="modal">닫기 </button>
-      </div>
-    </div>
-  </div>
 </div>
 
 <!-- JavaScript -->
-<!-- <script src="resources/js/recommendation/PsychologicTest.js"></script>
-<script src="resources/js/recommendation/psychologic.js"></script>
- -->
+<script src="resources/js/recommendation/PsychologicTest.js"></script>
+<script src="resources/js/recommendation/psychologic.js"></script> 
 <script src="resources/js/common/Chart.js"></script>
 <script>
-this.result
 
 	//console.log(PsychologicTest.result);
 	
@@ -158,6 +121,47 @@ this.result
 		options : options
 	});
 	
+	var insuranceId = $("#insuranceId").val;
+	
+	
+	// 추천 보험 리스트를 불러오기 위한 ajax
+	
+	
+	$(document).on('click', '#recommendation-list"', function(event) {
+		
+		
+		$.ajax({
+			type : "post",
+			url : "/user/recommend-based-on-psychological-features",
+			beforeSend : function(xhr){
+				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+			},
+			data : {
+				userId : "1",
+				insuranceId : insuranceId
+			},
+			contentType : "application/json; charset=UTF-8",
+			success : function(data, status, xhr) {
+
+				console.log(data)
+				for ( var result in data) {
+					console.log(data[result].insuranceId);
+					var sendData = {
+						"insuranceId" : data[result].insuranceId,
+						"imageAlt" : "하나생명",
+						"imagePath" : "resources/img/recommendation/hana_logo_small.png",
+						"insuranceName" : data[result].insuranceName,
+						"insuranceType" : data[result].insuranceType
+					}	
+					$(".recommendation-list").append(Utils.formatElement(sendData,Insurance.listCardFormat));
+				}
+			},
+			error : function(jqXHR, textStatus, errorThrown) {
+				alert(jqXHR.responseText);
+			}
+		});
+	});
+	// 보험 상세보기를 위한 ajax
 	$.ajax({
 		type : "post",
 		url : "/user/recommend-based-on-psychological-features",
