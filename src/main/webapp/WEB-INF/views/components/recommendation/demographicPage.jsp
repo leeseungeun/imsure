@@ -4,7 +4,7 @@
 <link rel="stylesheet" type="text/css" href="resources/css/recommendation/recommendation.common.css">
 <link rel="stylesheet" type="text/css" href="resources/css/recommendation/recommendation.index.css">
 <link rel="stylesheet" type="text/css" href="resources/css/recommendation/recommendation.themes.css">
-<link rel="stylesheet" type="text/css" href="resources/css/recommendation/recommendation.custom.css">
+<link rel="stylesheet" type="text/css" href="resources/css/recommendation/recommendation.custom.common.css">
 
 
 <!-- header -->
@@ -12,6 +12,23 @@
 
 <div class="container ng-scope" >
     <div id="recommend" class="wrapper row">
+      <div class="col-sm-6 forms output step-txt" style="min-height: 589px;">
+            <form role="form" class="ng-pristine ng-valid">
+                <div class="form-txt-board">
+                    <p class="txt-board">
+                        <span class="info-txt typeName ng-binding">김땡땡</span> 님은<br>
+                        <span class="info-txt ng-binding">여자</span> 이며,<br class="txt-board-br">
+                        <span class="info-txt ng-binding">60</span> 세의,<br>
+                        <span class="info-txt ng-binding">개인사업자</span> 이며,<br class="txt-board-br">
+                        <span class="info-txt ng-binding">미혼</span> 입니다.
+                    </p>
+                    <div class="btn-block btn-output">
+                        <button class="btn btn-search" id="btn-right-search" ng-click="sendSugarResult()" ng-readonly="next2Checek()" ng-attr-title="{{next2buttonTitle}}" title="" style="display: none;">내게 맞는 보험 찾기
+                        </button>
+                    </div>
+                </div>
+            </form>   
+        </div>
         <div class="col-sm-6 forms step-area" style="min-height: 589px;">
             <div class="bgChange">
                 <ul class="nav nav-tabs tabType2">
@@ -197,24 +214,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 forms output step-txt" style="min-height: 589px;">
-            <form role="form" class="ng-pristine ng-valid">
-                <div class="form-txt-board">
-                    <p class="txt-board">
-                        <span class="info-txt typeName ng-binding">김땡땡</span> 님은<br>
-                        <span class="info-txt ng-binding">여자</span> 이며,<br class="txt-board-br">
-                        <span class="info-txt ng-binding">60</span> 세의,<br>
-                        <span class="info-txt ng-binding">개인사업자</span> 이며,<br class="txt-board-br">
-                        <span class="info-txt ng-binding">미혼</span> 입니다.
-                    </p>
-                    <div class="btn-block btn-output">
-                        <button class="btn btn-search" id="btn-right-search" ng-click="sendSugarResult()" ng-readonly="next2Checek()" ng-attr-title="{{next2buttonTitle}}" title="" style="display: none;">내게 맞는 보험 찾기
-                        </button>
-                    </div>
-                </div>
-            </form>
-            
-        </div>
+        
     </div>
 </div>
 

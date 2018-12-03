@@ -6,7 +6,7 @@
 <link rel="stylesheet" type="text/css"
   href="resources/css/recommendation/recommendation.psychologic.css">
 <link rel="stylesheet" type="text/css"
-  href="resources/css/recommendation/recommendation.psychologic-result.css">
+  href="resources/css/recommendation/recommendation.custom.common.css">
 
 <!-- header -->
 <jsp:include page="../../includes/header.jsp" />
@@ -30,18 +30,7 @@
             <button type="button" class="btn" data-toggle="modal" data-target="#algorithmDescriptionModal">Why SURE ?</button>
           </div>
           <!-- 추천 결과가 표시되는 영역 start -->
-          <div class="recommendation-list">
-            <div class="insurance-card" data-toggle="modal" data-target="#insuranceDetailModal">
-              <input type="hidden" id="insuranceId" value="1">
-              <div class="img-wrapper">
-                <img alt="하나생명" src="resources/img/recommendation/hana_logo_small.png">
-              </div>
-              <div class="contents-wrapper">
-                <h5 class="insurance-name">(무)행복knowhowTop3건강보험(보장성)</h5>
-                <p class="insurance-type">질병보장보험</p>
-              </div>
-            </div>
-          </div>
+          <div class="recommendation-list"></div>
           <!-- 추천 결과가 표시되는 영역 end -->
         </div>
       </div>
@@ -167,5 +156,36 @@ this.result
 		type : 'radar',
 		data : data,
 		options : options
+	});
+	
+	$.ajax({
+		type : "post",
+		url : "/user/recommend-based-on-psychological-features",
+		beforeSend : function(xhr){
+			xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+		},
+		data : {
+			userId : "1",
+			score : PsychologicTest.result
+		},
+		contentType : "application/json; charset=UTF-8",
+		success : function(data, status, xhr) {
+
+			console.log(data)
+			for ( var result in data) {
+				console.log(data[result].insuranceId);
+				var sendData = {
+					"insuranceId" : data[result].insuranceId,
+					"imageAlt" : "하나생명",
+					"imagePath" : "resources/img/recommendation/hana_logo_small.png",
+					"insuranceName" : data[result].insuranceName,
+					"insuranceType" : data[result].insuranceType
+				}	
+				$(".recommendation-list").append(Utils.formatElement(sendData,Insurance.listCardFormat));
+			}
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert(jqXHR.responseText);
+		}
 	});
 </script>

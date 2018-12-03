@@ -63,4 +63,6 @@ public class MainController {
 		return "components/recommendation/psychologicResultPage";
 	}
 	
+	
+	
 }

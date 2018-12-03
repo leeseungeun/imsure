@@ -109,3 +109,8 @@
 		width: 100%;
 	}
 }
+
+@media (max-width: 800px) {
+.col-sm-6.step-txt {
+    display: block; 
+}

@@ -4,7 +4,7 @@
  * @author 이승은
  */
 var Insurance = {};
-Insurance.listCardFormat = '<div class="insurance-card">' +
+Insurance.listCardFormat = '<div class="insurance-card"  data-toggle="modal" data-target="#insuranceDetailModal">' +
 							  '<input type="hidden" id="insuranceId" value="###insuranceId###">' +
 					          '<div class="img-wrapper">' +
 					            '<img alt="###imageAlt###" src="###imagePath###">' +
