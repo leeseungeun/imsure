@@ -86,7 +86,7 @@
 			pointBorderColor : '#fff',
 			pointHoverBackgroundColor : '#fff',
 			pointHoverBorderColor : '#ff0057',
-		} ]
+		}]
 	}
 	var options = {
 		scale : {
