@@ -31,10 +31,10 @@
             <div class="bgChange">
                 <ul class="nav nav-tabs tabType2">
                 <!-- 선택했을때 이벤트 처리! -->
-                    <li class=".step-tab ">1 STEP</li>
-                    <li class=".step-tab ">2 STEP</li>
+                    <li class=".step-tab">1 STEP</li>
+                    <li class=".step-tab">2 STEP</li>
                 </ul>
-                <div class="form-area on">
+                <div class="form-area step1 on">
                     <form class="form-horizontal ng-pristine ng-valid ng-valid-maxlength" role="form">
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="user" >이름</label>
@@ -130,7 +130,7 @@
                 
                 
                 <!-- step-2 -->
-                <div class="form-area on">
+                <div class="form-area step2">
                     <form class="form-horizontal form-type2 ng-pristine ng-valid ng-valid-maxlength" role="form">
                         <div class="form-group">
                                 <label class="control-label col-sm-2" >암가족력
@@ -233,5 +233,24 @@
 //탭을 클릭하면 관련 input이 나오게
 
 
+stepTabEvent($('.step-tab:first'));
+
+console.log($('.step-tab:first'));
+
+// 탭 클릭 이벤트 처리 함수
+function stepTabEvent(clickedTab) {
+	
+	// 탭 관련 처리
+	$('.step-tab').removeClass('on').addClass('shadow');
+	$(clickedTab).removeClass('shadow').addClass('on');
+	// 탭에 대한 내용 표시
+	var index = $(clickedTab).index();
+	$('.form-area').removeClass('on');
+	$('.form-area').eq(index).addClass('on');
+}
+
+$('.step-tab').click(function(){
+	stepTabEvent(this);
+});
 
 </script>
