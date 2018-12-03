@@ -1,0 +1,273 @@
+/*!
+ * Start Bootstrap - Stylish Portfolio v5.0.1 (https://startbootstrap.com/template-overviews/stylish-portfolio)
+ * Copyright 2013-2018 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-stylish-portfolio/blob/master/LICENSE)
+ */
+body, html {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	font-family: 'Source Sans Pro';
+}
+
+.btn-xl {
+	padding: 1.25rem 2.5rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight: 700;
+}
+
+.head-title {
+	color: azure;
+}
+
+.head-title:hover {
+	color: azure;
+	text-decoration: none;
+}
+
+.head-subtitle {
+	color: cornsilk;
+}
+
+header {
+	width: 100%;
+	height: 20%;
+	background-color: #30b1b2;
+}
+
+header>* {
+	padding: 15px 20px;
+}
+
+/* Side Menu */
+#sidebar-wrapper {
+	position: fixed;
+	z-index: 2;
+	right: 0;
+	width: 250px;
+	height: 100%;
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s;
+	-webkit-transform: translateX(250px);
+	transform: translateX(250px);
+	background: rgba(25, 25, 25, 0.7);
+	border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-nav {
+	position: absolute;
+	top: 0;
+	width: 250px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.sidebar-nav li span {
+	display: inline-block;
+	margin-left: 10px;
+}
+
+.sidebar-nav .big-nav-icon {
+	font-size: 1.2em;
+}
+
+.sidebar-nav li.sidebar-nav-item a {
+	display: block;
+	text-decoration: none;
+	color: #fff;
+	padding: 15px;
+}
+
+.sidebar-nav li a:hover {
+	text-decoration: none;
+	color: #fff;
+	background: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-nav li a:active, .sidebar-nav li a:focus {
+	text-decoration: none;
+}
+
+.sidebar-nav>.sidebar-brand {
+	font-size: 1.2rem;
+	background: rgba(52, 58, 64, 0.1);
+	height: 80px;
+	line-height: 50px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	padding-left: 15px;
+}
+
+.sidebar-nav>.sidebar-brand a {
+	color: #fff;
+}
+
+.sidebar-nav>.sidebar-brand a:hover {
+	color: #fff;
+	background: none;
+}
+
+#sidebar-wrapper.active {
+	right: 250px;
+	width: 250px;
+	-webkit-transition: all 0.4s ease 0s;
+	transition: all 0.4s ease 0s;
+}
+
+.menu-toggle {
+	position: fixed;
+	right: 15px;
+	top: 15px;
+	width: 50px;
+	height: 50px;
+	text-align: center;
+	color: #fff;
+	background: rgba(52, 58, 64, 0.5);
+	line-height: 50px;
+	z-index: 999;
+}
+
+.menu-toggle:focus, .menu-toggle:hover {
+	color: #fff;
+}
+
+.menu-toggle:hover {
+	background: #343a40;
+}
+
+footer.footer {
+	padding-top: 5rem;
+	padding-bottom: 5rem;
+}
+
+footer.footer .social-link {
+	display: block;
+	height: 4rem;
+	width: 4rem;
+	line-height: 4.3rem;
+	font-size: 1.5rem;
+	-webkit-transition: background-color 0.15s ease-in-out;
+	transition: background-color 0.15s ease-in-out;
+	-webkit-box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.1);
+	box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+footer.footer .social-link:hover {
+	background-color: #155d74;
+	color: #FFFFFF !important;
+	text-decoration: none;
+}
+
+a {
+	color: #1D809F;
+}
+
+a:hover, a:focus, a:active {
+	color: #155d74;
+}
+
+.btn-primary {
+	background-color: #1D809F !important;
+	border-color: #1D809F !important;
+	color: #fff !important;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+	background-color: #155d74 !important;
+	border-color: #155d74 !important;
+}
+
+.btn-secondary {
+	background-color: #ecb807 !important;
+	border-color: #ecb807 !important;
+	color: #fff !important;
+}
+
+.btn-secondary:hover, .btn-secondary:focus, .btn-secondary:active {
+	background-color: #ba9106 !important;
+	border-color: #ba9106 !important;
+}
+
+.btn-dark {
+	color: #fff !important;
+}
+
+.btn {
+	-webkit-box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.1);
+	box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.1);
+	font-weight: 700;
+}
+
+.bg-primary {
+	background-color: #1D809F !important;
+}
+
+.text-primary {
+	color: #1D809F !important;
+}
+
+.text-secondary {
+	color: #ecb807 !important;
+}
+
+.insurance-card {
+	width: 100%;
+	height: 120px;
+	border-radius: 20px;
+	box-shadow: 3px 4px 4px 3px rgba(0, 0, 0, 0.2);
+	background-color: #30b1b2;
+}
+
+.insurance-card .img-wrapper {
+	width: 13vh;
+	height: 13vh;
+	display: inline-block;
+	border-radius: 50%;
+	box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.2);
+	text-align: center;
+	margin: 1.7vh 3vh;
+	background-color: white;
+	border: 3px solid lightgray;
+}
+
+.insurance-card .img-wrapper img {
+	vertical-align: middle;
+	max-width: 80%;
+}
+
+.insurance-card .contents-wrapper {
+	width: calc(100% - 20vh);
+	height: 100%;
+	display: inline-block;
+	float: right;
+	background-color: white;
+	padding-right: 20px;
+	padding-left: 10px;
+	border-bottom-right-radius: 20px;
+	border-top-right-radius: 20px;
+	text-align: justify;
+}
+
+.insurance-name {
+	font-size: 12pt;
+	font-weight: bolder;
+	margin-top: 5vh;
+	font-size: 1em;
+}
+
+.insurance-type {
+	font-weight: bold;
+	font-size: 0.8em;
+	color: #ff0057;
+}
+
+@media ( max-width : 993px) {
+	.insurance-name {
+		margin-top: 3vh;
+	}
+}

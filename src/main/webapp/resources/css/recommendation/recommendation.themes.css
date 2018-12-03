@@ -1,0 +1,186 @@
+@charset "utf-8";
+
+/* -- font-weight -- */
+body,input,button,label,
+.sub-lnb > li > a,
+.list-info span,
+.form-horizontal .control-label,
+.form-horizontal .radio,
+.myHeader4 .oneAnd-tit h2,
+.view-top small,
+.sugarThink-area h4,
+.guideTips .noti,
+#mainContents h4,
+#carInsAgree .carAgreeSubInput label,
+#carInsAgree .titleText label,
+.formTitle h3,
+.formTitle small,
+.txtNoneBold
+{ font-weight:normal }
+
+
+
+
+.suggest-notice small span,
+.btn008,
+.indemnityIntro .choice-txt,
+.nav-tabs li,
+.securityCon td:first-child,
+.suggest-notice small,
+#carInsAgree label,
+.fontWB
+{ font-weight:bold }
+
+
+.notice small,
+.product-visual h2,
+.product-visual p,
+.titleArea h2,
+.titleArea p,
+.carInsVisual,
+#carInsAgree .carAgreeSubInput label,
+.fontWL
+{ font-weight:300 }
+
+
+
+
+/* -- color -- */
+
+.myHeader4 .oneAnd-tit h2,
+.oneAnd-tit p.title_01,
+.indemnityIntro .choice-txt,
+.view-top,
+.guideCaption,
+.aboutFincl strong,
+#infoTable caption,
+#mainContents,
+.innerConTable .caption,
+#mainContents  .divType3 small,
+#emailCall h2,
+.formTitle small,
+.color{ color:#000 }
+
+
+.sign-btn-group .forgot
+{ color:#04a9f4 }
+
+#carInsAgree .modal-body
+{ color:#222 }
+
+.view-top small
+{ color:#232324 }
+
+
+.foot-lnb li:hover a
+{ color:#31aae2; }
+
+
+.location_area label
+{ color:#333 }
+
+
+.btn:hover,
+.btn:focus
+{ }
+
+
+.upload-list-area > p
+{ color:#373c44 }
+
+
+.sns-sign .sign-kakao
+{ color:#340706 }
+
+
+.btn_bojang p
+{ color:#373c44;}
+
+.innerContents .highLightB,
+#properInsAside .tabTitle.on p,
+#properInsAside .tabTitle.on small
+{  color:#457fc1 }
+
+
+.location_area .cont h3 span,
+#carInsAgree .highLightB
+{color:#548ed0;}
+
+
+.address li
+{ color:#5b5b5b; }
+
+
+#properInsAside .tabTitle small
+{ color:#595959 }
+.aboutFincl p
+{ color:#636467}
+
+.reason-txt
+{ color:#666 }
+
+
+.modal-body,
+.modal-footer p,
+.modal-footer p a
+{ color:#727272 }
+
+
+#mainContents small
+{color:#7a7a7a;}
+
+.listViewCon small
+{ color:#8492af }
+
+.input-area textarea
+{ color:#858585 }
+
+
+.sign-checkbox
+{ color:#8b8b8b}
+
+
+
+.modal-header p
+{ color : #8c8c8c }
+
+.notice small {
+  display: block;
+}
+
+
+.sns-sign .sign-or
+{ color:#d4d9dd}
+
+
+.color{ color:#dadada }
+
+
+.color{ color:#f4f4f4 }
+
+.titleArea .highLightY
+{color:#f4485d;}
+
+.sub-lnb > li > a,
+.foot-lnb li a,
+.my-form-table .selectStyle.email input[type="button"],
+.myPage-form form > input,
+#signIn .btn,
+.sns-sign .sign-face,
+.btn008,
+.location li,
+.product-visual,
+.titleArea,
+.divType2 a,
+.listViewCount-count,
+.carInsVisual,
+.titleText label,
+.carAgreeButton
+{ color:#fff }
+
+
+@media all and (max-width:800px){
+  .sub-lnb > li > a{
+    color : #000;
+  }
+}
