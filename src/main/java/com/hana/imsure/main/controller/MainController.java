@@ -31,38 +31,4 @@ public class MainController {
 		return "components/main/mainPage";
 	}
 	
-	@GetMapping("/demographicPage")
-	public String demographicPage() {
-		
-		log.debug("demographicPage.jsp called");
-		
-		return "components/recommendation/demographicPage";
-	}
-	
-	@GetMapping("/demographicResultPage")
-	public String demographicResultPage() {
-		
-		log.debug("demographicResultPage.jsp called");
-		
-		return "components/recommendation/demographicResultPage";
-	}
-		
-	@GetMapping("/psychologicPage")
-	public String psychologicPage() {
-		
-		log.debug("psychologicPage.jsp called");
-		
-		return "components/recommendation/psychologicPage";
-	}
-	
-	@GetMapping("/psychologicResultPage")
-	public String psychologicResultPage() {
-		
-		log.debug("psychologicResultPage.jsp called");
-		
-		return "components/recommendation/psychologicResultPage";
-	}
-	
-	
-	
 }
