@@ -95,15 +95,15 @@ public class RecommendationServiceImpl implements RecommendationService {
 				switch (insuranceDatumIndex) {
 				case PRODUCT_ID:
 					resultForDatabase.put("insuranceId" + (insuraneIndex + 1), datum);
-					insuranceData.put("insurnaceId", datum);
+					insuranceData.put("insuranceId", datum);
 					break;
 				case PRODUCT_NAME:
 					String decodedProductName = UTF8.decode(datum); 
-					insuranceData.put("insurnaceName", decodedProductName.substring(1, decodedProductName.length() - 1));
+					insuranceData.put("insuranceName", decodedProductName.substring(1, decodedProductName.length() - 1));
 					break;
 				case PRODUCT_TYPE:
 					String decodedProductType = UTF8.decode(datum); 
-					insuranceData.put("insurnaceType", decodedProductType.substring(1, decodedProductType.length() - 1));
+					insuranceData.put("insuranceType", decodedProductType.substring(1, decodedProductType.length() - 1));
 					break;
 				}
 				insuranceDatumIndex++;

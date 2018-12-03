@@ -78,7 +78,7 @@
 		labels : [ '외향성', '친화성', '성실성', '신경성', '개방성' ],
 		datasets : [ {
 			label : '성격지표',
-			data : [ -5, 8, 10, -2, 8 ],
+			data : PsychologicTest.result,
 			fill : true,
 			backgroundColor : 'rgba(255, 0, 87, 0.2)',
 			borderColor : '#ff0057',
@@ -123,30 +123,23 @@
 	$.ajax({
 		type : "post",
 		url : "/user/recommend-based-on-psychological-features",
-	//beforeSend : function(xhr){
-	//	xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-	//},
-		data : {
-			userId : "1",
-			score : PsychologicTest.result
-		},
+		data : JSON.stringify({
+			"userId" : "1",
+			"personality" : PsychologicTest.result
+		}),
 		contentType : "application/json; charset=UTF-8",
 		success : function(data, status, xhr) {
-			console.log(data)
-			for ( var result in data) {
-				console.log(data[result].insuranceId);
-				var sendData = {
-					"insuranceId" : data[result].insuranceId,
-					"imageAlt" : "하나생명",
-					"imagePath" : "resources/img/recommendation/hana_logo_small.png",
-					"insuranceName" : data[result].insuranceName,
-					"insuranceType" : data[result].insuranceType
-				}	
-				$(".recommendation-list").append(Utils.formatElement(sendData,Insurance.listCardFormat));
+			for ( var index in data) {
+				console.log(data[index]);
+				var insurance = data[index];
+				insurance['imageAlt'] = '하나생명';
+				insurance['imagePath'] = 'resources/img/recommendation/hana_logo_small.png';
+				
+				$(".recommendation-list").append(Utils.formatElement(insurance,Insurance.listCardFormat));
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
-			alert(jqXHR.responseText);
+			console.log(jqXHR);
 		}
 	});
 
@@ -158,9 +151,6 @@
 		$.ajax({
 			type : "post",
 			url : "/user/insurances/"+ insuranceId,
-			//beforeSend : function(xhr){
-			//	xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-			//},
 			contentType : "application/json; charset=UTF-8",
 			success : function(data, status, xhr) {
 			
