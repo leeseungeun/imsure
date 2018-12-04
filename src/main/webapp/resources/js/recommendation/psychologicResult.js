@@ -79,7 +79,6 @@
 			url : "/user/insurances/"+ insuranceId,
 			contentType : "application/json; charset=UTF-8",
 			success : function(data, status, xhr) {
-			
 				var detailList = data.detailList;
 				var tag = '<div class="modal fade" id="insuranceDetailModal" role="dialog">'
 						+ '  <div class="modal-dialog">'
