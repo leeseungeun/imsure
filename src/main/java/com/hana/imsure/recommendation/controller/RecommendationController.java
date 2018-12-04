@@ -1,5 +1,6 @@
 package com.hana.imsure.recommendation.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -88,12 +90,21 @@ public class RecommendationController {
 		}
 	} 
 	
-	/*@GetMapping(
+	@GetMapping(
 		value = "/user/insurances/{insuranceId}",
 		produces = MediaType.APPLICATION_JSON_UTF8_VALUE
 	)
-	public ResponseEntity<> getInsuranceDetail() {
-		return new ResponseEntity<>();
-	}*/
+	public ResponseEntity<Map<String, Object>> getInsuranceDetail(@PathVariable("insuranceId") String insuranceId) {
+		try {
+			
+			log.debug("/user/insurances/{insuranceId}");
+			Map<String, Object> insurancesDetail = service.getInsuranceDetail(insuranceId);
+			return new ResponseEntity<Map<String,Object>>(insurancesDetail, HttpStatus.OK);
+		} catch (Exception e) {
+			log.debug(e);
+			return new ResponseEntity<Map<String,Object>>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
 	
+	}
 }

@@ -71,13 +71,22 @@
 	margin-right:1%;
 }
 
-#modal-top span{
+#modal-top-span{
 	width:75%;
 	margin:5% 0px;
 	display:inline-block;
 	text-align: center;
 	font-weight: bold;
 }
+
+#download{
+	width: 100%;
+    margin: 1% 2%;
+	display:inline-block;
+	text-align: left;
+	font-weight: bold;
+}
+
 
 .insurance-group{
 	margin:0.1rem auto;
@@ -98,10 +107,10 @@
 	width:70%;
 	display:inline-block;
 	margin: 0px 3%;
-	text-align: center;
+	text-align: left;
 	border-radius: 0.2rem;
-
-	 box-shadow: 3px 3px 5px lightgray;
+    padding: 0.5% 2%;
+	box-shadow: 3px 3px 5px lightgray;
 }
 
 @media ( max-width : 992px) {
@@ -113,4 +122,8 @@
 @media (max-width: 800px) {
 .col-sm-6.step-txt {
     display: block; 
+}
+
+#download{
+	width:10%;
 }

@@ -9,7 +9,7 @@ import java.util.Map;
  *
  */
 public interface RecommendationMapper {
-	
 	public int insertPsychologicResult(Map<String, Object> result);
+	public Map<String, String> selectInsuranceDatail(String insuranceId);
 	
 }

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -40,22 +41,26 @@ public class RecommendationServiceImpl implements RecommendationService {
 	private static final int CONSCIENTIOUSNESS = 2;
 	private static final int NEUROTICISM = 3;
 	private static final int OPENNESS = 4;
-	
+
 	// python 서버 통신 결과 매칭
 	private static final int PRODUCT_ID = 0;
 	private static final int PRODUCT_NAME = 1;
 	private static final int PRODUCT_TYPE = 2;
 	private static final int DISTANCE = 3;
+
+	// 보험 상세 정보 중 기타 정보에 해당하는 배열의 인덱스
+	private static final int TITLE = 0;
+	private static final int VALUE = 1;
 	
 	private RecommendationMapper mapper;
-	
+
 	@Override
-	public List<Map<String, String>> recommendBasedOnPsychologicalFeatures(Map<String, Object> params) 
+	public List<Map<String, String>> recommendBasedOnPsychologicalFeatures(Map<String, Object> params)
 			throws ClientProtocolException, IOException {
 		// 결과를 담을 변수 선언
 		Map<String, Object> resultForDatabase = new HashMap<String, Object>();
 		List<Map<String, String>> resultForView = new ArrayList<Map<String, String>>();
-		
+
 		// userId와 성격 점수 넣어줌
 		resultForDatabase.put("userId", params.get("userId"));
 		@SuppressWarnings("unchecked")
@@ -65,19 +70,19 @@ public class RecommendationServiceImpl implements RecommendationService {
 		resultForDatabase.put("neuroticism", personality.get(NEUROTICISM));
 		resultForDatabase.put("openness", personality.get(OPENNESS));
 		resultForDatabase.put("extraversion", personality.get(EXTRAVERSION));
-		
+
 		// 파이썬 서버 url
 		String url = "http://localhost:5000/python-server/recommand-based-on-psychological-features";
-		
-		HttpClient   httpClient    = HttpClientBuilder.create().build();
-		HttpPost     post          = new HttpPost(url);
-		
+
+		HttpClient httpClient = HttpClientBuilder.create().build();
+		HttpPost post = new HttpPost(url);
+
 		// parameter 및 header 설정 후 요청 보냄
 		StringEntity postingString = new StringEntity(new Gson().toJson(params));
 		post.setEntity(postingString);
 		post.setHeader("Content-type", "application/json");
-		HttpResponse  response = httpClient.execute(post);
-		
+		HttpResponse response = httpClient.execute(post);
+
 		// 결과 값 파싱
 		String responseString = EntityUtils.toString(response.getEntity(), StandardCharsets.UTF_8);
 		// 대괄호 제거 후 상품 별로 나눔
@@ -89,21 +94,23 @@ public class RecommendationServiceImpl implements RecommendationService {
 			// 대괄호 제거 후 쉼표를 기준으로 정보를 나눔
 			String[] elements = insurance.trim().substring(1, insurance.trim().length()).split(",");
 			for (String datum : elements) {
-				
+
 				datum = datum.trim();
-				
+
 				switch (insuranceDatumIndex) {
 				case PRODUCT_ID:
 					resultForDatabase.put("insuranceId" + (insuraneIndex + 1), datum);
 					insuranceData.put("insuranceId", datum);
 					break;
 				case PRODUCT_NAME:
-					String decodedProductName = UTF8.decode(datum); 
-					insuranceData.put("insuranceName", decodedProductName.substring(1, decodedProductName.length() - 1));
+					String decodedProductName = UTF8.decode(datum);
+					insuranceData.put("insuranceName",
+							decodedProductName.substring(1, decodedProductName.length() - 1));
 					break;
 				case PRODUCT_TYPE:
-					String decodedProductType = UTF8.decode(datum); 
-					insuranceData.put("insuranceType", decodedProductType.substring(1, decodedProductType.length() - 1));
+					String decodedProductType = UTF8.decode(datum);
+					insuranceData.put("insuranceType",
+							decodedProductType.substring(1, decodedProductType.length() - 1));
 					break;
 				}
 				insuranceDatumIndex++;
@@ -112,8 +119,46 @@ public class RecommendationServiceImpl implements RecommendationService {
 			insuraneIndex++;
 		}
 		mapper.insertPsychologicResult(resultForDatabase);
-		
+
 		return resultForView;
+	}
+
+	@Override
+	public Map<String, Object> getInsuranceDetail(String insuranceId) throws Exception {
+		// 데이터베이스에서 보험 정보 조회 결과
+		Map<String, String> readResult = mapper.selectInsuranceDatail(insuranceId);
+
+		if (readResult == null) {
+			// 404임을 알 수 있도록 지정해줘야 함
+			throw new Exception();
+		}
+
+		// controller로 보낼 결과 값들
+		Map<String, Object> detailResult = new HashMap<String, Object>();
+
+		// detailList 데이터 토큰별로 끊어서 저장
+		List<Map<String, String>> detailList = new ArrayList<>();
+
+		// 기타사항 내용 (공백제거)
+		String[] splitedDetails = readResult.get("details").trim().split("♣");
+
+		for (String detail : splitedDetails) {
+			
+			Map<String, String> detailMap = new HashMap<String, String>();
+			String splitIntoTitleAndValue[] = detail.trim().split(":");
+			detailMap.put("title", splitIntoTitleAndValue[TITLE].trim());
+			detailMap.put("value", splitIntoTitleAndValue[VALUE].trim());
+			detailList.add(detailMap);
+		}
+		
+		detailResult.put("insuranceId", readResult.get("insuranceId"));
+		detailResult.put("insuranceName", readResult.get("insuranceName"));
+		detailResult.put("insuranceType", readResult.get("insuranceType"));
+		detailResult.put("channel", readResult.get("channel"));
+		detailResult.put("url", readResult.get("url"));
+		detailResult.put("detailList", detailList);
+
+		return detailResult;
 	}
 
 }

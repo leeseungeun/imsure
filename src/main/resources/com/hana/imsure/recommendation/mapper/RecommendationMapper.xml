@@ -27,4 +27,15 @@
 		             #{insuranceId2}, 
 		             #{insuranceId3})
 	</insert>
+	
+	<select id="selectInsuranceDatail" resultType="java.util.Map">
+		SELECT insurance_id   "insuranceId", 
+       		   insurance_name "insuranceName", 
+       		   insurance_type "insuranceType", 
+        	   channel        "channel", 
+       		   url            "url", 
+       		   details        "details" 
+		FROM   imsure_insurances 
+		WHERE  insurance_id = #{insuranceId}
+	</select>
 </mapper>
