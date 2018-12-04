@@ -83,8 +83,17 @@ public class RecommendationController {
 			return new ResponseEntity<List<Map<String,String>>>(result, HttpStatus.CREATED);
 		
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.debug(e);
 			return new ResponseEntity<List<Map<String,String>>>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	} 
+	
+	/*@GetMapping(
+		value = "/user/insurances/{insuranceId}",
+		produces = MediaType.APPLICATION_JSON_UTF8_VALUE
+	)
+	public ResponseEntity<> getInsuranceDetail() {
+		return new ResponseEntity<>();
+	}*/
+	
 }

@@ -74,7 +74,7 @@ function getPsychologicResult() {
 	calculateUserAnswers();
 	
 	//페이지 전환
-	Router.route('section', 'psychologicResultPage');
+	Router.route('section', 'user/psychologicResultPage');
 }
 
 // step에 따른 버튼 생성 함수
