@@ -1,10 +1,7 @@
 package com.hana.imsure.recommendation.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.inject.Inject;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -89,6 +86,29 @@ public class RecommendationController {
 			return new ResponseEntity<List<Map<String,String>>>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	} 
+	
+	// 인구통계학적 특성을 이용한 생명보험 추천
+	@RequestMapping(
+		method = RequestMethod.POST,
+		value = "/user/recommend-based-on-demographical-features",
+		consumes = "application/json",
+		produces = MediaType.APPLICATION_JSON_UTF8_VALUE
+	)
+	public ResponseEntity<List<Map<String, String>>> recommendBasedOnDemographicalFeatures(
+		@RequestBody Map<String, Object> params
+	) {
+		try {
+					
+			log.debug("recommend based on demographical features called");
+					
+			List<Map<String, String>> result = service.recommendBasedOnDemographicalFeatures(params);
+			return new ResponseEntity<List<Map<String,String>>>(result, HttpStatus.CREATED);
+				
+		} catch (Exception e) {
+			log.debug(e);
+			return new ResponseEntity<List<Map<String,String>>>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 	
 	@GetMapping(
 		value = "/user/insurances/{insuranceId}",

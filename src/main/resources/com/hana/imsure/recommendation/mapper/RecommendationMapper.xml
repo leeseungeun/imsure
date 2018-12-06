@@ -38,4 +38,50 @@
 		FROM   imsure_insurances 
 		WHERE  insurance_id = #{insuranceId}
 	</select>
+	
+	<!-- 인구통계학적 보험추천에 필요한 정보 번호 구하기 -->
+	<select id="readDemographyId" resultType="string">
+		SELECT demography_function - 1
+		FROM dual
+	</select>
+
+	<!-- 인구통계학적 보험추천에 필요한 정보 저장 -->
+	<insert id="insertDemographicInfomation">
+		INSERT INTO imsure_demographic_infos
+			(demography_id,
+			 user_id,
+			 user_name,
+			 gender,
+			 birth_number,
+			 is_married,
+			 has_child,
+			 income,
+			 job,
+			 has_family_cancer)
+		VALUES 		((SELECT demography_function
+					  FROM dual),
+					 #{userId},
+					 #{userName},
+					 #{gender},
+					 #{birthNumber},
+					 #{isMarried},
+					 #{hasChild},
+					 #{income},
+					 #{job},
+					 #{hasFamilyCancer})
+	</insert>
+
+	<!-- 인구통계학적 보험추천 결과 저장 -->
+	<insert id="insertDemographicResult">
+		INSERT INTO imsure_demographic_results
+			(demography_results_id,
+			 demography_id,
+			 insurance_id,
+			 user_id)
+		VALUES 		((SELECT demography_results_id_function
+					  FROM dual),
+					 #{demographyId},
+					 #{insuranceId},
+					 #{userId})
+	</insert>
 </mapper>

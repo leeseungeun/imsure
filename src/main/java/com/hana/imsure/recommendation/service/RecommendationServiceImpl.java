@@ -16,8 +16,10 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.google.gson.Gson;
+import com.hana.imsure.common.utils.Convertor;
 import com.hana.imsure.common.utils.UTF8;
 import com.hana.imsure.recommendation.mapper.RecommendationMapper;
 
@@ -161,4 +163,89 @@ public class RecommendationServiceImpl implements RecommendationService {
 		return detailResult;
 	}
 
+	// 인구통계학적 보험 추천
+	@Transactional
+	@Override
+	public List<Map<String, String>> recommendBasedOnDemographicalFeatures(Map<String, Object> params)
+			throws ClientProtocolException, IOException {
+		// 결과를 담을 변수 선언
+		Map<String, Object> information = new HashMap<String, Object>();
+		Map<String, Object> resultForDatabase = new HashMap<String, Object>();
+		Map<String, Object> pythonData = new HashMap<String, Object>();
+		List<Map<String, String>> resultForView = new ArrayList<Map<String, String>>();
+			
+		// 인구통계학적 보험 추천에 필요한 정보값 저장
+		information.put("userId", params.get("userId"));
+		information.put("userName", params.get("userName"));
+		information.put("gender", params.get("gender"));
+		information.put("birthNumber", params.get("birthNumber"));
+		information.put("isMarried", params.get("isMarried"));
+		information.put("hasChild", params.get("hasChild"));
+		information.put("income", params.get("income"));
+		information.put("job", params.get("job"));
+		information.put("hasFamilyCancer", params.get("hasFamilyCancer"));
+			
+		mapper.insertDemographicInfomation(information);
+			
+		// 파이썬 서버로 보내는 데이터 저장
+		Convertor convertor = new Convertor();
+		pythonData.put("cancer", convertor.cancer(String.valueOf(params.get("birthNumber")), String.valueOf(params.get("income"))));
+		pythonData.put("death", convertor.death(String.valueOf(params.get("birthNumber")), String.valueOf(params.get("income"))));
+		pythonData.put("pension", convertor.pension(String.valueOf(params.get("birthNumber")), String.valueOf(params.get("income"))));
+		pythonData.put("hasChild", params.get("hasChild"));
+		pythonData.put("isMarried", params.get("isMarried"));
+		pythonData.put("hasFamilyCancer", params.get("hasFamilyCancer"));
+		pythonData.put("gender", params.get("gender"));
+			
+		// 파이썬 서버 url
+		String url = "http://localhost:5000/python-server/recommand-based-on-demographical-features";
+					
+		HttpClient   httpClient    = HttpClientBuilder.create().build();
+		HttpPost     post          = new HttpPost(url);
+			
+		// parameter 및 header 설정 후 요청 보냄
+		StringEntity postingString = new StringEntity(new Gson().toJson(pythonData));
+		post.setEntity(postingString);
+		post.setHeader("Content-type", "application/json");
+		HttpResponse  response = httpClient.execute(post);
+			
+		// 결과 값 파싱
+		String responseString = EntityUtils.toString(response.getEntity(), StandardCharsets.UTF_8);
+		// 대괄호 제거 후 상품 별로 나눔
+		String[] results = responseString.trim().substring(1, responseString.trim().length() - 2).split("],?");
+		for (String insurance : results) {
+			int insuranceDatumIndex = 0;
+			Map<String, String> insuranceData = new HashMap<String, String>();
+			// 대괄호 제거 후 쉼표를 기준으로 정보를 나눔
+			String[] elements = insurance.trim().substring(1, insurance.trim().length()).split(",");
+			for (String datum : elements) {
+							
+				datum = datum.trim();
+							
+				switch (insuranceDatumIndex) {
+				case PRODUCT_ID:
+					// 인구통계학적 보험 추천 결과 저장
+					resultForDatabase.put("demographyId", mapper.readDemographyId());
+					resultForDatabase.put("insuranceId", datum.replace("\"", ""));
+					resultForDatabase.put("userId", params.get("userId"));
+					mapper.insertDemographicResult(resultForDatabase);
+					resultForDatabase.clear();
+						
+					insuranceData.put("insuranceId", datum.replace("\"", ""));
+					break;
+				case PRODUCT_NAME:
+					String decodedProductName = UTF8.decode(datum); 
+					insuranceData.put("insuranceName", decodedProductName.substring(1, decodedProductName.length() - 1));
+					break;
+				case PRODUCT_TYPE:
+					String decodedProductType = UTF8.decode(datum); 
+					insuranceData.put("insuranceType", decodedProductType.substring(1, decodedProductType.length() - 1));
+					break;
+				}
+				insuranceDatumIndex++;
+			}
+			resultForView.add(insuranceData);
+		}
+		return resultForView;
+	}
 }

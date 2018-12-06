@@ -19,4 +19,8 @@ public interface RecommendationService {
 			throws ClientProtocolException, IOException;
 	// 보험상품 상세 가져오는 메소드
 	public Map<String, Object> getInsuranceDetail(String insuranceId) throws Exception;
+	
+	//인구통계학적 보험 추천
+	public List<Map<String, String>> recommendBasedOnDemographicalFeatures(Map<String, Object> params)
+			throws ClientProtocolException, IOException;
 }
