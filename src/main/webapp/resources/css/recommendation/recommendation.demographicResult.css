@@ -1,0 +1,101 @@
+@charset "utf-8";
+
+.step-tab {
+	width: 15% !important;
+}
+
+#ageChart{
+	
+	width:50%;
+	margin: 5% auto;
+}
+
+#jobChart{
+
+	width:50%;
+	margin-bottom: 5%;
+	float:left
+
+}
+
+#incomeChart{
+
+	width:50%;
+	margin-bottom: 5%;
+	float:right;
+}
+
+.chartContainer{
+	margin : 10% auto;
+}
+
+.button {
+    height: 48px;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #FFF;
+    background-color: #373c44;
+    width:50%;
+    float:right;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.buttonPrev {
+    height: 48px;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #FFF;
+    background-color: #373c44;
+    width:50%;
+    float:right;
+}
+
+.buttonPrev span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.buttonPrev span:after {
+  content: '\00ab';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: -20px;
+  transition: 0.5s;
+}
+
+.buttonPrev:hover span {
+  padding-left: 25px;
+}
+
+.buttonPrev:hover span:after {
+  opacity: 1;
+  left: 0;
+}
+

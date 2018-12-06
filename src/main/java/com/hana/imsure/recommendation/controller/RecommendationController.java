@@ -67,6 +67,14 @@ public class RecommendationController {
 		return "components/recommendation/psychologicResultPage";
 	}
 	
+	@GetMapping("/user/demographicResultPageDemo")
+	public String demographicResultPageDemo() {
+		
+		log.debug("demographicResultPageDemo.jsp called");
+		
+		return "components/recommendation/demographicResultPageDemo";
+	}
+	
 	// 심리학적 특성을 이용한 생명보험 추천
 	@RequestMapping(
 		method = RequestMethod.POST,

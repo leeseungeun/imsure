@@ -233,9 +233,9 @@
 //탭을 클릭하면 관련 input이 나오게
 
 
-stepTabEvent($('.step-tab:first'));
+//stepTabEvent($('.step-tab:first'));
 
-console.log($('.step-tab:first'));
+//console.log($('.step-tab:first'));
 
 // 탭 클릭 이벤트 처리 함수
 function stepTabEvent(clickedTab) {
