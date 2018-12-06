@@ -49,11 +49,9 @@
     <div class="col-sm-8">
       <div class="findContainer">
         <div class="callaction bg-gray">
-          <div class="row">
             <div class="find-text">
               <div class="insurance-list">보험리스트</div>
             </div>
-          </div>
         </div>
       </div>
     </div>
@@ -105,7 +103,7 @@
               <div class="form-group">
                 <div class="nk-int-st">
                   <label>생년월일</label><input type="text"
-                    class="form-control input-sm"
+                    class="input100"
                     placeholder="ex) 19930131">
                 </div>
               </div>
@@ -129,7 +127,7 @@
           <div class="row">
             <div class="find-text">
               그래프
-              <canvas id="analysChart"></canvas>
+              <canvas id="analysChart" width="350"></canvas>
             </div>
           </div>
         </div>
@@ -153,14 +151,44 @@
     <!-- 보험분석하기 영역 끝 -->
   </div>
 </div>
-  <!-- JavaScript -->
+<!-- JavaScript -->
 <script src="resources/js/common/Chart.js"></script>
 <script>
-var data = [{x:'2016-12-25', y:20}, {x:'2016-12-26', y:10}];
-var ctx = $('#analysChart');
-var myBarChart = new Chart(ctx, {
-    type: 'horizontalBar',
-    data: data
-    //options: options
-});
+	var data = [ {
+		x : '2016-12-25',
+		y : 20
+	}, {
+		x : '2016-12-26',
+		y : 10
+	} ];
+	var ctx = $('#analysChart');
+	new Chart(ctx, {
+		type : "horizontalBar",
+		data : {
+			labels : [ "암,성인병", "연금", "저축", "상해", "기타" ],
+			datasets : [ {
+				data : [ 65, 59, 80, 81, 56 ],
+				fill : false,
+				backgroundColor : [ "rgba(255, 99, 132, 0.2)",
+						"rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)",
+						"rgba(75, 192, 192, 0.2)", "rgba(54, 162, 235, 0.2)" ],
+				borderColor : [ "rgb(255, 99, 132)", "rgb(255, 159, 64)",
+						"rgb(255, 205, 86)", "rgb(75, 192, 192)",
+						"rgb(54, 162, 235)", ],
+				borderWidth : 1
+			} ]
+		},
+		options : {
+			scales : {
+				xAxes : [ {
+					ticks : {
+						beginAtZero : true
+					}
+				} ]
+			},
+			legend : {
+				display : false,
+			}
+		}
+	});
 </script>
