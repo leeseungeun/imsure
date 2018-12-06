@@ -49,9 +49,9 @@
     <div class="col-sm-8">
       <div class="findContainer">
         <div class="callaction bg-gray">
-            <div class="find-text">
-              <div class="insurance-list">보험리스트</div>
-            </div>
+          <div class="find-text">
+            <div class="insurance-list">보험리스트</div>
+          </div>
         </div>
       </div>
     </div>
@@ -92,11 +92,9 @@
         <div class="row">
           <div class="col-sm-5">
             <div class="form-group">
-              <label class="find-info-label">성별</label>
-              <label>남자</label><input type="radio" id="M" name="gander"
-                value="M"> 
-              <label>여자</label><input type="radio"
-                id="W" name="gander" value="W">
+              <label class="find-info-label">성별</label> <label>남자</label><input
+                type="radio" id="M" name="gander" value="M"> <label>여자</label><input
+                type="radio" id="W" name="gander" value="W">
             </div>
 
           </div>
@@ -104,8 +102,8 @@
             <div class="form-example-int form-example-st">
               <div class="form-group">
                 <div class="nk-int-st">
-                  <label class="find-info-label">생년월일</label><input type="text"
-                    class="input100"
+                  <label class="find-info-label">생년월일</label><input
+                    type="text" class="input100"
                     placeholder="ex) 19930131">
                 </div>
               </div>
@@ -126,13 +124,18 @@
     <div class="col-sm-6">
       <div class="findContainer">
         <div class="callaction bg-gray">
-          <div class="row">
-            <div class="find-text">
-              그래프
-              <canvas id="analysChart" width="350"></canvas>
+          <div class="find-text">
+            <div class="graph-area">
+              <h5>내 현재 보험은?</h5>
+              <br>
+              <canvas id="analysChart" width="300"></canvas>
+            </div>
+            <div class="analysText">
+              <span>암, 질병 보험의 경우 평균 보장금액보다 부족하시네요! 하나생명 보험을 추천합니다</span>
             </div>
           </div>
         </div>
+
       </div>
     </div>
     <div class="col-sm-6">
@@ -144,8 +147,37 @@
               <li class=".step-tab">1 STEP</li>
               <li class=".step-tab">2 STEP</li>
             </ul>
-            <div class="form-area step1 on">심리카드 영역</div>
-            <div class="form-area step2 on">인구카드 영역</div>
+            <div class="form-area step1 on">
+              <div class="insurance-card" data-toggle="modal"
+                data-target="#insuranceDetailModal">
+                <input type="hidden" id="insuranceId"
+                  value="###insuranceId###">
+                <div class="img-wrapper">
+                  <img alt="하나생명"
+                    src="resources/img/recommendation/hana_logo_small.png">
+                </div>
+                <div class="contents-wrapper">
+                  <h5 class="insurance-name">###insuranceName###</h5>
+                  <p class="insurance-type">###insuranceType###</p>
+                </div>
+              </div>
+            </div>
+            <div class="form-area step2 on">
+              <div class="insurance-card" data-toggle="modal"
+                data-target="#insuranceDetailModal">
+                <input type="hidden" id="insuranceId"
+                  value="###insuranceId###">
+                <div class="img-wrapper">
+                  <img alt="하나생명"
+                    src="resources/img/recommendation/hana_logo_small.png">
+                </div>
+                <div class="contents-wrapper">
+                  <h5 class="insurance-name">###insuranceName###</h5>
+                  <p class="insurance-type">###insuranceType###</p>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
