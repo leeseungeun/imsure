@@ -231,12 +231,8 @@
 
 <script>
 //탭을 클릭하면 관련 input이 나오게
-
-
-//stepTabEvent($('.step-tab:first'));
-
-//console.log($('.step-tab:first'));
-
+stepTabEvent($('.step-tab:first'));
+console.log($('.step-tab:first'));
 // 탭 클릭 이벤트 처리 함수
 function stepTabEvent(clickedTab) {
 	
@@ -248,9 +244,7 @@ function stepTabEvent(clickedTab) {
 	$('.form-area').removeClass('on');
 	$('.form-area').eq(index).addClass('on');
 }
-
 $('.step-tab').click(function(){
 	stepTabEvent(this);
 });
-
 </script>
