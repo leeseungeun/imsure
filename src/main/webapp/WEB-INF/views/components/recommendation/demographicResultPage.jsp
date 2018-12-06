@@ -18,29 +18,26 @@
     <div class="col-sm-12" id="result-part">
       <div class="row">
         <div class="col-sm-6">
-
           <div class="chartContainer">
             <h4>김땡땡님과 비슷한 사람들이 가입한 보험종류는?</h4>
             <!-- 연령 -->
-            <div id="ageChartDiv">
+            <div id="ageChartDiv" style="margin:7% auto">
               <h5>연령별 보험종류</h5>
               <canvas id="ageChart" width="5"></canvas>
             </div>
             <!-- 직업군 -->
-            <div id="jobChartDiv">
+            <div id="jobChartDiv" style="float:left">
               <h5>직업군별 보험종류</h5>
-              <canvas id="jobChart" width="5"></canvas>
-              <div>
+              <canvas id="jobChart" width="5" ></canvas>
+            </div>
                 <!-- 소득 -->
-                <div id="incomeChartDiv">
-                  <h5>소득별 보험종류</h5>
-                  <canvas id="incomeChart" width="5"></canvas>
-                </div>
-              </div>
-
+            <div id="incomeChartDiv" style="float:right;">
+               <h5>소득별 보험종류</h5>
+               <canvas id="incomeChart" width="5"></canvas>
             </div>
           </div>
         </div>
+        
         <div class="col-sm-6 forms output step-txt"
               style="min-height: 589px;">
               <form role="form" class="ng-pristine ng-valid">
@@ -94,7 +91,7 @@
 		options : {
 			responsive : true,
 			legend : {
-				position : 'top',
+				position : 'right',
 
 			},
 			animation : {
@@ -106,7 +103,7 @@
 
 	var ctx2 = document.getElementById("jobChart");
 	var data = {
-		labels : [ "Red", "Blue", "Yellow" ],
+		labels : [ "암,성인병", "질병", "연금" ],
 		datasets : [ {
 			label : "가입 보험 비율",
 			data : [ 20, 50, 30 ],
@@ -121,7 +118,7 @@
 		options : {
 			responsive : true,
 			legend : {
-				position : 'top',
+				position : 'right',
 
 			},
 			animation : {
@@ -133,7 +130,7 @@
 
 	var ctx3 = document.getElementById("incomeChart");
 	var data = {
-		labels : [ "Red", "Blue", "Yellow" ],
+		labels : [ "암,성인병", "질병", "연금" ],
 		datasets : [ {
 			label : "가입 보험 비율",
 			data : [ 20, 50, 30 ],
@@ -148,8 +145,7 @@
 		options : {
 			responsive : true,
 			legend : {
-				position : 'top',
-
+				position : 'right',
 			},
 			animation : {
 				animateScale : true,

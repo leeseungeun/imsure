@@ -4,29 +4,16 @@
 	width: 15% !important;
 }
 
-#ageChart{
-	
-	width:50%;
-	margin: 5% auto;
-}
-
-#jobChart{
-
-	width:50%;
-	margin-bottom: 5%;
-	float:left
-
-}
-
-#incomeChart{
-
-	width:50%;
-	margin-bottom: 5%;
-	float:right;
+#ageChart, #jobChart, #incomeChart{
+	position:relative;
 }
 
 .chartContainer{
 	margin : 10% auto;
+}
+
+#ageChartDiv,#jobChartDiv,#incomeChartDiv{
+	width:50%;
 }
 
 .button {
