@@ -92,8 +92,10 @@
         <div class="row">
           <div class="col-sm-5">
             <div class="form-group">
+              <label class="find-info-label">성별</label>
               <label>남자</label><input type="radio" id="M" name="gander"
-                value="M"> <label>여자</label><input type="radio"
+                value="M"> 
+              <label>여자</label><input type="radio"
                 id="W" name="gander" value="W">
             </div>
 
@@ -102,7 +104,7 @@
             <div class="form-example-int form-example-st">
               <div class="form-group">
                 <div class="nk-int-st">
-                  <label>생년월일</label><input type="text"
+                  <label class="find-info-label">생년월일</label><input type="text"
                     class="input100"
                     placeholder="ex) 19930131">
                 </div>
@@ -111,7 +113,7 @@
           </div>
           <div class="col-sm-2">
             <div class="form-example-int">
-              <button class="btn">분석하기</button>
+              <button class="btn btn-skin btn-lg">분석하기</button>
             </div>
           </div>
         </div>
