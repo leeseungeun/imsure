@@ -8,7 +8,9 @@
 	href="resources/css/recommendation/recommendation.index.css">
 <link rel="stylesheet" type="text/css"
 	href="resources/css/recommendation/recommendation.demographic.css">
-
+<link rel="stylesheet" type="text/css"
+	href="resources/css/recommendation/recommendation.demographic.whysure.css">
+	
 <!-- header -->
 <jsp:include page="../../includes/header.jsp" />
 
@@ -71,41 +73,44 @@
 				<button type="button" class="close" data-dismiss="modal">×</button>
 			</div>
 			<div class="modal-body">
-				<div class="modal-title" id="modal-top">
-					<h4>인구통계학적 상품 추천</h4>
-					<h4>이렇게 탄생하였습니다!</h4>
-				</div>
 				<div class="paragraph-text">
 					<ul class="paragraph-list">
 						<li class="paragraph:before">
-							<h5>통계 데이터 시각화</h5>
+							<h5>
+							<span class="question-number">01</span>통계 데이터 시각화</h5>
 							<div class="img-wrapper">
 								<img class="whysure-img" alt="데이터 도넛 차트"
 									src="resources/img/recommendation/demographic_result_whysure_donut.png">
 							</div>
-							<p>통계청에 게시된 자료인 '생명보험성향조사:최근 가입 보험 종류'를 바탕으로 연령별, 소득별, 직업군별 데이터를 수집했어요.
-								이를 한 눈에 파악하실 수 있도록 다방형 차트로 시각화하였답니다.</p>
+							<p>통계청에 게시된 '생명보험성향조사:최근 가입 보험 종류'를 바탕으로 연령별, 소득별, 직업군별 데이터를 수집했습니다.
+								그리고 이를 한 눈에 파악하실 수 있도록 도넛 차트로 <span
+                  				class="recommendation-highlight">시각화</span>하였습니다.</p>
 						</li>
 
 						<li class="paragraph:before">
-							<h5>상품 정밀 분석 및 필터링</h5>
+							<h5>
+							<span class="question-number">02</span>상품 정밀 분석 및 필터링</h5>
 							<div class="img-wrapper">
 								<img class="whysure-img" alt="상품 정밀 분석 및 필터링"
 									src="resources/img/recommendation/demographic_result_whysure_documents.png">
 							</div>
-							<p>생명보험협회 비교공시실 기준으로, 개인 가입이 가능한 하나 보험상품 40개를 하나하나 정밀분석하였어요.
-								보험상품의 종류, 가입가능연령, 채널, 보장범위를 분석하여 각 상품의 주요 특징과 강점을 파악했답니다. 이것으로
-								손님의 정보에 적합한 상품을 필터링하고 분류하였어요.</p>
-							<p>다음은 손님께 상품을 매칭하는 데 사용했던 기준이예요.</p>
-							<p id="numbering">
-								<font color="#ff0057"> 1) 연령<br> 2) 소득<br> 3) 암
-									가족력<br> 4) 결혼여부<br> 5) 자녀유무
-								</font>
+							<p>생명보험협회 비교공시실 기준 하나생명  <span
+                  				class="recommendation-highlight">전 상품</span> (40개)의 특징(보험상품의 종류, 가입가능연령, 채널, 보장범위 등)을 <span
+                  				class="recommendation-highlight">정밀분석</span>했습니다.
+								이를 통해 각 상품의 주요 특징과 강점을 파악하여 손님의 정보에 적합한 상품을 <span
+                  				class="recommendation-highlight">필터링</span>하고 분류하였습니다.</p>
+							<p class="recommendation-standard">
+                				<span class="recommendation-standard-title">상품 추천을 위한 분석 요소에는 어떤 것이 있을까요?</span><br>
+									- 암 가족력 여부<br>
+									- 연령<br> 
+									- 소득<br> 
+									- 결혼여부<br> 
+									- 자녀유무
 						</li>
 						<li class="paragraph:before">
-							<h5>인구통계학적 추천 과정을</h5>
-							<h5>조금 더 자세히 살펴볼까요?</h5>
-							<div class="img-wrapper">
+							<h5 class="example-title">인구통계학적 추천 과정을</h5>
+							<h5 id="example-title-nextline">조금 더 자세히 살펴볼까요?</h5>
+							<div id="div-demographic-flow">
 								<img id="demographic-flow" alt="인구통계학적 추천 플로우"
 									src="resources/img/recommendation/demographic_result_whysure_flow.png">
 							</div>
