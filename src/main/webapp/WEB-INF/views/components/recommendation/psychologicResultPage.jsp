@@ -49,7 +49,7 @@
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-        <span class="modal-title">Why sure : &#8544'M SURE은 어떻게
+        <span class="modal-title">Why sure : I'M SURE은 어떻게
           확신할 수 있는가?</span>
         <button type="button" class="close" data-dismiss="modal"
           style="width: 5%; margin-right: 0.5%">×</button>
