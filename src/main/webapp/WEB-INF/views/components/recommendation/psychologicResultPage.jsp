@@ -20,12 +20,22 @@
 				<div class="col-sm-6">
 					<h4 class="recommendation-title">심리검사 결과</h4>
 					<div class="graph">
-						<canvas id="myChart" class="chartjs" width="600" height="400"></canvas>
+						<canvas id="myChart" class="chartjs" width="600" height="300"></canvas>
 					</div>
+                    <div>
+                      <p class="txt-board">
+                        당신은<br/>
+                        <span class="info-txt ng-binding" id="personality1"></span> 사람입니다.<br class="txt-board-br"><br>
+                        또한,
+                        <span class="info-txt ng-binding" id="personality2"></span> 편입니다!
+                       
+                    </p>
+                    </div>
 				</div>
 				<div class="col-sm-6">
 					<div class="title-wrapper">
 						<h4 class="recommendation-header">
+                            그런 당신에게<br>
 							<span class="application-name">I'M SURE</span>에서 확신하는 <span
 								class="recommendation-highlight">추천</span> 생명보험은?
 						</h4>

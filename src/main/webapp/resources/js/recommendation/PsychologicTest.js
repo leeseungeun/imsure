@@ -7,6 +7,8 @@
 var PsychologicTest = {};
 // 최종 계산 결과를 저장하는 변수
 PsychologicTest.result = [];
+// 성격 관련 메시지 표시를 위해 인덱스와 결과값을 저장하는 변수
+PsychologicTest.resultWithIndex = [];
 // 각 STEP 형식
 PsychologicTest.stepFormat = '<div class="form-area">###questions###</div>';
 // STEP

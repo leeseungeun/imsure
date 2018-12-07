@@ -63,7 +63,12 @@ function calculateUserAnswers() {
 	var finalAnswers = PsychologicTest.selectedAnswers;
 	for ( var index in finalAnswers) {
 		var finalAnswer = finalAnswers[index];
-		PsychologicTest.result[finalAnswer['index']] = finalAnswer['answers'].reduce((a, b) => parseInt(a) + parseInt(b), 0);
+		var answerSum = finalAnswer['answers'].reduce((a, b) => parseInt(a) + parseInt(b), 0);
+		PsychologicTest.result[finalAnswer['index']] = answerSum;
+		PsychologicTest.resultWithIndex[finalAnswer['index']] = {
+			'index' : parseInt(finalAnswer['index']),
+			'score' : answerSum
+		};
 	}
 }
 
