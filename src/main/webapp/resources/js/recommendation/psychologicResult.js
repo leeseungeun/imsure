@@ -122,20 +122,37 @@ $('.recommendation-list').on('click', '.insurance-card', function(event) {
 
 // 성격 측정 결과 메시지
 var personalityMessage = [
-	'사교적이고 활력적인',
-	'배려심 깊고 이타적인',
-	'목표를 위해 노력하는',
-	'걱정이 많은',
-	'호기심이 많고 모험심 넘치는',
+	{
+		'plus':'사교적이고 활력적인',
+		'minus':'조용하고 차분한'
+	},
+	{
+		'plus':'배려심 깊고 이타적인',
+		'minus':'자신을 사랑하는'
+	},
+	{
+		'plus':'목표를 위해 노력하는',
+		'minus':'여유로운 삶을 즐기는'
+	},
+	{
+		'plus':'걱정이 많은',
+		'minus':'심리적으로 안정된'
+	},
+	{
+		'plus':'호기심이 많고 모험심 넘치는',
+		'minus':'익숙한 것을 좋아하는'
+	}
 ];
 var personalityResult = PsychologicTest.resultWithIndex;
 var sortedPersonalityResult = personalityResult.sort((secondPersonality, firstPersonality) => {
 	
+	var secondPersonalityScore = Math.abs(secondPersonality['score']);
+	var firstPersonalityScore = Math.abs(firstPersonality['score']);
 	var personalityScoreCompareResult; 
 	
-	if(secondPersonality['score'] < firstPersonality['score']){
+	if(secondPersonalityScore < firstPersonalityScore){
 		personalityScoreCompareResult = 1;
-	} else if (secondPersonality['score'] > firstPersonality['score']){
+	} else if (secondPersonalityScore > firstPersonalityScore){
 		personalityScoreCompareResult = -1;
 	} else {
 		personalityScoreCompareResult = 0;
@@ -143,5 +160,9 @@ var sortedPersonalityResult = personalityResult.sort((secondPersonality, firstPe
 	
 	return personalityScoreCompareResult;
 });
-$('#personality1').html(personalityMessage[sortedPersonalityResult[0]['index']]);
-$('#personality2').html(personalityMessage[sortedPersonalityResult[1]['index']]);
+var mostSalientPersonality = sortedPersonalityResult[0];
+var mostSalientPersonalitySign = mostSalientPersonality['score'] > 0? 'plus':'minus';
+$('#personality1').html(personalityMessage[mostSalientPersonality['index']][mostSalientPersonalitySign]);
+var secondMostSalientPersonality = sortedPersonalityResult[1];
+var secondMostSalientPersonalitySign = secondMostSalientPersonality['score'] > 0? 'plus':'minus';
+$('#personality2').html(personalityMessage[secondMostSalientPersonality['index']][secondMostSalientPersonalitySign]);
