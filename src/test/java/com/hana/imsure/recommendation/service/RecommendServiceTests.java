@@ -19,10 +19,9 @@ public class RecommendServiceTests {
 	@Inject
 	private RecommendationService service;
 
-
-	@Test
-	public void testGetList() throws Exception {
-
-		 log.info(service.getInsuranceDetail("26"));
-	}
+//	@Test
+//	public void testGetList() throws Exception {
+//
+//		 log.info(service.getInsuranceDetail("26"));
+//	}
 }

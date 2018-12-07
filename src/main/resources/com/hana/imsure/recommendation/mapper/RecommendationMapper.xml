@@ -84,4 +84,19 @@
 					 #{insuranceId},
 					 #{userId})
 	</insert>
+	<select id="readGraphInformation" resultType="java.util.List">
+		SELECT accident_insurance "accidentInsurance", 
+       		   disease_insurance "diseaseInsurance", 
+       		   pension_insurance "pensionInsurance", 
+       		   savings_insurance "savingsInsurance", 
+       		   dead_insurance "deadInsurance", 
+       		   variable_insurance "variableInsurance", 
+       		   medical_insurance "medicalInsurance", 
+       		   nursing_insurance "nursingInsurance", 
+       		   condition "condition"
+		FROM   imsure_insurance_ratio 
+		WHERE condition = #{age} 
+           OR condition = #{income} 
+           OR condition = #{job}
+	</select>
 </mapper>

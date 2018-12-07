@@ -3,37 +3,38 @@
  * 
  * @author 박소연
  */
-sendDataToServer();
-drawChart();
 
-function sendDataToServer(){
-	/*
+sendChartDataToServer();
+
+//sendDataToServer();
+//drawChart();
+
+
+function sendChartDataToServer() {
+	
+	var userName = Demographic.data.userName;
+	var birthNumber = Demographic.data.birthNumber;
+	var income = Demographic.data.income;
+	var job = Demographic.data.job;
+	
 	$.ajax({
 		type : "post",
-		url : "/user/recommend-based-on-demographical-features",
-		data : JSON.stringify(Demographic.data),
+		url : "/user/draw-graph-based-on-demographical-features",
+		data : JSON.stringify({
+			"userId" : "1",
+			"userName" : userName,
+			"birthNumber" : birthNumber,
+			"income" : income,
+			"job" : job
+		}),
 		contentType : "application/json; charset=UTF-8",
 		success : function(data, status, xhr) {
-			console.log('성공');
-			for ( var index in data) {
-				var insurance = data[index];
-				insurance['imageAlt'] = '하나생명';
-				insurance['imagePath'] = 'resources/img/recommendation/hana_logo_small.png';
-				
-				$(".recommendation-list").append(Utils.formatElement(insurance,Insurance.listCardFormat));
-			}
-			//보험 종류 차트 그리기
-			//drawChart();
-			//보험 분석 결과
-			//analysisResultText();
+			console.log('성공' + data);
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			console.log(jqXHR);
 		}
-	});*/
-	
-}
-function drawChart() {
+	});
 	
 	//ajax통신으로 데이터 받아오기
 	var ageData = [ 18, 61.2, 0, 0, 0, 0, 20.9, 0 ];

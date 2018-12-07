@@ -247,4 +247,12 @@ public class RecommendationServiceImpl implements RecommendationService {
 		}
 		return resultForView;
 	}
+
+	@Override
+	public List<Map<String, String>> drawGraphBasedOnDemographicalFeatures(Map<String, String> params)
+			throws ClientProtocolException, IOException {
+		
+		params.get("userName");
+		return null;
+	}
 }

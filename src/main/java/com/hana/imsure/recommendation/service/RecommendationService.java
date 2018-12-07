@@ -23,4 +23,8 @@ public interface RecommendationService {
 	//인구통계학적 보험 추천
 	public List<Map<String, String>> recommendBasedOnDemographicalFeatures(Map<String, Object> params)
 			throws ClientProtocolException, IOException;
+	
+	//인구통계학적 보험 추천 - 그래프 그리기
+	public List<Map<String, String>> drawGraphBasedOnDemographicalFeatures(Map<String, String> params)
+				throws ClientProtocolException, IOException;
 }
