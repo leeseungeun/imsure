@@ -60,7 +60,7 @@
                   src="resources/img/recommendation/resultpage_whysure_algorithm.png">
               </div>
               <p>
-                외향성, 친화성, 성실성, 신경성, 개방성 측면에서 <br /> 손님과 상품 특성 간의 유사성을 <br />
+                외향적, 친화적, 성실한, 신경질적, 개방적인 성격 면에서 <br /> 손님과 상품 특성 간의 유사성을 <br />
                 간단하면서도 가장 많이 사용되는 알고리즘을 사용해 <br /> <span
                   class="recommendation-highlight">빠르고 정확하게</span>
                 분석했습니다.
@@ -76,7 +76,7 @@
               </div>
               <p class="example">
                             그래프 상에서 x, y, z 축은 <br/>
-                            각각 외향적인, 성실한, 신경적인 정도를 의미합니다.<br/>
+                            각각 외향적인, 성실한, 신경질적인 정도를 의미합니다.<br/>
                              이때 <span class="recommendation-highlight">내향적이고 성실한</span> 사람일수록 
                <span class="recommendation-highlight">저축</span>을 할 확률이 
                <span class="recommendation-highlight">높</span>고,<br> 
