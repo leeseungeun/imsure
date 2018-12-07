@@ -112,7 +112,5 @@ public class RecommendationController {
 			log.debug(e);
 			return new ResponseEntity<Map<String,Object>>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		
-	
 	}
 }
