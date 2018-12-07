@@ -1,0 +1,67 @@
+#chat {
+	margin-right: 0;
+	border-radius: .25rem 0 0 .25rem;
+	border-color: #30b1b2;
+}
+
+#send {
+	margin-left: 0;
+	border-radius: 0 .25rem .25rem 0;
+	background-color: #30b1b2;
+	border-color: #30b1b2;
+}
+
+.modal-header {
+	background-color: #30b1b2;
+	color: white;
+}
+
+.modal-body {
+	height: 550px;
+	max-height: 550px;
+	background-color: #e5e5e5;
+	overflow-y: scroll;
+}
+
+.mesgs {
+  float: left;
+  padding-top: 20px;
+  width: 100%;
+}
+.received_msg {
+  display: inline-block;
+  vertical-align: top;
+  width: 47%;
+}
+.received_with_msg p {
+  background: white none repeat scroll 0 0;
+  border-radius: 5px;
+  color: #646464;
+  font-size: 16px;
+  margin: 0;
+  padding: 5px 10px 5px 12px;
+  width: 100%;
+}
+.time_date {
+  color: #747474;
+  display: block;
+  font-size: 12px;
+  margin: 8px 0 0;
+}
+.outgoing_msg{ 
+  overflow: hidden;
+  margin: 10px 0 10px;
+}
+.sent_msg {
+  float: right;
+  width: 47%;
+}
+.sent_msg p {
+  background: #30b1b2 none repeat scroll 0 0;
+  border-radius: 5px;
+  font-size: 16px;
+  margin: 0;
+  color: #fff;
+  padding: 5px 10px 5px 12px;
+  width: 100%;
+}
