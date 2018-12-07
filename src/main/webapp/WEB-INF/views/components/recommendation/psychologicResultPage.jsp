@@ -50,8 +50,23 @@
 		</div>
 	</div>
 </div>
-<div id="insurance-detail-wrapper"></div>
-
+<!-- 보험  상품 상세 보기-->
+<div class="modal fade" id="insuranceDetailModal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+      	<span class="modal-title">보험상품 상세보기</span>
+          <button type="button" class="close" data-dismiss="modal" style="width:10%">&times;</button>
+      </div>
+      <div class="modal-body">
+        <!-- 보험 상세 내역이 들어가는 부분 -->
+      </div>
+      <div class="modal-footer">'
+        <button type="button" class="btn" data-dismiss="modal" style="width:15%">닫기 </button>
+      </div>
+    </div>
+  </div>
+</div>
 <!-- 알고리즘 설명 모달 -->
 <jsp:include page="../../includes/psychologicAlgorithmDescriptionModal.jsp" />
 

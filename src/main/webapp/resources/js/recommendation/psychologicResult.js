@@ -49,86 +49,70 @@ var myRadarChart = new Chart(ctx, {
 });
 
 // 추천 보험 리스트를 불러오기 위한 ajax
-$
-		.ajax({
-			type : "post",
-			url : "/user/recommend-based-on-psychological-features",
-			data : JSON.stringify({
-				"userId" : "1",
-				"personality" : PsychologicTest.result
-			}),
-			contentType : "application/json; charset=UTF-8",
-			success : function(data, status, xhr) {
-				for ( var index in data) {
-					var insurance = data[index];
-					insurance['imageAlt'] = '하나생명';
-					insurance['imagePath'] = 'resources/img/recommendation/hana_logo_small.png';
+$.ajax({
+	type : "post",
+	url : "/user/recommend-based-on-psychological-features",
+	data : JSON.stringify({
+		"userId" : "1",
+		"personality" : PsychologicTest.result
+	}),
+	contentType : "application/json; charset=UTF-8",
+	success : function(data, status, xhr) {
+		for ( var index in data) {
+			var insurance = data[index];
+			insurance['imageAlt'] = '하나생명';
+			insurance['imagePath'] = 'resources/img/recommendation/hana_logo_small.png';
 
-					$(".recommendation-list").append(
-							Utils.formatElement(insurance,
-									Insurance.listCardFormat));
-				}
-			},
-			error : function(jqXHR, textStatus, errorThrown) {
-				console.log(jqXHR);
-			}
-		});
-// 보험 상세보기 관련 함수
-$('#insurance-detail-wrapper').on('click', '#insuranceDetailModal button[data-dismiss="modal"]', function(){
-	$('#insuranceDetailModal').modal('hide');
+			$(".recommendation-list").append(
+					Utils.formatElement(insurance,
+							Insurance.listCardFormat));
+		}
+	},
+	error : function(jqXHR, textStatus, errorThrown) {
+		console.log(jqXHR);
+	}
 });
 // 보험 상세보기를 위한 ajax
 $('.recommendation-list').on('click', '.insurance-card', function(event) {
 
 	var insuranceId = $(this).find('input#insuranceId').val();
+	console.log(insuranceId)
 	$.ajax({
 		type : "get",
 		url : "/user/insurances/" + insuranceId,
 		contentType : "application/json; charset=UTF-8",
 		success : function(data, status, xhr) {
 			var detailList = data.detailList;
-			var tag = '<div class="modal fade" id="insuranceDetailModal" role="dialog">'
-					+ '  <div class="modal-dialog">'
-					+ '    <div class="modal-content">'
-					+ '      <div class="modal-header">'
-					+ '        <span class="modal-title">보험상품 상세보기</span>'
-					+ '		   <button type="button" class="close" data-dismiss="modal" style="width:10%">&times;</button>'
-					+ '      </div>'
-					+ '      <div class="modal-body">'
-					+ '        <div class="containner" id="modal-top">'
-					+ '          <img src="resources/img/recommendation/hana_logo_small.png" width="20%" height="20%">'
-					+ '          <span id="modal-top-span">'
+			var tag = '<div class="containner" id="modal-top">'
+					+ '  <img src="resources/img/recommendation/hana_logo_small.png" width="20%" height="20%">'
+					+ '  <span id="modal-top-span">'
 					+ data.insuranceName
-					+ '</span>'
-					+ '		     <a href="'
+					+ '	 </span>'
+					+ '	 <a href="'
 					+ data.url
 					+ '" id="download"><span class="icon-cloud-download" id="download">상세자료</span></a>'
-					+ '	       </div>'
-					+ '        <div class="containner" id="modal-bottom">';
-			+'			 <div class="insurance-group">'
-					+ '            <label>보험종류</label><div>'
-					+ data.insuranceType
 					+ '</div>'
-					+ '          </div>'
-					+ '			 <div class="insurance-group">'
-					+ '            <label>채널종류</label><div>'
+					+ '<div class="containner" id="modal-bottom">'
+					+ '	 <div class="insurance-group">'
+					+ '    <label>보험종류</label><div>'
+					+ data.insuranceType
+					+ '    </div>'
+					+ '  </div>'
+					+ '  <div class="insurance-group">'
+					+ '    <label>채널종류</label><div>'
 					+ data.channel + '</div>'
-					+ '          </div>'
+					+ '</div>';
 			for (var i = 0; i < detailList.length; i++) {
-				tag += '          <div class="insurance-group">'
-						+ '            <label>'
+				tag += '<div class="insurance-group">'
+						+ '  <label>'
 						+ detailList[i].title
 						+ '</label><div>'
 						+ detailList[i].value
-						+ '</div>' + '          </div>';
+						+ '</div>' 
+						+ '          </div>';
 			}
-			tag += '        </div>'
-					+ '      </div>'
-					+ '      <div class="modal-footer">'
-					+ '        <button type="button" class="btn" data-dismiss="modal" style="width:15%">닫기 </button>'
-					+ '      </div>' + '    </div>'
-					+ '  </div>' + '</div>';
-			$('#insurance-detail-wrapper').html(tag);
+			tag += '</div>';
+			$('#insuranceDetailModal .modal-body').html(tag);
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			alert(jqXHR.responseText);

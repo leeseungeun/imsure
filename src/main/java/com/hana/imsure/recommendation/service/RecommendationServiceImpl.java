@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.StringTokenizer;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -74,7 +73,7 @@ public class RecommendationServiceImpl implements RecommendationService {
 		resultForDatabase.put("extraversion", personality.get(EXTRAVERSION));
 
 		// 파이썬 서버 url
-		String url = "http://localhost:5000/python-server/recommand-based-on-psychological-features";
+		String url = "http://localhost:5000/python-server/recommend-based-on-psychological-features";
 
 		HttpClient httpClient = HttpClientBuilder.create().build();
 		HttpPost post = new HttpPost(url);
@@ -198,7 +197,7 @@ public class RecommendationServiceImpl implements RecommendationService {
 		pythonData.put("gender", params.get("gender"));
 			
 		// 파이썬 서버 url
-		String url = "http://localhost:5000/python-server/recommand-based-on-demographical-features";
+		String url = "http://localhost:5000/python-server/recommend-based-on-demographical-features";
 					
 		HttpClient   httpClient    = HttpClientBuilder.create().build();
 		HttpPost     post          = new HttpPost(url);
