@@ -73,7 +73,10 @@ $
 				console.log(jqXHR);
 			}
 		});
-
+// 보험 상세보기 관련 함수
+$('#insurance-detail-wrapper').on('click', '#insuranceDetailModal button[data-dismiss="modal"]', function(){
+	$('#insuranceDetailModal').modal('hide');
+});
 // 보험 상세보기를 위한 ajax
 $('.recommendation-list').on('click', '.insurance-card', function(event) {
 
@@ -125,8 +128,7 @@ $('.recommendation-list').on('click', '.insurance-card', function(event) {
 					+ '        <button type="button" class="btn" data-dismiss="modal" style="width:15%">닫기 </button>'
 					+ '      </div>' + '    </div>'
 					+ '  </div>' + '</div>';
-
-			$('section').append(tag);
+			$('#insurance-detail-wrapper').html(tag);
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			alert(jqXHR.responseText);

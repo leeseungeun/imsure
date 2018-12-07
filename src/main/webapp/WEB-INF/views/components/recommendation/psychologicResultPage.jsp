@@ -50,7 +50,7 @@
 		</div>
 	</div>
 </div>
-
+<div id="insurance-detail-wrapper"></div>
 
 <!-- 알고리즘 설명 모달 -->
 <jsp:include page="../../includes/psychologicAlgorithmDescriptionModal.jsp" />
