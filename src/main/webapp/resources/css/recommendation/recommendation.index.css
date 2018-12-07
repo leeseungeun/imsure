@@ -61,7 +61,7 @@
   height:34px;
   margin-right:9px;
   vertical-align: middle;
-  background:url(./img/sprite.png) no-repeat;
+  /*background:url(./img/sprite.png) no-repeat;*/
 }
 .btn-tab01 i{
   background-position:0 0;
@@ -282,7 +282,7 @@
   width: 18px;
   height: 18px;
   margin:0 auto 10px;
-  background:url(./img/sprite.png) no-repeat -150px 0;
+  /*background:url(./img/sprite.png) no-repeat -150px 0;*/
 }
 .form-group p.notice{
   padding:5px 0 0 14px;
@@ -357,19 +357,19 @@ p.notice.type2{
   margin-right:14px;
   padding:5px;
   vertical-align: middle;
-  background:url(./img/sprite.png) no-repeat
+  /*background:url(./img/sprite.png) no-repeat*/
 }
 .type4.salarymen::before{
-  background:url(./img/sprite.png) no-repeat 0 -75px;
+  /*background:url(./img/sprite.png) no-repeat 0 -75px;*/
 }
 .type4.business::before{
-  background:url(./img/sprite.png) no-repeat -81px -75px;
+  /*background:url(./img/sprite.png) no-repeat -81px -75px;*/
 }
 .type4.housewife::before{
-  background:url(./img/sprite.png) no-repeat -162px -75px;
+  /*background:url(./img/sprite.png) no-repeat -162px -75px;*/
 }
 .type4.otherjobs::before{
-  background:url(./img/sprite.png) no-repeat -243px -75px;
+  /*background:url(./img/sprite.png) no-repeat -243px -75px;*/
 }
 .type4 small{
   position:absolute;
@@ -444,7 +444,7 @@ p.notice.type2{
   height:16px;
   margin-right:10px;
   vertical-align: middle;
-  background:url(./img/sprite.png) no-repeat -350px 0;
+  /*background:url(./img/sprite.png) no-repeat -350px 0;*/
 }
 .upload-list .del{
   display:inline-block;
@@ -452,7 +452,7 @@ p.notice.type2{
   height:10px;
   margin-left:30px;
   vertical-align: middle;
-  background:url(./img/sprite.png) no-repeat -350px -35px;
+  /*background:url(./img/sprite.png) no-repeat -350px -35px;*/
 }
 .uploadInfo{
   min-height:258px;
@@ -480,7 +480,7 @@ p.control-label.is-padding{
 }
 
 .output{
-  background:url(./img/sprite.png) no-repeat 0 -170px/cover;
+  /*background:url(./img/sprite.png) no-repeat 0 -170px/cover;*/
 }
 .output form{
   min-height:588px;
@@ -498,7 +498,7 @@ p.control-label.is-padding{
   height:29px;
   margin-right:6px;
   vertical-align:bottom;
-  background:url(./img/sprite.png) no-repeat -150px -35px
+  /*background:url(./img/sprite.png) no-repeat -150px -35px*/
 }
 
 .form-txt-board{
@@ -562,7 +562,7 @@ p.control-label.is-padding{
   height:3px;
   position:absolute;
   top:-8px; left:calc(50% - 2px);
-  background:url(./img/sprite.png) no-repeat -181px 0;
+  /*background:url(./img/sprite.png) no-repeat -181px 0;*/
 }
 .notice-info > p{
   float:right;
@@ -599,7 +599,6 @@ p.control-label.is-padding{
     background:#fff;
   }
   .col-sm-6.step-txt {
-    display:none;
     width:100%;
     padding:0 10px 20px 10px;
   }

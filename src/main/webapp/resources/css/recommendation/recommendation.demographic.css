@@ -1,69 +1,90 @@
 @charset "utf-8";
 
-h1.likert-header {
-	padding-left: 4.25%;
-	margin: 20px 0 40px;
-	font-size: 23pt;
-}
-
 .forms {
 	width: 100%;
+	min-height: 589px;
+}
+
+.forms:first-child {
+	background: url("/resources/img/recommendation/postit-background.png")
+		no-repeat;
+	background-size: 500px;
+	background-position: center;
+}
+
+.form-txt-board {
+	padding: 190px 50px 35px;
 }
 
 .step-tab {
-	width: 20% !important;
+	width: 50% !important;
 }
 
 .bgChange {
 	padding-left: 4.25%;
 }
 
-.statement {
-	display: block;
-	font-size: 16pt;
+.form-group .control-label {
+	font-size: 1.1rem;
 	font-weight: bold;
-	padding: 30px 0 0 4.25%;
-	margin-bottom: 30px;
 }
 
-.likert {
-	list-style: none;
-	width: 100%;
-	margin: 0;
-	padding: 0 0 35px;
-	display: block;
-	border-bottom: 2px solid #efefef;
+.input-area input {
+	border: none;
+	border-bottom: 1px solid #d9d9d9;
 }
 
-.likert:last-of-type {
-	border-bottom: 0;
+.input-area input:focus {
+	border-bottom: 2px solid #30b1b2 !important;
+	-webkit-transition: all 0.2s;
+	-o-transition: all 0.2s;
+	-moz-transition: all 0.2s;
+	transition: all 0.2s;
 }
 
-.likert:before {
-	content: '';
-	position: relative;
-	top: 8px;
-	left: 9.5%;
-	display: block;
-	background-color: #efefef;
-	height: 4px;
-	width: 78%;
+.notice-under-ul {
+	margin-left: 160px;
 }
 
-.likert li {
-	display: inline-block;
-	width: 19%;
-	text-align: center;
-	vertical-align: top;
-}
-
-.likert li input[type=radio] {
+input[type="radio"] {
 	display: none;
 }
 
-form .likert li label {
-	width: 100%;
-	margin-top: 20px;
+.two-option-radio label, .custom-li-left label {
+	background-color: #ebebeb;
+    width: 100%;
+    height: 40px;
+    line-height: 2.5em;
+    text-align: center;
+    font-size: 12pt;
+}
+
+.two-option-radio label:hover, input[type="radio"]:checked + label{
+	background-color: #ff0057;
+    color: white;
+    font-weight:bold;
+}
+
+.unit {
+	left: auto !important;
+    right: 5px !important;
+}
+
+.jobs {
+	width: 67%;
+	background-color : white;
+}
+
+.jobs .custom-li-left {
+	display:inline-block;
+	width: 49.5%;	
+}
+
+.jobs .custom-li-left label {
+	font-size: 9.5pt;
+	margin-bottom: 0px;
+	height: 50px;
+	line-height: 3.5em;
 }
 
 .btn-block button {
@@ -75,51 +96,6 @@ form .likert li label {
 	margin-right: 10px;
 }
 
-input[type="radio"] < label {
-	font-weight: 400;
-	font-size: 14px;
-}
-
-input[type="radio"]+span {
-	display: block;
-	position: relative;
-	top: -2px;
-	left: 50%;
-	width: 18px;
-	height: 18px;
-	vertical-align: middle;
-	cursor: pointer;
-	-moz-border-radius: 50%;
-	border-radius: 50%;
-	background-color: #e9e9e9;
-	margin-bottom: 20px;
-}
-
-input[type="radio"]:checked+label {
-	color: #333;
-	font-weight: 700;
-}
-
-input[type="radio"]:checked+span {
-	background-color: #30b1b2;
-	border: 2px solid #ffffff;
-	box-shadow: 2px 2px 2px rgba(0, 0, 0, .1);
-}
-
-input[type="radio"]+span, input[type="radio"]:checked+span {
-	-webkit-transition: background-color 0.24s linear;
-	-o-transition: background-color 0.24s linear;
-	-moz-transition: background-color 0.24s linear;
-	transition: background-color 0.24s linear;
-}
-
-.question-number {
-	color: #30b1b2;
-	font-size: 35pt;
-	font-weight: bolder;
-	font-style: italic;
-	margin-right: 20px;
-}
 .validation-fail-message {
 	color: #c80000;
 	font-size: 13pt;
@@ -138,29 +114,34 @@ input[type="radio"]+span, input[type="radio"]:checked+span {
 	font-family: FontAwesome;
 }
 
-.message-bottom {
-	margin-top: 20px;
-	float: right;
-}
-
 @media ( max-width : 790px) {
-	.question-number {
-		display: block;
+	
+	.forms:first-child {
+		background: url("/resources/img/recommendation/postit-background.png")
+			no-repeat;
+		background-size: 100%;
+		background-position: center;
 	}
+	
+	.form-txt-board {
+		padding: 180px 50px 35px;
+	}
+	
+	.notice-under-ul {
+		margin-left: auto;
+	}
+	
+	#salary-input-wrapper {
+		width : 100%;
+	}
+	
 	.btn-block button {
 		width: 45%;
 	}
 }
+
 @media ( max-width : 993px) {
 	.validation-fail-message {
 		width: 90%;
 	}
 }
-
-.notice-job{
-	position:relative;
-	float : right;
-}
-
-
-
