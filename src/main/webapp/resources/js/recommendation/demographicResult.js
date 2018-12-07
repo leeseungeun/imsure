@@ -7,7 +7,7 @@ sendDataToServer();
 
 
 function sendDataToServer(){
-	
+	/*
 	$.ajax({
 		type : "post",
 		url : "/user/recommend-based-on-demographical-features",
@@ -15,13 +15,13 @@ function sendDataToServer(){
 		contentType : "application/json; charset=UTF-8",
 		success : function(data, status, xhr) {
 			console.log('성공');
-			/*for ( var index in data) {
+			for ( var index in data) {
 				var insurance = data[index];
 				insurance['imageAlt'] = '하나생명';
 				insurance['imagePath'] = 'resources/img/recommendation/hana_logo_small.png';
 				
 				$(".recommendation-list").append(Utils.formatElement(insurance,Insurance.listCardFormat));
-			}*/
+			}
 			//보험 종류 차트 그리기
 			//drawChart();
 			//보험 분석 결과
@@ -30,7 +30,7 @@ function sendDataToServer(){
 		error : function(jqXHR, textStatus, errorThrown) {
 			console.log(jqXHR);
 		}
-	});
+	});*/
 	
 }
 function drawChart() {
