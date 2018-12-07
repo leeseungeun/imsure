@@ -4,7 +4,7 @@
  * @author 박소연
  */
 sendDataToServer();
-
+drawChart();
 
 function sendDataToServer(){
 	/*
@@ -36,87 +36,43 @@ function sendDataToServer(){
 function drawChart() {
 	
 	//ajax통신으로 데이터 받아오기
-	
+	var ageData = [ 18, 61.2, 0, 0, 0, 0, 20.9, 0 ];
+	var jobData = [ 18, 61.2, 0, 0, 0, 0, 20.9, 0 ];
+	var incomeData = [ 18, 61.2, 0, 0, 0, 0, 20.9, 0 ];
 	//차트 그리기
 	var ctx = document.getElementById("ageChart");
+	var ctx2 = document.getElementById("jobChart");
+	var ctx3 = document.getElementById("incomeChart");
+	
+	
+	// 공통부분 함수로 뿌리기
 	var data = {
-		labels : [ "암,성인병", "질병", "연금" ],
+		labels : [ "재해상해", "질병보장", "연금", "저축", "사망", "변액", "실손의료", "간병" ],
 		datasets : [ {
 			label : "가입 보험 비율",
-			data : [ 300, 50, 100 ],
+			data : resultData,
 			backgroundColor : [ "rgb(255, 99, 132)", "rgb(54, 162, 235)",
-					"rgb(255, 205, 86)" ],
+					"rgb(255, 205, 86)", "rgb(255, 159, 64)", "rgb(75, 192, 192)", 
+					"rgb(173, 172, 161)", "rgb(173, 172, 161)", "rgb(141 , 51, 232)"],
 		} ]
+	}
+	var options = {
+		responsive : true,
+		legend : {
+			position : 'right',
+		},
+		animation : {
+			animateScale : true,
+			animateRotate : true
+		}	
 	}
 
 	var myDoughnutChart = new Chart(ctx, {
 		type : 'doughnut',
 		data : data,
-		options : {
-			responsive : true,
-			legend : {
-				position : 'right',
-
-			},
-			animation : {
-				animateScale : true,
-				animateRotate : true
-			}
-		}
+		options : options
 	});
 
-	var ctx2 = document.getElementById("jobChart");
-	var data = {
-		labels : [ "암,성인병", "질병", "연금" ],
-		datasets : [ {
-			label : "가입 보험 비율",
-			data : [ 20, 50, 30 ],
-			backgroundColor : [ "rgb(255, 99, 132)", "rgb(54, 162, 235)",
-					"rgb(255, 205, 86)" ]
-		} ]
-	}
-
-	var myDoughnutChart = new Chart(ctx2, {
-		type : 'doughnut',
-		data : data,
-		options : {
-			responsive : true,
-			legend : {
-				position : 'right',
-
-			},
-			animation : {
-				animateScale : true,
-				animateRotate : true
-			}
-		}
-	});
-
-	var ctx3 = document.getElementById("incomeChart");
-	var data = {
-		labels : [ "암,성인병", "질병", "연금" ],
-		datasets : [ {
-			label : "가입 보험 비율",
-			data : [ 20, 50, 30 ],
-			backgroundColor : [ "rgb(255, 99, 132)", "rgb(54, 162, 235)",
-					"rgb(255, 205, 86)" ]
-		} ]
-	}
-
-	var myDoughnutChart = new Chart(ctx3, {
-		type : 'doughnut',
-		data : data,
-		options : {
-			responsive : true,
-			legend : {
-				position : 'right',
-			},
-			animation : {
-				animateScale : true,
-				animateRotate : true
-			}
-		}
-	});
 }
 
 function analysisResultText(){

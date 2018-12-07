@@ -17,7 +17,7 @@
   <div id="recommend" class="wrapper row">
     <div class="col-sm-12" id="result-part">
       <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-8">
           <div class="chartContainer">
             <h4><span id="userNameTitle"></span>님과 비슷한 사람들이 가입한 보험종류는?</h4>
             <!-- 연령 -->
@@ -38,7 +38,7 @@
           </div>
         </div>
         
-        <div class="col-sm-6 forms output step-txt"
+        <div class="col-sm-4 forms output step-txt"
               style="min-height: 589px;">
               <form role="form" class="ng-pristine ng-valid">
                 <div class="form-txt-board">
