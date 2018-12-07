@@ -91,10 +91,15 @@
         </div>
         <div class="row">
           <div class="col-sm-5">
-            <div class="form-group">
-              <label class="find-info-label">성별</label> <label>남자</label><input
-                type="radio" id="M" name="gander" value="M"> <label>여자</label><input
-                type="radio" id="W" name="gander" value="W">
+            <div class="form-example-int form-example-st">
+              <div class="form-group">
+                <div class="nk-int-st">
+                  <label class="find-info-label">성별</label> <label>남자</label><input
+                    type="radio" id="M" name="gander" value="M">
+                  <label>여자</label><input type="radio" id="W"
+                    name="gander" value="W">
+                </div>
+              </div>
             </div>
 
           </div>
