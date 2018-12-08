@@ -115,7 +115,9 @@ function analysisResultText(){
 
 // 버튼 눌렀을 때 화면 동적으로 바꿔주기
 $('#recommendButton').on('click', function(event) {
+	event.preventDefault();
 
+	/*
 	var String = '<div class="col-sm-4 output step-txt"style="min-height: 589px;">'
 			   + '<form role="form" class="ng-pristine ng-valid">'
 			   + '<div class="analysResultDiv">'
@@ -143,11 +145,11 @@ $('#recommendButton').on('click', function(event) {
 	           + 'data-target="#algorithmDescriptionModal">Why SURE ?</button>'
 	           + '</div>'
 			   + '<ul class="nav nav-tabs">'
-			   + '<li class=".step-tab" style="width:20%">암/성인병</li>'
-			   + '<li class=".step-tab" style="width:20%">질병</li>'
-			   + '<li class=".step-tab" style="width:20%">연금</li>'
-			   + '<li class=".step-tab" style="width:20%">저축</li>'
-			   + '<li class=".step-tab" style="width:20%">더보기</li>'
+			   + '<li class="step-tab-v2">암/성인병</li>'
+			   + '<li class="step-tab-v2">질병</li>'
+			   + '<li class="step-tab-v2">연금</li>'
+			   + '<li class="step-tab-v2">저축</li>'
+			   + '<li class="step-tab-v2">더보기</li>'
 			   + '</ul>'
 			   + '<div class="form-area step1 on">'
 			   + '<div class="recommendation-list"></div>'
@@ -158,27 +160,7 @@ $('#recommendButton').on('click', function(event) {
 	$('.row').empty();
 	$('.row').append(String);
 	analysisResultText();
-	
-	stepTabEvent($('.step-tab:first'));
-	
-	
+	*/
 });
 
-function stepTabEvent(clickedTab) {
-
-	// 탭 관련 처리
-	$('.step-tab').removeClass('on').addClass('shadow');
-	$(clickedTab).removeClass('shadow').addClass('on');
-	// 탭에 대한 내용 표시
-	var index = $(clickedTab).index();
-	$('.form-area').removeClass('on');
-	$('.form-area').eq(index).addClass('on');
-}
-
-// 탭클릭 이벤트
-$('.step-tab').click(function() {
-	// 유효성 검사 추가
-	
-	stepTabEvent(this);
-});
 
