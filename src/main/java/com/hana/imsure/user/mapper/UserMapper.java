@@ -1,13 +1,20 @@
 package com.hana.imsure.user.mapper;
 
-import java.util.Map;
+import com.hana.imsure.user.domain.User;
 
 /**
  * User와 관련된  Mapper 인터페이스
  * 
- * @author 김홍기
+ * @author 이승은
  */
 public interface UserMapper {
+
+	// 이메일 중복 확인
+	public String checkEmailDuplication(String email);
+	
+	// 회원 가입
+	public int insert(User user);
+	
 	//로그인
-	public Map<String, String> certify(String email, String password);
+	public User certify(String email);
 }
