@@ -5,14 +5,21 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
+<!-- Spring Security 관련 Bean 등록 -->
+<bean id="accessDeniedHandler" class="com.hana.imsure.user.security.AccessDeniedHandler"></bean>
+<bean id="loginSuccessHandler" class="com.hana.imsure.user.security.LoginSuccessHandler"></bean>
+<bean id="bcryptPasswordEncoder" class="org.springframework.security.bcrypt.BCryptPasswordEncoder"></bean>
+
 <!-- Spring Security(Interceptor) 설정 -->
 <security:http>
 	<security:intercept-url pattern="/all/*" access="permitAll"/>
-	<security:intercept-url pattern="/uncertified-user/*" access="permitAll"/>
-	<security:intercept-url pattern="/user/*" access="permitAll"/>
-	<security:intercept-url pattern="/admin/*" access="permitAll"/>
+	<security:intercept-url pattern="/uncertified-user/*" access="hasRole('ROLE_UNCERTIFIED_USER')"/>
+	<security:intercept-url pattern="/user/*" access="hasRole('ROLE_USER')"/>
+	<security:intercept-url pattern="/admin/*" access="hasRole('ROLE_ADMIN')"/>
 	
-	<security:form-login/>
+	<security:form-login username-parameter="email"
+						 login-page="/all/loginPage"
+						 authentication-success-handler-ref="loginSuccessHandler"/>
 	
 	<!-- csrf 토큰 설정 (임시로 막아둠) -->
 	<security:csrf disabled="true"/>
@@ -23,11 +30,15 @@
 <security:authentication-manager>
 	<!-- 인증정보, 권한정보 제공자 설정 -->
 	<security:authentication-provider>
+		<!-- JDBC를 이용한 로그인 설정 -->
+		<security:jdbc-user-service data-source-ref="dataSource"/>
+		<!-- 비밀번호 암호화 -->
+		<security:password-encoder ref="bcryptPasswordEncoder"/>
 		<!-- 단순 로그인 설정 -->
 		<!-- UserDetailsService(InMemoryUserDetailsManager) 설정(사용자 인증,권한정보) -->
 		<security:user-service>
-			<security:user name="member" password="{noop}member" authorities="ROLE_MEMBER"/>		
-			<security:user name="admin" password="{noop}admin" authorities="ROLE_MEMBER,ROLE_ADMIN"/>		
+			<security:user name="member" password="{noop}member" authorities="ROLE_USER"/>		
+			<security:user name="admin" password="{noop}admin" authorities="ROLE_USER,ROLE_ADMIN"/>		
 		</security:user-service>
 	</security:authentication-provider>
 </security:authentication-manager>
