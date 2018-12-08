@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.hana.imsure.recommendation.domain.GraphInformation;
 import com.hana.imsure.recommendation.service.RecommendationService;
 
 import lombok.AllArgsConstructor;
@@ -125,19 +126,20 @@ public class RecommendationController {
 			consumes = "application/json",
 			produces = MediaType.APPLICATION_JSON_UTF8_VALUE
 		)
-		public ResponseEntity<List<String>> drawGraphBasedOnDemographicalFeatures(
-			@RequestBody Map<String, String> params
-		) {
+		public ResponseEntity<List<GraphInformation>> drawGraphBasedOnDemographicalFeatures(
+			@RequestBody Map<String, String> params) {
 			try {
 						
 				log.debug("draw graph based on demographical features called");
 						
-				List<String> result = service.drawGraphBasedOnDemographicalFeatures(params);
-				return new ResponseEntity<List<String>>(result, HttpStatus.CREATED);
+				List<GraphInformation> result = service.drawGraphBasedOnDemographicalFeatures(params);
+				System.out.println(result.toString());
+				
+				return new ResponseEntity<List<GraphInformation>>(result, HttpStatus.OK);
 					
 			} catch (Exception e) {
 				log.debug(e);
-				return new ResponseEntity<List<String>>(HttpStatus.INTERNAL_SERVER_ERROR);
+				return new ResponseEntity<List<GraphInformation>>(HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 		}
 	

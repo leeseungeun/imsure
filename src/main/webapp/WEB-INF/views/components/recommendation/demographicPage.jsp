@@ -139,40 +139,36 @@
               </label>
               <ul class="jobs col-sm-10">
                 <li class="custom-li-left"><input type="radio"
-                  id="manager" name="job" value="근로소득자"> <label
+                  id="manager" name="job" value="관리자"> <label
                   for="manager">관리자</label></li>
                 <li class="custom-li-left"><input type="radio"
-                  id="expert" name="job" value="개인사업자"> <label
-                  for="expert">개인사업자</label></li>
-                <li class="custom-li-left"><input type="radio"
-                  id="clerks" name="job" value="근로소득자"> <label
+                  id="clerks" name="job" value="사무종사자"> <label
                   for="clerks">사무종사자</label></li>
                 <li class="custom-li-left"><input type="radio"
-                  id="serviceWorker" name="job" value="근로소득자">
+                  id="serviceWorker" name="job" value="서비스종사자">
                   <label for="serviceWorker">서비스 종사자</label></li>
                 <li class="custom-li-left"><input type="radio"
-                  id="salesWorker" name="job" value="근로소득자">
+                  id="salesWorker" name="job" value="판매종사자">
                   <label for="salesWorker">판매 종사자</label></li>
                 <li class="custom-li-left"><input type="radio"
-                  id="forestryAndFishery" name="job" value="근로소득자">
+                  id="forestryAndFishery" name="job" value="농림어업숙련종사자">
                   <label for="forestryAndFishery">농림어업 숙련 종사자</label></li>
                 <li class="custom-li-left"><input type="radio"
-                  id="technician" name="job" value="근로소득자">
+                  id="technician" name="job" value="기능원및관련종사자">
                   <label for="technician">기능원 및 관련 종사자</label></li>
                 <li class="custom-li-left"><input type="radio"
                   id="mechanicalSkillWorker" name="job"
-                  value="근로소득자"> <label
+                  value="기계조작및조립종사자"> <label
                   for="mechanicalSkillWorker">기계조작 및 조립 종사자</label></li>
                 <li class="custom-li-left"><input type="radio"
-                  id="labor" name="job" value="근로소득자"> <label
+                  id="labor" name="job" value="단순노무종사자"> <label
                   for="labor">단순노무 종사자</label></li>
                 <li class="custom-li-left"><input type="radio"
-                  id="housewife" name="job" value="근로소득자"> <label
+                  id="housewife" name="job" value="주부"> <label
                   for="housewife">주부</label></li>
                 <li class="custom-li-left"><input type="radio"
-                  id="etc" name="job" value="근로소득자"> <label
+                  id="etc" name="job" value="기타"> <label
                   for="etc">기타</label></li>
-                <li class="custom-li-left"><label></label></li>
               </ul>
             </div>
           </form>

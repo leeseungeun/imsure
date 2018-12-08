@@ -1,8 +1,10 @@
 /**
- * 인구 통계 기반 추천 결과를 보여주기 위한 javascript파일
+ * 인구 통계 기반 추천 결과시 분석 결과 뿌려주는 javascript
  * 
  * @author 박소연
  */
+
+DemographicRsultAnaly={};
 
 var userName = Demographic.data.userName;
 var isMarried = Demographic.data.isMarried;
@@ -114,38 +116,6 @@ function analysisResultText(){
 // 버튼 눌렀을 때 화면 동적으로 바꿔주기
 $('#recommendButton').on('click', function(event) {
 
-	var String = '<div class="col-sm-4 output step-txt"style="min-height: 589px;">'
-			   + '<form role="form" class="ng-pristine ng-valid">'
-			   + '<div class="analysResultDiv">'
-			   + '<p class="txt-board">'
-			   + '<span id="isMarriedComment"></span><br>'
-			   + '<span id="userNameResult" class="info-txt typeName ng-binding"></span>'
-			   + '님에게  꼭 필요한 보험은<br>' 
-			   + '<span id="insuranceTypeFirst" class="info-txt ng-binding"></span>,' 
-			   + '<span id="insuranceTypeSecond" class="info-txt ng-binding"></span> 보험이며,<br>'
-			   + '고려해볼만한 보험은<br>' 
-			   + '<span id="insuranceTypeThird" class="info-txt ng-binding"></span>,'
-			   + '<span id="insuranceTypeFourth" class="info-txt ng-binding"></span><br> 보험입니다.'
-			   + '</p>'
-			   + '</div>'
-			   + '</form>'
-			   + '</div>'
-			   + '<div class="col-sm-8 forms step-area" style="min-height: 589px;">'
-			   + '<div class="bgChange">'
-			   + '<ul class="nav nav-tabs">'
-			   + '<li class=".step-tab" style="width:20%">암/성인병</li>'
-			   + '<li class=".step-tab" style="width:20%">질병</li>'
-			   + '<li class=".step-tab" style="width:20%">연금</li>'
-			   + '<li class=".step-tab" style="width:20%">저축</li>'
-			   + '<li class=".step-tab" style="width:20%">더보기</li>'
-			   + '</ul>'
-			   + '<div class="form-area step1 on">'
-			   + '<div class="recommendation-list"></div>'
-			   + '</div>'
-			   + '<button class="buttonPrev"><span> 이전</span></button>'
-			   + '</div>'
-			   + '</div>';
-	
 	
 });
 

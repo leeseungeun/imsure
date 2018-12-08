@@ -1,5 +1,8 @@
 package com.hana.imsure.recommendation.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.junit.Test;
@@ -19,9 +22,13 @@ public class RecommendServiceTests {
 	@Inject
 	private RecommendationService service;
 
-//	@Test
-//	public void testGetList() throws Exception {
-//
-//		 log.info(service.getInsuranceDetail("26"));
-//	}
+	@Test
+	public void testGetList() throws Exception {
+
+		Map<String, String> params = new HashMap<>();
+		params.put("birthNumber", "19930131");
+		params.put("income", "3500");
+		params.put("job", "사무종사자");
+		 log.info("***************************"+service.drawGraphBasedOnDemographicalFeatures(params).toString());
+	}
 }

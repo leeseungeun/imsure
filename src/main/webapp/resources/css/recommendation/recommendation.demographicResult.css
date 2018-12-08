@@ -24,6 +24,7 @@
     background-color: #373c44;
     width:50%;
     float:right;
+    margin-top:20px;
 }
 
 .button span {
@@ -86,3 +87,8 @@
   left: 0;
 }
 
+.analysResultDiv {
+    padding-top: 150px;
+    padding-left: 10px;
+    position: relative;
+}

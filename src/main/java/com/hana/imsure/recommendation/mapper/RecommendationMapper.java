@@ -3,6 +3,8 @@ package com.hana.imsure.recommendation.mapper;
 import java.util.List;
 import java.util.Map;
 
+import com.hana.imsure.recommendation.domain.GraphInformation;
+
 /**
  * 추천과 관련된  Mapper 인터페이스 
  *
@@ -26,5 +28,5 @@ public interface RecommendationMapper {
 	public int insertDemographicResult(Map<String, Object> result);
 
 	//인구통계 그래프 정보 가져오기
-	public List<String> readGraphInformation(Map<String, String> result);
+	public List<GraphInformation> readGraphInformation(Map<String, String> result);
 }
