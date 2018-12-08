@@ -17,8 +17,8 @@
 		<result property="authority" column="authority"/>
 	</resultMap>
 	
-	<!-- 로그인 -->
-	<select id="certify" resultMap="userMap">
+	<!-- 로그인, 이메일 중복 확인 -->
+	<select id="read" resultMap="userMap">
 		SELECT user_id, 
 		       u.email AS email,
 		       password,
@@ -28,4 +28,29 @@
 		LEFT OUTER JOIN imsure_user_role r on u.email = r.email
 		WHERE u.email = #{email}
 	</select>
+	
+	<!-- 회원가입 -->
+	<!-- 회원 기본 정보 -->
+	<insert id="insertUser">
+		INSERT INTO imsure_users(user_id, email, password) 
+		VALUES ((SELECT user_id_function 
+				   FROM dual),
+				 #{email},
+				 #{password})
+	</insert>
+	<!-- 권한 정보 -->
+	<insert id="insertAuthority">
+		INSERT INTO imsure_user_role 
+		VALUES (#{role},#{email})
+	</insert>
+	<!-- 인증 정보 -->
+	<insert id="insertEmailValidation">
+		INSERT INTO imsure_email_validations (validation_id, user_id, validation_number, type)
+		VALUES ((SELECT validation_id_function 
+		           FROM dual),
+		        (SELECT NVL(MAX(user_id), 1)
+		          FROM imsure_users),
+		        #{validationNumber},
+		        #{type})
+	</insert>
 </mapper>

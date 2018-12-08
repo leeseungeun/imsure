@@ -3,7 +3,8 @@
  *
  * @author 이승은
  */
-var Router = {}
+var Router = {};
+Router.redirectUrl;
 Router.route = function route(target, includePage) {
 	$.get({
 		url: includePage,
@@ -12,6 +13,7 @@ Router.route = function route(target, includePage) {
 		}
 	})
 	.fail(function(response){
+		Router.redirectUrl = includePage;
 		if (response.status === 401){
 			Router.route(target, 'all/registerPage');
 		}

@@ -38,8 +38,12 @@
         </div>
 
         <div class="container-login100-form-btn">
-          <button class="login100-form-btn">회원가입</button>
+          <button type="button" class="login100-form-btn btn" id="register">회원가입</button>
         </div>
+        
+        <p class="validation-fail-message result-message" style="display: none;">
+          <span>이미 사용 중인 이메일입니다</span>
+        </p>
 
         <ul class="login-more p-t-190">
           <li class="m-b-8">

@@ -20,3 +20,34 @@ $('.mobile-password-show-button').click(function(){
 		$('input[name="password"]').attr('type', targetType);
 	}
 });
+
+$('#register').click(function(){
+	register();
+})
+
+// 회원가입 함수
+function register() {
+	$.ajax({
+		type : "post",
+		url : "/all/register",
+		data : JSON.stringify({
+			"email" : $('input[name="email"]').val().trim(),
+			"password" : $('input[name="password"]').val().trim()
+		}),
+		contentType : "application/json; charset=UTF-8",
+		success : function(data, status, xhr) {
+			Router.route('section', Router.redirectUrl);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR);
+			if (jqXHR.status === 412) {
+				showRegisterResultMessage();
+			}
+		}
+	});
+}
+//회원가입 결과 메시지 표시 함수
+function showRegisterResultMessage() {
+	// 메시지 초기화
+	$('.result-message').css('display','block');
+}

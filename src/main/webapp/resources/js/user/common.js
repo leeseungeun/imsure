@@ -50,6 +50,14 @@
                 return false;
             }
         }
+        else if ($(input).attr('name') === 'passwordConfirm' 
+        	&& $('.mobile-password-show-button').css('display') === 'none') {
+        	
+        	if ($(input).val().trim() !== $('input[name="password"]').val().trim()) {
+        		return false;
+        	}
+        	
+        }
     }
 
     function showValidate(input) {
