@@ -40,7 +40,7 @@ public class RecommendMapperTests {
 		map.put("age", "29세이하");
 		map.put("income", "3600만원미만");
 		map.put("job", "관리자");
-		List<GraphInformation> list = mapper.readGraphInformation(map);
+		List<String> list = mapper.readGraphInformation(map);
 		log.info(list.toString());
 	}
 }

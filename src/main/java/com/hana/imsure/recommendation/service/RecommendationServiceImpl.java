@@ -249,9 +249,39 @@ public class RecommendationServiceImpl implements RecommendationService {
 	}
 
 	@Override
-	public List<Map<String, String>> drawGraphBasedOnDemographicalFeatures(Map<String, String> params)
+	public List<String> drawGraphBasedOnDemographicalFeatures(Map<String, String> params)
 			throws ClientProtocolException, IOException {
+		//params값 파싱
+		log.info(params);
 		
+		Convertor convertor = new Convertor();
+		// 나이값 변환
+		String age = "";
+		int ageNum = Integer.parseInt(convertor.ageConvertor(params.get("birthNumeber")));
+		if(ageNum <= 29) {
+			age="29세이하";
+		}else if( ageNum > 29 && ageNum <=34) {
+			age="34세이하";
+		}else if( ageNum > 34 && ageNum <=39) {
+			age="39세이하";
+		}else if( ageNum > 39 && ageNum <=44) {
+			age="44세이하";
+		}else if( ageNum > 39 && ageNum <=44) {
+			age="44세이하";
+		}else if( ageNum > 39 && ageNum <=44) {
+			age="44세이하";
+		}
+		
+		
+		int income = Integer.parseInt(params.get("income"));
+		
+		if (income < 2400)
+	        return "1";
+	    if ( 2400 <= incomeNum && incomeNum < 4800)
+	        return "2";
+	    return "3";
+		
+		String job = params.get("job");
 		params.get("userName");
 		return null;
 	}

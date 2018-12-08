@@ -125,19 +125,19 @@ public class RecommendationController {
 			consumes = "application/json",
 			produces = MediaType.APPLICATION_JSON_UTF8_VALUE
 		)
-		public ResponseEntity<List<Map<String, String>>> drawGraphBasedOnDemographicalFeatures(
+		public ResponseEntity<List<String>> drawGraphBasedOnDemographicalFeatures(
 			@RequestBody Map<String, String> params
 		) {
 			try {
 						
 				log.debug("draw graph based on demographical features called");
 						
-				List<Map<String, String>> result = service.drawGraphBasedOnDemographicalFeatures(params);
-				return new ResponseEntity<List<Map<String,String>>>(result, HttpStatus.CREATED);
+				List<String> result = service.drawGraphBasedOnDemographicalFeatures(params);
+				return new ResponseEntity<List<String>>(result, HttpStatus.CREATED);
 					
 			} catch (Exception e) {
 				log.debug(e);
-				return new ResponseEntity<List<Map<String,String>>>(HttpStatus.INTERNAL_SERVER_ERROR);
+				return new ResponseEntity<List<String>>(HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 		}
 	
