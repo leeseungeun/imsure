@@ -30,6 +30,14 @@
         </div>
         <div class="col-sm-8 forms step-area" style="min-height: 589px;">
           <div class="bgChange">
+          <div class="title-wrapper">
+            <h4 class="recommendation-header">
+              <span class="application-name">I'M SURE</span>에서 확신하는 
+              <span class="recommendation-highlight">추천</span> 생명보험은?
+            </h4>
+            <button type="button" class="btn" data-toggle="modal"
+              data-target="#algorithmDescriptionModal">Why SURE ?</button>
+          </div>
             <ul class="nav nav-tabs">
               <li class=".step-tab" style="width:20%">암/성인병</li>
               <li class=".step-tab" style="width:20%">질병</li>
@@ -41,7 +49,7 @@
               <div class="recommendation-list"></div>
             </div>
             <button class="buttonPrev"><span> 이전</span></button>
-          </div>
+           </div>
         </div>
       </div>
     </div>

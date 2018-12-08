@@ -29,6 +29,7 @@ function sendChartDataToServer() {
 		contentType : "application/json; charset=UTF-8",
 		success : function(data, status, xhr) {
 			console.log('성공' + data);
+			$('#userNameTitle').append(userName);
 			for ( var index in data) {
 				var dataIndex = data[index];
 				var resultData = [dataIndex.accidentInsurance, dataIndex.diseaseInsurance, dataIndex.pensionInsurance,
@@ -49,6 +50,7 @@ function sendChartDataToServer() {
 function drawChart(resultData, type){
 	//ajax통신으로 데이터 받아오기
 	//차트 그리기
+	
 	var ctx = '';
 	if(type == 0 ){
 		ctx = $("#incomeChart");
@@ -132,6 +134,14 @@ $('#recommendButton').on('click', function(event) {
 			   + '</div>'
 			   + '<div class="col-sm-8 forms step-area" style="min-height: 589px;">'
 			   + '<div class="bgChange">'
+			   + '<div class="title-wrapper">'
+	           + '<h4 class="recommendation-header">'
+	           + '<span class="application-name">I\'M SURE</span>에서 확신하는' 
+	           + '<span class="recommendation-highlight">추천</span> 생명보험은?'
+	           + '</h4>'
+	           + '<button type="button" class="btn" data-toggle="modal"'
+	           + 'data-target="#algorithmDescriptionModal">Why SURE ?</button>'
+	           + '</div>'
 			   + '<ul class="nav nav-tabs">'
 			   + '<li class=".step-tab" style="width:20%">암/성인병</li>'
 			   + '<li class=".step-tab" style="width:20%">질병</li>'
@@ -145,7 +155,9 @@ $('#recommendButton').on('click', function(event) {
 			   + '<button class="buttonPrev"><span> 이전</span></button>'
 			   + '</div>'
 			   + '</div>';
-	
+	$('.row').empty();
+	$('.row').append(String);
+	analysisResultText();
 	
 });
 
