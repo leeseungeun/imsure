@@ -24,6 +24,7 @@
      
 	<security:form-login username-parameter="email"
 						 login-page="/all/loginPage"
+						 login-processing-url="/all/login"
 						 authentication-success-handler-ref="loginSuccessHandler"/>
 	
 	<!-- csrf 토큰 설정 (임시로 막아둠) -->

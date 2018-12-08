@@ -52,7 +52,6 @@ public class UserController {
 		consumes = "application/json"
 	)
 	public ResponseEntity register(@RequestBody Map<String, String> user) {
-		
 		if (service.register(user)) {
 			return new ResponseEntity(HttpStatus.CREATED);
 		} else {

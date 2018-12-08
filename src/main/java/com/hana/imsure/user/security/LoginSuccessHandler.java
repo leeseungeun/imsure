@@ -12,9 +12,10 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 public class LoginSuccessHandler implements AuthenticationSuccessHandler{
 
 	@Override
-	public void onAuthenticationSuccess(HttpServletRequest arg0, HttpServletResponse arg1, Authentication arg2)
+	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
 			throws IOException, ServletException {
-		// TODO Auto-generated method stub
+		System.out.println("hell");
+		response.setStatus(HttpServletResponse.SC_OK);
 		
 	}
 	

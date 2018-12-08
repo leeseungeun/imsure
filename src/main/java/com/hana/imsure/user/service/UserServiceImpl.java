@@ -68,7 +68,6 @@ public class UserServiceImpl implements UserService, UserDetailsService{
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		
 		User user = mapper.read(email);
-		
 		return user == null? null : new com.hana.imsure.user.domain.UserDetails(user);
 	}
 	

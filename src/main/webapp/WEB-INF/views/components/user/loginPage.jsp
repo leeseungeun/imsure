@@ -30,7 +30,7 @@
         </div>
 
         <div class="container-login100-form-btn">
-          <button class="login100-form-btn btn">로그인</button>
+          <button type="button" class="login100-form-btn btn" id="login">로그인</button>
         </div>
 
         <ul class="login-more p-t-190">
