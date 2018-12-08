@@ -159,5 +159,26 @@ $('#recommendButton').on('click', function(event) {
 	$('.row').append(String);
 	analysisResultText();
 	
+	stepTabEvent($('.step-tab:first'));
+	
+	
+});
+
+function stepTabEvent(clickedTab) {
+
+	// 탭 관련 처리
+	$('.step-tab').removeClass('on').addClass('shadow');
+	$(clickedTab).removeClass('shadow').addClass('on');
+	// 탭에 대한 내용 표시
+	var index = $(clickedTab).index();
+	$('.form-area').removeClass('on');
+	$('.form-area').eq(index).addClass('on');
+}
+
+// 탭클릭 이벤트
+$('.step-tab').click(function() {
+	// 유효성 검사 추가
+	
+	stepTabEvent(this);
 });
 

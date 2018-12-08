@@ -17,9 +17,9 @@ function initPsychologicPage() {
 }
 
 // 결혼유무에 따라 보여지는 화면 다르게 뿌려주기
-$('input:radio[name="marry"]').click(function() {
+$('input:radio[name="isMarried"]').click(function() {
 	var isMarried = $('input:radio[name="isMarried"]:checked').val();
-	var hasChileTag = '<label class="control-label col-sm-2">자녀유무</label>'
+	var hasChildTag = '<label class="control-label col-sm-2">자녀유무</label>'
 				 	+ '<ul class="col-sm-10 recommend-chk two-option-radio">'
 				 	+ '	<li class="custom-li-left">'
 				 	+ '		<input type="radio" id="child-has" name="hasChild" value="Y">'
@@ -35,6 +35,7 @@ $('input:radio[name="marry"]').click(function() {
 
 	$('#childOrFamily').empty();
 	if (isMarried == 'Y') {
+		console.log('여기는?')
 		$('#childOrFamily').append(hasChildTag);
 	}
 });

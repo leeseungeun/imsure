@@ -82,7 +82,7 @@
                 <label class="control-label col-sm-2">결혼여부</label>
                 <ul class="col-sm-10 recommend-chk two-option-radio">
                   <li class="custom-li-left"><input type="radio"
-                    id="married" name="marry" value="Y"> <label
+                    id="married" name="isMarried" value="Y"> <label
                     for="married">기혼</label></li>
                   <li class="custom-li-right"><input type="radio"
                     id="single" name="isMarried" value="N"> <label
