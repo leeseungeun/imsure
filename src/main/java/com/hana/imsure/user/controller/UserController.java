@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hana.imsure.user.service.UserService;
 
@@ -64,6 +65,20 @@ public class UserController {
 			return new ResponseEntity(HttpStatus.CREATED);
 		} else {
 			return new ResponseEntity(HttpStatus.PRECONDITION_FAILED);
+		}
+	}
+	
+	@GetMapping("/all/validate-user-validation-number")
+	public String validateUserValidationNumber(
+			@RequestParam("email") String email, 
+			@RequestParam("validationNumber") String validationNumber) {
+		
+		boolean result = service.validateEmail(email, validationNumber);
+		
+		if (result) {
+			return "completeEmailValidation";
+		} else {
+			return "failEmailValidation";
 		}
 	}
 }

@@ -53,4 +53,22 @@
 		        #{validationNumber},
 		        #{type})
 	</insert>
+	
+	<!-- 이메일 인증 : 인증 정보 관련 테이블 변경 -->
+	<update id="updateEmailValidation">
+		UPDATE imsure_email_validations
+		SET is_validated = 'Y'
+		WHERE user_id = (SELECT user_id 
+		                  FROM imsure_users
+		                 WHERE email = #{email})
+		 AND validation_number = #{validationNumber}
+		 AND type = #{type}
+	</update>
+	
+	<!-- 이메일 인증 : 권한 정보 관련 테이블 변경 -->
+	<update id="updateAuthority">
+		 UPDATE imsure_user_role
+		  SET authority = #{role}
+		WHERE email = #{email}
+	</update>
 </mapper>

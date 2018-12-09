@@ -9,6 +9,11 @@ import java.util.Map;
  */
 public interface UserService {
 	
+	// 회원 가입
 	public boolean register(Map<String, String> user);
 	
+	// 이메일 관련
+	public String generateEmailValidationUrl(String email, String validationNumber);
+	public void sendEmailValidation(String email, String url);
+	public boolean validateEmail(String email, String validationNumber);
 }

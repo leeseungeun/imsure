@@ -24,4 +24,8 @@ public interface UserMapper {
 	
 	//로그인, 이메일 중복 확인
 	public User read(String email);
+	
+	// 이메일 인증
+	public int updateEmailValidation(Map<String, String> emailValidation);
+	public int updateAuthority(Map<String, String> authority);
 }
