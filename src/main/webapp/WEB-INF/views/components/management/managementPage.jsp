@@ -156,6 +156,11 @@
     			  </tr>
   			 	</tbody>
 			  </table>
+			  <div>
+			  <label id="insuranceMoney">보장금액</label><input type="text" class="input100" placeholder="숫자만">
+			  <span id="insuranceLink"><a href="">내 보장금액을 모른다면?</a></span>
+			  
+			  </div>
             </div>
           </div>
         </div>
@@ -176,10 +181,11 @@
             <div class="form-example-int form-example-st">
               <div class="form-group">
                 <div class="nk-int-st">
-                  <label class="find-info-label">성별</label> <label>남자</label><input
-                    type="radio" id="M" name="gander" value="M">
-                  <label>여자</label><input type="radio" id="W"
-                    name="gander" value="W">
+                  <label class="find-info-label">성별</label> 
+                  
+                  <input type="radio" id="M" name="gender" value="M">
+                  <label for="M">알뜰폰</label>
+                
                 </div>
               </div>
             </div>
@@ -189,7 +195,8 @@
             <div class="form-example-int form-example-st">
               <div class="form-group">
                 <div class="nk-int-st">
-                  <label class="find-info-label">생년월일</label><input
+                  <label class="find-info-label">생년월일</label>
+                  <input
                     type="text" class="input100" placeholder="ex) 19930131">
                 </div>
               </div>
@@ -233,6 +240,7 @@
               <li class=".step-tab">1 STEP</li>
               <li class=".step-tab">2 STEP</li>
             </ul>
+            <br>
             <div class="form-area step1 on">
               <div class="insurance-card" data-toggle="modal"
                 data-target="#insuranceDetailModal">
@@ -288,46 +296,52 @@
         <div class="form-area step1 on">
           <div>
           	<div class="form-group">
-              <label>이름</label>
+              <label class="modal-label">이름</label>
           	  <input type="text" class="input100" placeholder="이름">
           	</div>
           	<div class="form-group">
-          	  <label>휴대폰번호</label><input type="number" class="inputPhone" placeholder="010">
-          	  -<input type="number" class="inputPhone" placeholder="0000">
-          	  -<input type="number" class="inputPhone" placeholder="0000">
+          	  <label class="modal-label">휴대폰번호</label>
+          	  <input type="text" class="input-phone" placeholder="010">
+          	  -<input type="text" class="input-phone" placeholder="0000">
+          	  -<input type="text" class="input-phone" placeholder="0000">
           	</div>
           	<div class="form-group">
-          	  <label>주민등록번호</label>
-          	  <input type="number" class="input100">
-          	  -<input type="password" class="input100">
+          	  <label class="modal-label">주민등록번호</label>
+          	  <input type="text" class="input-id-number">
+          	  -<input type="password" class="input-id-number">
           	</div>
           	<div class="form-group">
-          	  <label>통신사</label>
-          	  <ul class="jobs col-sm-10">
+          	  <label class="modal-label">통신사</label>
+          	  <ul class="phoneCarrier col-sm-10">
                 <li class="custom-li-left">
-                  <input type="radio" id="manager" name="job" value="근로소득자"> 
-                  <label for="manager">관리자</label>
+                  <input type="radio" id="SKT" name="phoneCarrier" value="SKT"> 
+                  <label for="SKT">SKT</label>
                	</li>
                 <li class="custom-li-left">
-                  <input type="radio" id="expert" name="job" value="개인사업자"> 
-                  <label for="expert">개인사업자</label>
+                  <input type="radio" id="KT" name="phoneCarrier" value="KT"> 
+                  <label for="KT">KT</label>
                 </li>
                 <li class="custom-li-left">
-                  <input type="radio" id="clerks" name="job" value="근로소득자">
-                  <label for="clerks">사무종사자</label>
+                  <input type="radio" id="LG U+" name="phoneCarrier" value="LG U+">
+                  <label for="LG U+">LG U+</label>
                 </li>
                 <li class="custom-li-left">
-                  <input type="radio" id="serviceWorker" name="job" value="근로소득자">
-                  <label for="serviceWorker">서비스 종사자</label>
+                  <input type="radio" id="etcPhone" name="phoneCarrier" value="알뜰폰">
+                  <label for="etcPhone">알뜰폰</label>
                 </li>   
              </ul>
            </div>
           </div>
+          <div>
+            <button type="button" class="btn cancel" data-dismiss="modal">취소</button>
+        	<button type="button" class="btn next" >다음</button>
+          </div>
+          
         </div>
-        <div class="form-area step1 on">
+        <div class="form-area step2">
           <div>
           	<div class="form-group">
-              <label>보안문자입력</label>
+              <label class="modal-label">보안문자입력</label>
           	  <input type="text" class="input100" placeholder="보안문자를 입력해주세요">
           	</div>
           	<!-- api 필요 -->
@@ -335,12 +349,14 @@
           	  <img src="/resources/img/management/e88baf38-7fc1-461d-b7d1-687c674fc2f5.png" >
           	</div>
           </div>
+          <div>
+            <button type="button" class="btn cancel" data-dismiss="modal">취소</button>
+        	<button type="button" class="btn next" >다음</button>
+          </div>
+          
         </div>
       </div>
-      <div class="modal-footer">
-      	<button type="button" class="btn" data-dismiss="modal">취소</button>
-        <button type="button" class="btn" >다음</button>
-      </div>
+      
     </div>
   </div>
 </div>
@@ -359,7 +375,7 @@
 	new Chart(ctx, {
 		type : "horizontalBar",
 		data : {
-			labels : [ "암,성인병", "연금", "저축", "상해", "기타" ],
+			labels : [ "질병보장", "재해상해", "연금", "저축", "기타" ],
 			datasets : [ {
 				data : [ 65, 59, 80, 81, 56 ],
 				fill : false,

@@ -52,7 +52,7 @@ p {
 }
 
 .findContainer{
-	margin-top: 5%;
+	margin-top: 20px;
 }
 
 .nav-tabs li {
@@ -151,8 +151,8 @@ input[type="radio"] {
     display: none;
 }
 
-.jobs .custom-li-left label {
-    font-size: 9.5pt;
+.phoneCarrier .custom-li-left label {
+    font-size: 11pt;
     margin-bottom: 0px;
     height: 50px;
     line-height: 3.5em;
@@ -166,9 +166,12 @@ input[type="radio"] {
     font-size: 12pt;
 }
 
-.jobs {
-    width: 67%;
+.phoneCarrier {
+    width: 60%;
     background-color: white;
+    display: block;
+    font-size:13pt;
+    
 }
 
 .thead-color{
@@ -191,3 +194,57 @@ input[type="radio"] {
 #value{
 	width:70%;
 }
+
+.modal-label{
+    width: 30%;
+    font-size: 13pt;
+    padding-left: 5%;
+    font-weight: bold;
+}
+
+.input-phone{
+	font-size: 18px;
+    color: #555555;
+    line-height: 1.2;
+    display: inline-block;
+    width: 19%;
+    height: 52px;
+    background: transparent;
+    padding: 0 5px;
+    position: relative;
+    border-bottom: 2px solid #d9d9d9;
+}
+
+.input-id-number{
+	font-size: 18px;
+    color: #555555;
+    line-height: 1.2;
+    display: inline-block;
+    width: 30%;
+    height: 52px;
+    background: transparent;
+    padding: 0 5px;
+    position: relative;
+    border-bottom: 2px solid #d9d9d9;
+}
+
+th[scope="row"] {
+	width: 30%;	
+}
+
+.img-wrapper{
+	height: inherit;
+}
+
+#insuranceMoney{
+	width: 30%;
+	font-weight: bold;
+	font-size: 11pt;
+	text-align: center;
+	margin-right: 15px;
+}
+#insuranceLink{
+	display:inline-block;
+	padding:5%;
+}
+ 
