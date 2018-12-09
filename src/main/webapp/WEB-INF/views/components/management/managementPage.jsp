@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <link rel="stylesheet" type="text/css"
+  href="resources/css/recommendation/recommendation.common.css">
+<link rel="stylesheet" type="text/css"
   href="resources/css/management/management.css">
 <!-- header -->
 <jsp:include page="../../includes/header.jsp" />
