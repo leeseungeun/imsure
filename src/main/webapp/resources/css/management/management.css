@@ -140,7 +140,7 @@ input {
 
 .analysText{
 	margin:10% auto;
-	padding: 2%;
+	padding: 2% 10%;
 }
 
 .phoneCarrier .custom-li-left {
@@ -263,7 +263,17 @@ th[scope="row"] {
     float: right;
 }
 
-
+.info-txt {
+    display: inline-block;
+    line-height: 1.2;
+    padding: 0.28em;
+    font-size: 1.725rem;
+    font-weight: 700;
+    color: #373c44;
+    text-align: center;
+    vertical-align: super;
+    border-bottom: 1px solid #373c44;
+}
 
 
  

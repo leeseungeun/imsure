@@ -230,7 +230,10 @@
               <canvas id="analysChart" width="300"></canvas>
             </div>
             <div class="analysText">
-              <span>질병 보험의 경우 평균 보장금액보다 부족하시네요! 하나생명 보험을 추천합니다</span>
+             <span class="info-txt ng-binding">질병보장보험</span> 의 경우<br>
+             <span class="info-txt ng-binding">평균보장금액</span>보다 
+             <span class="info-txt ng-binding">부족</span> 하시네요!<br>
+             <span class="info-txt ng-binding">하나생명</span> 보험을 추천합니다.
             </div>
           </div>
         </div>
@@ -299,6 +302,7 @@
           <li class=".step-tab">1 STEP</li>
           <li class=".step-tab">2 STEP</li>
         </ul>
+        <br>
         <div class="form-area step1 on">
           <div>
           	<div class="form-group">
@@ -342,7 +346,7 @@
             <button type="button" class="btn cancel" data-dismiss="modal">취소</button>
         	<button type="button" class="btn next" >다음</button>
           </div>
-          
+
         </div>
         <div class="form-area step2">
           <div>
