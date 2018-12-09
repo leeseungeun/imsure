@@ -4,6 +4,8 @@ import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,6 +25,7 @@ public class UserController {
 	
 	private UserService service;
 	
+	// 이하 화면 처리
 	@GetMapping("/all/loginPage")
 	public String loginPage() {
 		
@@ -55,6 +58,7 @@ public class UserController {
 		return "components/user/needEmailValidationPage";
 	}
 	
+	// 회원 가입
 	@RequestMapping(
 		method = RequestMethod.POST,
 		value = "/all/register",
@@ -68,6 +72,7 @@ public class UserController {
 		}
 	}
 	
+	// 이메일 인증
 	@GetMapping("/all/validate-user-validation-number")
 	public String validateUserValidationNumber(
 			@RequestParam("email") String email, 
@@ -80,5 +85,17 @@ public class UserController {
 		} else {
 			return "failEmailValidation";
 		}
+	}
+	
+	// 이메일 인증 후 재로그인
+	@GetMapping("/uncertified-user/login-after-email-validation")
+	public ResponseEntity loginAfterEmailValidation() {
+		
+		if (service.loginAfterEmailValidation()) {
+			return new ResponseEntity(HttpStatus.OK);
+		} else {
+			return new ResponseEntity(HttpStatus.FORBIDDEN);
+		}
+		
 	}
 }

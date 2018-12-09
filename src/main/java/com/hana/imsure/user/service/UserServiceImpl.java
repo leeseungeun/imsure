@@ -3,6 +3,9 @@ package com.hana.imsure.user.service;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -119,4 +122,23 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 		return user == null ? null : new com.hana.imsure.user.domain.UserDetails(user);
 	}
 
+	@Override
+	public boolean loginAfterEmailValidation() {
+		
+		try {
+			
+			// 현재 정보로부터 새로운 정보를 불러옴
+			Authentication currentAuth = SecurityContextHolder.getContext().getAuthentication();
+			String email = ((com.hana.imsure.user.domain.UserDetails)currentAuth.getPrincipal()).getUsername();
+			UserDetails userDetails = this.loadUserByUsername (email);
+			
+			// 새로운 정보를 넣어줌
+			Authentication newAuth = new UsernamePasswordAuthenticationToken (userDetails.getUsername (),userDetails.getPassword (),userDetails.getAuthorities ());
+			SecurityContextHolder.getContext().setAuthentication(newAuth);
+			
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
 }

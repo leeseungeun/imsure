@@ -16,4 +16,6 @@ public interface UserService {
 	public String generateEmailValidationUrl(String email, String validationNumber);
 	public void sendEmailValidation(String email, String url);
 	public boolean validateEmail(String email, String validationNumber);
+	// 이메일 인증 후 재로그인
+	public boolean loginAfterEmailValidation();
 }

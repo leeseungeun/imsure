@@ -17,6 +17,21 @@
   </div>
   <div class="button-wrapper">
     <button type="button" class="btn prev-btn">인증 이메일 다시 받기</button>
-    <button type="button" class="btn">인증 완료</button>
+    <button type="button" class="btn" id="validation-completed">인증 완료</button>
   </div>
 </div>
+
+<script>
+$('#validation-completed').click(function(){
+	$.ajax({
+		type : "get",
+		url : "/uncertified-user/login-after-email-validation",
+		success : function(data, status, xhr) {
+			Router.route('section', Router.redirectUrl);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR);
+		}
+	});
+});
+</script>
