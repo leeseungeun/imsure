@@ -16,6 +16,8 @@ Router.route = function route(target, includePage) {
 		Router.redirectUrl = includePage;
 		if (response.status === 401){
 			Router.route(target, 'all/registerPage');
+		} else if (response.status === 403) {
+			Router.route(target, 'all/needEmailValidationPage');
 		}
 	});
 } 

@@ -46,6 +46,14 @@ public class UserController {
 		return "components/user/resetPasswordPage";
 	}
 	
+	@GetMapping("/all/needEmailValidationPage")
+	public String needEmailValidationPage() {
+		
+		log.debug("needEmailValidationPage.jsp called...");
+		
+		return "components/user/needEmailValidationPage";
+	}
+	
 	@RequestMapping(
 		method = RequestMethod.POST,
 		value = "/all/register",
