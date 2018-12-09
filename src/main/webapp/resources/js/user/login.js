@@ -8,18 +8,5 @@ $('.login-more .a-nav').click(function(event) {
 
 // 로그인 관련 처리
 $('#login').click(function(){
-	login();
+	login($('input[name="email"]').val().trim(), $('input[name="password"]').val().trim());
 });
-function login() {
-	$.ajax({
-		type : "post",
-		url : "/all/login",
-		data : "email=" + $('input[name="email"]').val().trim() + "&password=" + $('input[name="password"]').val().trim(),
-		success : function(data, status, xhr) {
-			Router.route('section', Router.redirectUrl);
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			console.log(jqXHR);
-		}
-	});
-}

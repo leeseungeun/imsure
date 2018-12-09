@@ -27,16 +27,24 @@ $('#register').click(function(){
 
 // 회원가입 함수
 function register() {
+	
+	if (!validateAllUserInputs()) {
+		return false;
+	}
+	
+	var email = $('input[name="email"]').val().trim();
+	var password = $('input[name="password"]').val().trim();
+	
 	$.ajax({
 		type : "post",
 		url : "/all/register",
 		data : JSON.stringify({
-			"email" : $('input[name="email"]').val().trim(),
-			"password" : $('input[name="password"]').val().trim()
+			"email" : email,
+			"password" : password
 		}),
 		contentType : "application/json; charset=UTF-8",
 		success : function(data, status, xhr) {
-			Router.route('section', Router.redirectUrl);
+			login(email, password);
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			console.log(jqXHR);
