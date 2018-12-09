@@ -174,19 +174,25 @@
     <div class="callaction bg-gray">
       <div class="form-example-wrap mg-t-30">
         <div class="cmp-tb-hd cmp-int-hd">
-          <h5>보험 분석을 위해 기본 정보를 입력해주세요</h5>
+          <h5>보험 분석을 위해 기본 정보를 입력해주세요</h5><br>
         </div>
         <div class="row">
           <div class="col-sm-5">
             <div class="form-example-int form-example-st">
               <div class="form-group">
-                <div class="nk-int-st">
-                  <label class="find-info-label">성별</label> 
-                  
-                  <input type="radio" id="M" name="gender" value="M">
-                  <label for="M">알뜰폰</label>
                 
-                </div>
+                  <label class="find-info-label">성별</label> 
+                  <ul class="phoneCarrier col-sm-10">
+                    <li class="custom-li-left">
+                      <input type="radio" id="M" name="gender" value="M"> 
+                      <label for="M">남자</label>
+               	    </li>
+                    <li class="custom-li-left">
+                      <input type="radio" id="W" name="gender" value="W"> 
+                      <label for="W">여자</label>
+                    </li>
+                  </ul>
+             
               </div>
             </div>
 
@@ -194,17 +200,17 @@
           <div class="col-sm-5">
             <div class="form-example-int form-example-st">
               <div class="form-group">
-                <div class="nk-int-st">
+                
                   <label class="find-info-label">생년월일</label>
                   <input
                     type="text" class="input100" placeholder="ex) 19930131">
-                </div>
+              
               </div>
             </div>
           </div>
           <div class="col-sm-2">
             <div class="form-example-int">
-              <button class="btn btn-skin btn-lg">분석하기</button>
+              <button class="btn">분석하기</button>
             </div>
           </div>
         </div>
@@ -224,7 +230,7 @@
               <canvas id="analysChart" width="300"></canvas>
             </div>
             <div class="analysText">
-              <span>암, 질병 보험의 경우 평균 보장금액보다 부족하시네요! 하나생명 보험을 추천합니다</span>
+              <span>질병 보험의 경우 평균 보장금액보다 부족하시네요! 하나생명 보험을 추천합니다</span>
             </div>
           </div>
         </div>

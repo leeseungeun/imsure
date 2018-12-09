@@ -125,7 +125,8 @@ input {
 }
 
 .find-info-label{
-	width:20%;
+	width:30%;
+	padding:5%
 	
 }
 
@@ -142,7 +143,7 @@ input {
 	padding: 2%;
 }
 
-.jobs .custom-li-left {
+.phoneCarrier .custom-li-left {
     display: inline-block;
     width: 49.5%;
 }
@@ -166,12 +167,10 @@ input[type="radio"] {
     font-size: 12pt;
 }
 
-.phoneCarrier {
+.phoneCarrier{
     width: 60%;
-    background-color: white;
     display: block;
-    font-size:13pt;
-    
+    font-size:13pt; 
 }
 
 .thead-color{
@@ -247,4 +246,24 @@ th[scope="row"] {
 	display:inline-block;
 	padding:5%;
 }
+
+.two-option-radio label:hover, input[type="radio"]:checked + label {
+    background-color: #ff0057;
+    color: white;
+    font-weight: bold;
+}
+
+.phoneCarrier, .gender {
+
+    padding: 5px;
+    overflow: hidden;
+    font-size: 9.5pt;
+    width: 70%;
+    /* position: relative; */
+    float: right;
+}
+
+
+
+
  
