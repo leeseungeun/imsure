@@ -10,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hana.imsure.common.utils.Mail;
 import com.hana.imsure.common.utils.RandomStringGenerator;
 import com.hana.imsure.user.domain.User;
 import com.hana.imsure.user.mapper.UserMapper;
@@ -60,6 +61,10 @@ public class UserServiceImpl implements UserService, UserDetailsService{
 		emailValidation.put("type", "REGISTER");
 		emailValidation.put("validationNumber", RandomStringGenerator.generateRandomString(15));
 		mapper.insertEmailValidation(emailValidation);
+		
+		// 인증을 위한 이메일 보내기
+		// 인증을 위한 API 주소 적어줘야 함
+		new Mail(email, "회원 가입을 축하드립니다!", "인증을 통해 보다 많은 I'MSURE의 즐겨보세요!\n");
 		
 		return true;
 	}
