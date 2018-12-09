@@ -303,7 +303,7 @@
           <li class=".step-tab">2 STEP</li>
         </ul>
         <br>
-        <div class="form-area step1 on">
+        <div class="form-area step1">
           <div>
           	<div class="form-group">
               <label class="modal-label">이름</label>
@@ -342,13 +342,18 @@
              </ul>
            </div>
           </div>
+          <br>
           <div>
-            <button type="button" class="btn cancel" data-dismiss="modal">취소</button>
-        	<button type="button" class="btn next" >다음</button>
+          	<div class="button-cancel">
+              <button type="button" class="btn" data-dismiss="modal">취소</button>
+        	</div>
+        	<div class="button-next">
+        	  <button type="button" class="btn" >다음</button>
+          	</div>
           </div>
-
         </div>
-        <div class="form-area step2">
+        <br>
+        <div class="form-area step2 on">
           <div>
           	<div class="form-group">
               <label class="modal-label">보안문자입력</label>
@@ -359,9 +364,14 @@
           	  <img src="/resources/img/management/e88baf38-7fc1-461d-b7d1-687c674fc2f5.png" >
           	</div>
           </div>
+          <br>
           <div>
-            <button type="button" class="btn cancel" data-dismiss="modal">취소</button>
-        	<button type="button" class="btn next" >다음</button>
+          	<div class="button-cancel">
+              <button type="button" class="btn" data-dismiss="modal">취소</button>
+        	</div>
+        	<div class="button-next">
+        	  <button type="button" class="btn" >다음</button>
+          	</div>
           </div>
           
         </div>

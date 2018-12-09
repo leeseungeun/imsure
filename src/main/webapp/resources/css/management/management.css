@@ -275,5 +275,25 @@ th[scope="row"] {
     border-bottom: 1px solid #373c44;
 }
 
+.button-cancel, .button-next{
+	width: 48%;
+	margin : 1%;
+	color: white;
+}
+.button-cancel{
+	float:left;
+}
+.button-next{
+	float:right;
+}
+
+.form-area {
+    display: none;
+}
+
+.form-area.on {
+    display: block;
+}
+
 
  
