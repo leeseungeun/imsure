@@ -159,6 +159,6 @@ $RECYCLE.BIN/
 # config files
 src/main/resources/app.properties
 src/test/resources/app.properties
-src/main/webapp/WEB-INF/spring/mail-config.xml
+src/main/resources/mail-config.xml
 src/main/webapp/resources/vendor/*
 # End of https://www.gitignore.io/api/java,maven,windows,eclipse,java-web,Vim
