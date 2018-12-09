@@ -1,0 +1,56 @@
+@charset "utf-8";
+
+.notice-job{
+	position:relative;
+	float : right;
+}
+
+.modal-title {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.close{
+	width: 5% !important;
+	margin-right: 0.5% !important;
+}
+
+.question-number {
+	color: #30b1b2;
+	font-size: 35pt;
+	font-weight: bolder;
+	font-style: italic;
+	margin-right: 20px;
+}
+
+#numbering{
+	 text-align: left;
+	 margin-left: 60px;
+	 margin-bottom: 40px;
+}
+
+#demographic-flow {
+	width: 430px;
+    height: 850px;
+}
+
+#example-title-nextline {
+	margin-top: 0px;
+    color: #30b1b2;
+}
+
+#div-demographic-flow {
+	margin-top: 30px;
+}
+
+.application-name {
+	color: #30b1b2;
+}
+
+.recommendation-highlight {
+    color: #ff0057;
+}
+
+.example-title {
+    color: #ff0057;
+}

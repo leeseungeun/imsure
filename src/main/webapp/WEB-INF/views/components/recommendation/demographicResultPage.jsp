@@ -66,7 +66,7 @@
 </div>
 
 <!-- 알고리즘 설명 모달 -->
-<!-- 인구통계학적 추천은 알고리즘 설명이 필요 없는지? -->
+<jsp:include page="../../includes/demographicAlgorithmDescriptionModal.jsp" />
 
 <!-- 보험 상세 모달 -->
 
