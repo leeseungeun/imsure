@@ -21,17 +21,4 @@
   </div>
 </div>
 
-<script>
-$('#validation-completed').click(function(){
-	$.ajax({
-		type : "get",
-		url : "/uncertified-user/login-after-email-validation",
-		success : function(data, status, xhr) {
-			Router.route('section', Router.redirectUrl);
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			console.log(jqXHR);
-		}
-	});
-});
-</script>
+<script src="resources/js/user/needEmailValidation.js"></script>

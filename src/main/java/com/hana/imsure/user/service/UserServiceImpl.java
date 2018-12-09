@@ -133,7 +133,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 			UserDetails userDetails = this.loadUserByUsername (email);
 			
 			// 새로운 정보를 넣어줌
-			Authentication newAuth = new UsernamePasswordAuthenticationToken (userDetails.getUsername (),userDetails.getPassword (),userDetails.getAuthorities ());
+			Authentication newAuth = new UsernamePasswordAuthenticationToken (userDetails, null, userDetails.getAuthorities ());
 			SecurityContextHolder.getContext().setAuthentication(newAuth);
 			
 			return true;

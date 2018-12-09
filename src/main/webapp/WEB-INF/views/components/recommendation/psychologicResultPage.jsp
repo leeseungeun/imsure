@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
+<%@taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <link rel="stylesheet" type="text/css"
 	href="resources/css/recommendation/recommendation.common.css">
@@ -19,6 +20,9 @@
 			<div class="row">
 				<div class="col-sm-6">
 					<h4 class="recommendation-title">심리검사 결과</h4>
+                    <span style="display: none;">
+                      <sec:authentication property="principal.user.userId" var="userId"/>
+                    </span>
 					<div class="graph">
 						<canvas id="myChart" class="chartjs" width="600" height="300"></canvas>
 					</div>
@@ -75,3 +79,29 @@
 <script src="resources/js/common/Insurance.js"></script>
 <script src="resources/js/recommendation/psychologicResult.js"></script>
 <script src="resources/js/recommendation/psychologicResultModalChart.js"></script>
+<script>
+//추천 보험 리스트를 불러오기 위한 ajax
+$.ajax({
+	type : "post",
+	url : "/user/recommend-based-on-psychological-features",
+	data : JSON.stringify({
+		"userId" : "${userId}",
+		"personality" : PsychologicTest.result
+	}),
+	contentType : "application/json; charset=UTF-8",
+	success : function(data, status, xhr) {
+		for ( var index in data) {
+			var insurance = data[index];
+			insurance['imageAlt'] = '하나생명';
+			insurance['imagePath'] = 'resources/img/recommendation/hana_logo_small.png';
+
+			$(".recommendation-list").append(
+					Utils.formatElement(insurance,
+							Insurance.listCardFormat));
+		}
+	},
+	error : function(jqXHR, textStatus, errorThrown) {
+		console.log(jqXHR);
+	}
+});
+</script>
