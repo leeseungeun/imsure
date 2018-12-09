@@ -170,3 +170,24 @@ input[type="radio"] {
     width: 67%;
     background-color: white;
 }
+
+.thead-color{
+	background-color: #373c44;
+	color:#fff;
+
+}
+#seq{
+	width: 5%;
+}
+#insuranceName{
+	width:50%;
+}
+#insuranceType{
+	width:45%;
+}
+#title{
+	width: 30%;
+}
+#value{
+	width:70%;
+}

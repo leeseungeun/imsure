@@ -51,7 +51,35 @@
       <div class="findContainer">
         <div class="callaction bg-gray">
           <div class="find-text">
-            <div class="insurance-list">보험리스트</div>
+            <div class="insurance-list">
+              <h5>내 보험 목록</h5>
+			  <table class="table">
+  				<thead class="thead-color">
+    			  <tr>
+      				<th scope="col" id="seq">#</th>
+      				<th scope="col" id="insuranceName">상품명</th>
+      				<th scope="col" id="insuranceType">상품종류</th>
+    			  </tr>
+  				</thead>
+  				<tbody>
+    			  <tr>
+      				<th scope="row">1</th>
+      				<td>해외여행보험</td>
+      				<td>손해보험</td>
+    			  </tr>
+    			  <tr>
+      				<th scope="row">2</th>
+      				<td>OOOOOO보험</td>
+      				<td>재해상해보험</td>
+    			  </tr>
+    			  <tr>
+      				<th scope="row">3</th>
+      				<td>OOOOO보험</td>
+      				<td>연금보험</td>
+    			  </tr>
+  			 	</tbody>
+			  </table>
+			</div>
           </div>
         </div>
       </div>
@@ -66,7 +94,34 @@
       <div class="findContainer">
         <div class="callaction bg-gray">
           <div class="find-text">
-            <div class="insurance-list">보험리스트</div>
+            <div class="insurance-list">
+			  <table class="table">
+  				<thead class="thead-color">
+    			  <tr>
+      				<th scope="col" id="seq">#</th>
+      				<th scope="col" id="insuranceName">상품명</th>
+      				<th scope="col" id="insurancType">상품종류</th>
+    			  </tr>
+  				</thead>
+  				<tbody>
+    			  <tr>
+      				<th scope="row">1</th>
+      				<td>해외여행보험</td>
+      				<td>손해보험</td>
+    			  </tr>
+    			  <tr>
+      				<th scope="row">2</th>
+      				<td>OOOOOO보험</td>
+      				<td>재해상해보험</td>
+    			  </tr>
+    			  <tr>
+      				<th scope="row">3</th>
+      				<td>OOOOO보험</td>
+      				<td>연금보험</td>
+    			  </tr>
+  			 	</tbody>
+			  </table>
+			</div>
           </div>
         </div>
       </div>
@@ -75,7 +130,33 @@
       <div class="findContainer">
         <div class="callaction bg-gray">
           <div class="find-text">
-            <div class="insurance-detail">보험 상세</div>
+            <div class="insurance-detail">
+            <h5>해외여행보험</h5><br>
+			  <table class="table">
+  				<tbody>
+    			  <tr>
+      				<th scope="row">계약상태</th>
+      				<td>만기</td>
+    			  </tr>
+    			  <tr>
+      				<th scope="row">구분</th>
+      				<td>손해보험</td>
+    			  </tr>
+    			  <tr>
+      				<th scope="row">담당점포</th>
+      				<td>인터넷자동차영업부</td>
+    			  </tr>
+    			  <tr>
+      				<th scope="row">보험기간</th>
+      				<td>2018-03-01~2018-03-03</td>
+    			  </tr>
+    			  <tr>
+      				<th scope="row">증권번호</th>
+      				<td>0000000000000</td>
+    			  </tr>
+  			 	</tbody>
+			  </table>
+            </div>
           </div>
         </div>
       </div>
