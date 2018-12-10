@@ -246,8 +246,8 @@
           <div class="bgChange">
             <ul class="nav nav-tabs tabType2">
               <!-- 선택했을때 이벤트 처리! -->
-              <li class=".step-tab">1 STEP</li>
-              <li class=".step-tab">2 STEP</li>
+              <li class=".step-tab" style="width: 50%;">심리</li>
+              <li class=".step-tab" style="width: 50%;">인구</li>
             </ul>
             <br>
             <div class="form-area step1 on">
@@ -299,26 +299,27 @@
       </div>
       <div class="modal-body">
         <ul class="nav nav-tabs tabType2">
-          <li class=".step-tab">1 STEP</li>
-          <li class=".step-tab">2 STEP</li>
+          <li class="step-tab">1 STEP</li>
+          <li class="step-tab">2 STEP</li>
+          <li class="step-tab">3 STEP</li>
         </ul>
         <br>
         <div class="form-area step1">
           <div>
           	<div class="form-group">
               <label class="modal-label">이름</label>
-          	  <input type="text" class="input100" placeholder="이름">
+          	  <input type="text" class="input100" id="step1Name" placeholder="이름">
           	</div>
           	<div class="form-group">
           	  <label class="modal-label">휴대폰번호</label>
-          	  <input type="text" class="input-phone" placeholder="010">
-          	  -<input type="text" class="input-phone" placeholder="0000">
-          	  -<input type="text" class="input-phone" placeholder="0000">
+          	  <input type="text" class="input-phone" id="step1Mobile1" placeholder="010">
+          	  -<input type="text" class="input-phone" id="step1Mobile2" placeholder="0000">
+          	  -<input type="text" class="input-phone" id="step1Mobile3" placeholder="0000">
           	</div>
           	<div class="form-group">
           	  <label class="modal-label">주민등록번호</label>
-          	  <input type="text" class="input-id-number">
-          	  -<input type="password" class="input-id-number">
+          	  <input type="text" class="input-id-number" id="step1Ssn1">
+          	  -<input type="password" class="input-id-number" id="step1Ssn2">
           	</div>
           	<div class="form-group">
           	  <label class="modal-label">통신사</label>
@@ -348,18 +349,17 @@
               <button type="button" class="btn" data-dismiss="modal">취소</button>
         	</div>
         	<div class="button-next">
-        	  <button type="button" class="btn" >다음</button>
+        	  <button type="button" class="btn" id="step1Button">다음</button>
           	</div>
           </div>
         </div>
         <br>
-        <div class="form-area step2 on">
+        <div class="form-area step2">
           <div>
           	<div class="form-group">
               <label class="modal-label">보안문자입력</label>
           	  <input type="text" class="input100" placeholder="보안문자를 입력해주세요">
           	</div>
-          	<!-- api 필요 -->
           	<div class="imgArea">
           	  <img src="/resources/img/management/e88baf38-7fc1-461d-b7d1-687c674fc2f5.png" >
           	</div>
@@ -370,16 +370,31 @@
               <button type="button" class="btn" data-dismiss="modal">취소</button>
         	</div>
         	<div class="button-next">
-        	  <button type="button" class="btn" >다음</button>
+        	  <button type="button" class="btn" id="step2Button">다음</button>
           	</div>
           </div>
-          
+        </div>
+        <div class="form-area step3">
+          <button type="button" class="btn" style="margin-bottom: 10px;">불러오기</button>
         </div>
       </div>
-      
     </div>
   </div>
 </div>
+
+<!-- 이미지 자르기 -->
+<style>
+.imgArea {
+  max-width: 466px;
+  overflow: hidden;
+}
+.imgArea img {
+  max-width: initial;
+  margin-top: -91%;
+  margin-left: -5%;
+  margin-bottom: -70%;
+}
+</style>
 
 <!-- JavaScript -->
 <script src="resources/js/common/Chart.js"></script>
@@ -421,6 +436,82 @@
 			}
 		}
 	});
-	
 
+
+//탭 이벤트 함수
+function stepTabEvent(clickedTab) {
+	// 탭 관련 처리
+    $('.step-tab').removeClass('on').addClass('shadow');
+	$(clickedTab).removeClass('shadow').addClass('on');
+	// 탭에 대한 내용 표시
+	var index = $(clickedTab).index();
+	$('.modal-body .form-area').removeClass('on');
+	$('.modal-body .form-area').eq(index).addClass('on');
+}
+
+stepTabEvent($('.step-tab:first'));
+
+//탭클릭 이벤트
+$('.step-tab').click(function() {
+	// 유효성 검사 추가
+	stepTabEvent(this);
+});
+
+
+//이미지 API로 넘겨줘야 할 값 (ajax할때 쓰세요)
+$('.imgArea img').attr("src").split("/")[4];
+
+//이미지 동적 추가
+function imageAppend(imagePath) {
+	//이미지가 들어갈 부분 삭제
+	$('.imgArea img').remove();
+	
+	//이미지 동적 추가
+	var tag = '<img src="/resources/img/management/screenshots/'+imagePath+'">';
+	$('.imgArea').append(tag);
+}
+
+//Step1 ajax 통신
+$('.modal-body').on('click','#step1Button',function(event) {
+	$.ajax({
+		type : "post",
+		url  : "http://localhost:5000/python-server/enter-basic-info-to-get-enrolled-insurances",
+		data : JSON.stringify({
+			"name": $('#step1Name').val(),
+			"mobileno1": $('#step1Mobile1').val(),
+			"mobileno2": $('#step1Mobile2').val(),
+			"mobileno3": $('#step1Mobile3').val(),
+			"ssn1": $('#step1Ssn1').val(),
+			"ssn2": $('#step1Ssn2').val(),
+			"mobileServiceProvider": $("input[name='phoneCarrier']:checked").val()
+		}),
+		contentType : "application/json; charset=UTF-8",
+		success : function(data, status, xhr) {
+			stepTabEvent($('.step-tab')[1]);
+			imageAppend(data.imagePath);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert(jqXHR.responseText);
+		}
+	});
+});
+
+//Step2 ajax 통신
+$('.modal-body').on('click','#step2Button',function(event) {
+	$.ajax({
+		type : "post",
+		url  : "http://localhost:5000/python-server/enter-security-number-to-get-enrolled-insurances",
+		data : JSON.stringify({
+			"uuid":"56078f9e-09da-4de9-bd1f-7ba69cc44f9e",
+		    "securityNumber":"112309"
+		}),
+		contentType : "application/json; charset=UTF-8",
+		success : function(data, status, xhr) {
+			stepTabEvent($('.step-tab')[2]);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert(jqXHR.responseText);
+		}
+	});
+});
 </script>

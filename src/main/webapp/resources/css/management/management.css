@@ -8,7 +8,6 @@
 }
 .bg-gray {
     background: #fafafa;
-
 }
 
 .cta-text h3 {
@@ -56,12 +55,15 @@ p {
 }
 
 .nav-tabs li {
-    width: 50%;
+    width: 33.333333%;
     padding: 10px 15px;
     text-align: center;
     border: 1px solid #e5e5e5;
     border-left: 0 none;
     background: #fff;
+}
+.nav-tabs .tabType2 li{
+  width: 50%;
 }
 li {
     list-style: none;
@@ -85,9 +87,7 @@ li {
 .nav-tabs li:first-child{
   border-left:1px solid #e5e5e5;
 }
-.nav-tabs.type2 li{
-  width:33.333333%
-}
+
 .btn-tab01.shadow{
   /*background:#fff url(./img/tabs-1-off.png) no-repeat right 0;*/
   border-right:0 none;
@@ -103,7 +103,7 @@ li {
 }
 .nav-tabs li.on{
   padding-top:7px;
- background:none;
+  background:none;
   border-top:4px solid #30b1b2;
 }
 
@@ -127,7 +127,6 @@ input {
 .find-info-label{
 	width:30%;
 	padding:5%
-	
 }
 
 .graph-area{
