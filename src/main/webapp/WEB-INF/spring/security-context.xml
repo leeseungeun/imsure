@@ -9,7 +9,7 @@
 <bean id="authenticationEntryPoint" class="com.hana.imsure.user.security.AuthenticationEntryPoint"></bean>
 <bean id="accessDeniedHandler" class="com.hana.imsure.user.security.AccessDeniedHandler"></bean>
 <bean id="loginSuccessHandler" class="com.hana.imsure.user.security.LoginSuccessHandler"></bean>
-<bean id="userServiceImpl" class="com.hana.imsure.user.service.UserServiceImpl"></bean>
+<!-- <bean id="userServiceImpl" class="com.hana.imsure.user.service.UserServiceImpl"></bean> -->
 <bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
 
 <!-- Spring Security(Interceptor) 설정 -->
