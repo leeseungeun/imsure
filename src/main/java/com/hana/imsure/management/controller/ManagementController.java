@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,6 +25,15 @@ import lombok.extern.log4j.Log4j;
 public class ManagementController {
 
 	private ManagementService service;
+	
+	// 이하 화면 처리
+	@GetMapping("/user/managementPage")
+	public String managementPage() {
+		
+		log.debug("mainPage.jsp called");
+		
+		return "components/management/managementPage";
+	}
 	
 	// 심리 측정치를 기반으로 생명 보험 추천한 결과를 가져오는 메소드
 	@RequestMapping(

@@ -31,12 +31,4 @@ public class MainController {
 		return "components/main/mainPage";
 	}
 	
-	@GetMapping("/user/managementPage")
-	public String managementPage() {
-		
-		log.debug("mainPage.jsp called");
-		
-		return "components/management/managementPage";
-	}
-	
 }
