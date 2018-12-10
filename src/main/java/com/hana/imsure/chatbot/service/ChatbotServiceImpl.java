@@ -1,5 +1,6 @@
 package com.hana.imsure.chatbot.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,43 +34,52 @@ public class ChatbotServiceImpl implements ChatbotService{
 		Komoran komoran = new Komoran(DEFAULT_MODEL.FULL);
 		KomoranResult analyzeResultList = komoran.analyze(target);
 		List<Token> tokenList = analyzeResultList.getTokenList();
+		List<String> result = new ArrayList<String>();
 		
 		//결과값을 저장하는 Map
 		Map<String, String> map = new HashMap<String, String>();
 		
+		
 		for(Token token : tokenList) {
 			
-			log.debug("형태소 분석 : " + token);
+			log.debug("형태소 분석 : " + token.getMorph());
 			
-			if (token.getMorph().equals("안녕하세요") || token.getMorph().equals("안녕")) {
-				map.put("message", mapper.read("1"));
-			}
-			if (token.getMorph().equals("질병")) {
-				map.put("message", mapper.read("2"));
-			}
-			if (token.getMorph().equals("사망")) {
-				map.put("message", mapper.read("3"));
-			}
-			if (token.getMorph().equals("연금")) {
-				map.put("message", mapper.read("4"));
-			}
-			if (token.getMorph().equals("보장")) {
-				map.put("message", mapper.read("5"));
-			}
-			if (token.getMorph().equals("MSURE")) {
-				map.put("message", mapper.read("6"));
-			}
-			if (token.getMorph().equals("필요")) {
-				map.put("message", mapper.read("7"));
-			}
-			if (token.getMorph().equals("추천")) {
-				map.put("message", mapper.read("8"));
-			} 
-			if (map.isEmpty()) {
-				map.put("message", mapper.read("9"));
-			}
+			result.add(String.valueOf(token.getMorph()));
 		}
+		
+		if (result.contains("안녕하세요") || result.contains("안녕") || result.contains("반갑")) {
+			map.put("message", mapper.read("1"));
+			return map;
+		}
+		if (result.contains("질병") && result.contains("보장") && result.contains("보험")) {
+			map.put("message", mapper.read("2"));
+			return map;
+		}
+		if (result.contains("사망") && result.contains("보험")) {
+			map.put("message", mapper.read("3"));
+			return map;
+		}
+		if (result.contains("연금") && result.contains("보험")) {
+			map.put("message", mapper.read("4"));
+			return map;
+		}
+		if (result.contains("보장") && result.contains("금액")) {
+			map.put("message", mapper.read("5"));
+			return map;
+		}
+		if (result.contains("I") && result.contains("MSURE")) {
+			map.put("message", mapper.read("6"));
+			return map;
+		}
+		if (result.contains("보험") && result.contains("왜")) {
+			map.put("message", mapper.read("7"));
+			return map;
+		}
+		if (result.contains("보험") && result.contains("추천")) {
+			map.put("message", mapper.read("8"));
+			return map;
+		}
+		map.put("message", mapper.read("9"));
 		return map;
 	}
-
 }

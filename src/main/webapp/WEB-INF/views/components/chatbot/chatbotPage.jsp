@@ -19,7 +19,7 @@
   <div class="modal-dialog modal-lg modal-dialog-centered modal-notify modal-info" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">보험 상담</h5>
+        <h5 class="modal-title" id="exampleModalLabel">1:1 보험 상담</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -28,16 +28,6 @@
       	<div class="mesgs">
           <div class="received_msg">
             <div class="received_with_msg">
-              <div class="dropdown dropleft float-right">
-    		    <button type="button" class="btn faq dropdown-toggle" data-toggle="dropdown">
-     		      FAQ
-    		    </button>
-    		    <div class="dropdown-menu">
-      			  <a class="dropdown-item" id="one">1.I'MSURE가 궁금합니다.</a>
-      			  <a class="dropdown-item" id="two">2.보험은 왜 필요한가요?</a>
-      			  <a class="dropdown-item" id="three">3.보험 추천은 어떻게 이루어 지나요?</a>
-    		    </div>
-  		      </div>
               <p>
 				안녕하세요!<br>
 				보험에 확신을 더한 생명보험 추천 어플리케이션 I'MSURE입니다.<br>
@@ -51,8 +41,20 @@
           </div>
         </div>
       </div>
-      <div class="modal-footer">
-    	<input type="text" class="form-control" id="chat" placeholder="궁금한 내용을 물어보세요.">
+      <div class="modal-footer" id="faq-footer">
+      	<div class="dropdown dropup float-right">
+    	  <button type="button" class="btn faq dropdown-toggle" data-toggle="dropdown">
+     	    FAQ
+    	  </button>
+    	  <div class="dropdown-menu">
+      	    <a class="dropdown-item" id="one">I'MSURE가 궁금합니다.</a>
+      		<a class="dropdown-item" id="two">보험은 왜 필요한가요?</a>
+      		<a class="dropdown-item" id="three">보험 추천은 어떻게 이루어 지나요?</a>
+          </div>
+  		</div>
+  	  </div>
+  	  <div class="modal-footer">
+  		<input type="text" class="form-control" id="chat" placeholder="궁금한 내용을 물어보세요.">
     	<button type="button" id="send" class="btn btn-info">Send</button>
       </div>
     </div>

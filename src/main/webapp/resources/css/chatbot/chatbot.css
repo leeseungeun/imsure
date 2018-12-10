@@ -41,13 +41,18 @@
 .faq {
 	margin-left: 0;
 	border-radius: .25rem;
-	background-color: #30b1b2;
-	border-color: #30b1b2;
+	background-color: #ff0056;
+	border-color: #ff0056;
 	color: white;
+	width: 120px;
+}
+#faq-footer {
+	border-top: none;
+	background-color: #f0f8ff;
 }
 .dropdown-menu {
-	background-color: #30b1b2;
-	border-color: #30b1b2;
+	background-color: #ff0056;
+	border-color: #ff0056;
 	color: white;
 }
 #one:hover {
@@ -61,6 +66,8 @@
 }
 .dropdown-item {
 	color: white;
+	font-size: 15px;
+	font-weight: bold;
 }
 
 #chat {
@@ -84,7 +91,7 @@
 .modal-body {
 	height: 550px;
 	max-height: 550px;
-	background-color: #e5e5e5;
+	background-color: #f0f8ff;
 	overflow-y: scroll;
 }
 
@@ -106,7 +113,7 @@
   font-size: 14px;
   margin: 0;
   padding: 5px 10px 5px 12px;
-  width: 75%;
+  width: 76%;
 }
 .time_date {
   color: #747474;
@@ -119,7 +126,7 @@
 }
 .sent_msg {
   float: right;
-  width: 40%;
+  width: 45%;
 }
 .sent_msg p {
   background: #30b1b2 none repeat scroll 0 0;
