@@ -5,9 +5,17 @@ import java.util.Map;
 /**
  * User와 관련된 비즈니스 로직 수행을 위한 인터페이스
  * 
- * @author 김홍기
+ * @author 이승은
  */
 public interface UserService {
-	//로그인
-	public Map<String, String> login(String email, String password);
+	
+	// 회원 가입
+	public boolean register(Map<String, String> user);
+	
+	// 이메일 관련
+	public String generateEmailValidationUrl(String email, String validationNumber);
+	public void sendEmailValidation(String email, String url);
+	public boolean validateEmail(String email, String validationNumber);
+	// 이메일 인증 후 재로그인
+	public boolean loginAfterEmailValidation();
 }

@@ -1,0 +1,70 @@
+@charset "UTF-8";
+
+.need-email-validation-wrapper {
+	margin-top: 70px;
+	width: 100%;
+}
+
+.need-email-validation-wrapper h4, .need-email-validation-wrapper h3 {
+	margin-left: auto;
+	margin-right: auto;
+	width: 90%;
+	text-align: center;
+}
+
+.application-name {
+	color: #30b1b2;
+	font-weight: bolder;
+}
+
+.highlight-text {
+	color: #ff0051;
+	font-weight: bolder;
+}
+
+.img-wrapper, .button-wrapper {
+	margin-top: 30px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+}
+
+.img-wrapper {
+	width: 47vh;
+	height: 47vh;
+	border: 7px solid #30b1b2;
+	border-radius: 50%;
+	text-align: center;
+}
+
+.img-wrapper img {
+	vertical-align: middle;
+	border-style: none;
+	text-align: center;
+	padding-top: 2vh;
+	max-width: 35vh;
+}
+
+.button-wrapper button {
+	margin-left: 5%;
+	margin-right: 10px;
+	width: 40%;
+	margin-right: 10px;
+}
+
+.prev-btn {
+	background-color: #aeaeae;
+}
+
+@media ( max-width : 790px) {
+	.need-email-validation-wrapper h4 {
+		width: 80%;
+	}
+	.button-wrapper {
+		width: 70%;
+	}
+	.button-wrapper button {
+		margin-top: 10px;
+		width: 95%;
+	}
+}

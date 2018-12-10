@@ -9,6 +9,25 @@
 	display: none;
 }
 
+.validation-fail-message {
+	color: #c80000;
+	font-size: 13pt;
+	background-color: #fff;
+	border: 1px solid #c80000;
+	border-radius: 2px;
+	padding: 3px;
+	width: 90%;
+	height: 40px;
+	line-height: 35px;
+	text-align: center;
+	margin-top: 20px;
+}
+
+.validation-fail-message::before {
+	content: "\f06a";
+	font-family: FontAwesome;
+}
+
 @media ( max-width : 768px) {
 	.passwordConfirm-wrapper {
 		display: none;

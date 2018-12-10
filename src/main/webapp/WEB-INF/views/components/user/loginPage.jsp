@@ -30,20 +30,20 @@
         </div>
 
         <div class="container-login100-form-btn">
-          <button class="login100-form-btn btn">로그인</button>
+          <button type="button" class="login100-form-btn btn" id="login">로그인</button>
         </div>
 
         <ul class="login-more p-t-190">
-          <li class="m-b-8">
-            <a href="all/resetPasswordPage" class="txt2 a-nav"> 비밀번호 </a>
-            <span class="txt1"> 가 생각나지 않으신가요? </span> 
-          </li>
-
           <li>
             <span class="txt1"> 아직 </span>
             <a href="all/registerPage" class="txt2 a-nav"> 회원 </a>
             <span class="txt1"> 이 아니신가요? </span>
           </li>
+          <li class="m-b-8">
+            <a href="all/resetPasswordPage" class="txt2 a-nav"> 비밀번호 </a>
+            <span class="txt1"> 가 생각나지 않으신가요? </span> 
+          </li>
+
         </ul>
       </form>
     </div>
@@ -63,22 +63,3 @@
 <script src="resources/vendor/countdowntime/countdowntime.js"></script>
 <script src="resources/js/user/common.js"></script>
 <script src="resources/js/user/login.js"></script>
-<style>
-.btn {
-  height: 48px;
-  font-size: 0.85rem;
-  color: #FFF;
-  background-color: #373c44;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
-}
-.btn:hover, .btn:focus {
-  outline: 0 none;
-  color: #fff;
-  -webkit-box-shadow: 0;
-  -moz-box-shadow: 0;
-  box-shadow: 0;
-  background-color: #f4485d
-}
-</style>

@@ -5,14 +5,27 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
+<!-- Spring Security 관련 Bean 등록 -->
+<bean id="authenticationEntryPoint" class="com.hana.imsure.user.security.AuthenticationEntryPoint"></bean>
+<bean id="accessDeniedHandler" class="com.hana.imsure.user.security.AccessDeniedHandler"></bean>
+<bean id="loginSuccessHandler" class="com.hana.imsure.user.security.LoginSuccessHandler"></bean>
+<bean id="userServiceImpl" class="com.hana.imsure.user.service.UserServiceImpl"></bean>
+<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
+
 <!-- Spring Security(Interceptor) 설정 -->
-<security:http>
+<!-- 인증을 위한 엔트리 포인트 변경 -->
+<security:http entry-point-ref="authenticationEntryPoint">
 	<security:intercept-url pattern="/all/*" access="permitAll"/>
-	<security:intercept-url pattern="/uncertified-user/*" access="permitAll"/>
-	<security:intercept-url pattern="/user/*" access="permitAll"/>
-	<security:intercept-url pattern="/admin/*" access="permitAll"/>
+	<security:intercept-url pattern="/uncertified-user/*" access="hasRole('ROLE_UNCERTIFIED_USER')"/>
+	<security:intercept-url pattern="/user/*" access="hasRole('ROLE_USER')"/>
 	
-	<security:form-login/>
+	<!-- 인가 안 됐을 경우 사용자 정의 클래스에서 처리 -->
+	<security:access-denied-handler ref="accessDeniedHandler"/>
+     
+	<security:form-login username-parameter="email"
+						 login-page="/all/loginPage"
+						 login-processing-url="/all/login"
+						 authentication-success-handler-ref="loginSuccessHandler"/>
 	
 	<!-- csrf 토큰 설정 (임시로 막아둠) -->
 	<security:csrf disabled="true"/>
@@ -22,13 +35,9 @@
 <!-- 사용자 인증(authentication)과 권한부여(authorization)를 담당하는 Authentication Manager 설정 -->
 <security:authentication-manager>
 	<!-- 인증정보, 권한정보 제공자 설정 -->
-	<security:authentication-provider>
-		<!-- 단순 로그인 설정 -->
-		<!-- UserDetailsService(InMemoryUserDetailsManager) 설정(사용자 인증,권한정보) -->
-		<security:user-service>
-			<security:user name="member" password="{noop}member" authorities="ROLE_MEMBER"/>		
-			<security:user name="admin" password="{noop}admin" authorities="ROLE_MEMBER,ROLE_ADMIN"/>		
-		</security:user-service>
+	<security:authentication-provider user-service-ref="userServiceImpl">
+		<!-- 비밀번호 암호화 -->
+		<security:password-encoder ref="bcryptPasswordEncoder"/>
 	</security:authentication-provider>
 </security:authentication-manager>
 

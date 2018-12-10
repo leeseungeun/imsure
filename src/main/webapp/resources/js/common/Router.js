@@ -3,16 +3,24 @@
  *
  * @author 이승은
  */
-var Router = {
-		route : function(target, includePage) {
-			$.get({
-				url: includePage,
-				success : function(data) {
-					$(target).html(data);
-				}
-			});
-		} 
-}
+var Router = {};
+Router.redirectUrl;
+Router.route = function route(target, includePage) {
+	$.get({
+		url: includePage,
+		success : function(data) {
+			$(target).html(data);
+		}
+	})
+	.fail(function(response){
+		Router.redirectUrl = includePage;
+		if (response.status === 401){
+			Router.route(target, 'all/registerPage');
+		} else if (response.status === 403) {
+			Router.route(target, 'all/needEmailValidationPage');
+		}
+	});
+} 
 
 Router.routeWithATag = function routeWithATag(clickedATag, event, target){
 	

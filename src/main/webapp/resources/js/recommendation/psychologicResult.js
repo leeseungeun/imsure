@@ -48,30 +48,6 @@ var myRadarChart = new Chart(ctx, {
 	options : options
 });
 
-// 추천 보험 리스트를 불러오기 위한 ajax
-$.ajax({
-	type : "post",
-	url : "/user/recommend-based-on-psychological-features",
-	data : JSON.stringify({
-		"userId" : "1",
-		"personality" : PsychologicTest.result
-	}),
-	contentType : "application/json; charset=UTF-8",
-	success : function(data, status, xhr) {
-		for ( var index in data) {
-			var insurance = data[index];
-			insurance['imageAlt'] = '하나생명';
-			insurance['imagePath'] = 'resources/img/recommendation/hana_logo_small.png';
-
-			$(".recommendation-list").append(
-					Utils.formatElement(insurance,
-							Insurance.listCardFormat));
-		}
-	},
-	error : function(jqXHR, textStatus, errorThrown) {
-		console.log(jqXHR);
-	}
-});
 // 보험 상세보기를 위한 ajax
 $('.recommendation-list').on('click', '.insurance-card', function(event) {
 

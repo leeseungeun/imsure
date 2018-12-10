@@ -1,4 +1,5 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -39,12 +40,22 @@
           <li class="sidebar-brand">
             <a class="nav-a js-scroll-trigger" href="all/mainPage">메인</a>
           </li>
+          <!-- 
           <li class="sidebar-nav-item">
-            <a class="nav-a js-scroll-trigger" href="all/loginPage">
-             <i class="icon-login"></i>
-             <span>로그인</span>
-            </a>
+            <sec:authorize access="isAnonymous()">
+              <a class="nav-a js-scroll-trigger" href="all/loginPage">
+               <i class="icon-login"></i>
+               <span>로그인</span>
+              </a>
+            </sec:authorize>
+            <sec:authorize access="isAuthenticated()">
+              <a class="nav-a js-scroll-trigger" href="#">
+               <i class="icon-logout"></i>
+               <span>로그아웃</span>
+              </a>
+            </sec:authorize>
           </li>
+           -->
           <li class="sidebar-nav-item">
             <a class="nav-a js-scroll-trigger" href="uncertified-user/psychologicPage">
               <i class="icon-heart big-nav-icon"></i>
