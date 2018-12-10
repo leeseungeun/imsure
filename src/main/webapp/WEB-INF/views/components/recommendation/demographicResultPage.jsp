@@ -70,8 +70,7 @@
 <!-- 보험 상세 모달 -->
 
 <!-- JavaScript -->
-<!-- <script src="/resources/js/common/chartist.min.js"></script> -->
 <script src="/resources/js/common/Chart.js"></script>
-<!-- <script src="/resources/js/recommendation/demographicResult.js"></script> -->
-<script src="/resources/js/recommendation/demographicResultAnalys.js"></script>
+<script src="/resources/js/recommendation/demographicResult.js"></script>
+<!-- <script src="/resources/js/recommendation/demographicResultAnalys.js"></script>-->
 <!-- Plugins -->

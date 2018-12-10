@@ -49,6 +49,7 @@ initDemographicResultPage();
 function initDemographicResultPage() {
 	// 첫 번째 탭 CSS 적용 및 내용 표시
 	stepTabEvent($('.step-tab:first'));
+	analysisResultText();
 }
  // 탭 클릭 이벤트 처리 함수
 function stepTabEvent(clickedTab) {
@@ -78,48 +79,35 @@ $('.step-tab').click(function() {
 		success : function(data, status, xhr) {
 			console.log('성공');
 			console.log(data);
-			
-			var Tag = '<div class="form-area step1">'
-				    + '	<div class="recommendation-list" id="step1"></div>'
-				    + '</div>'
-				    + '<div class="form-area step2">'
-				    + '	<div class="recommendation-list" id="step2"></div>'
-				    + '</div>'
-				    + '	<div class="form-area step3">'
-				    + '<div class="recommendation-list" id="step3"></div>'
-				    + '	</div>' 
-				    + '<div class="form-area step4">'
-				    + '	<div class="recommendation-list" id="step4"></div>'
-				    + '</div>'
-				    + '<div class="form-area step5">'
-				    + '	<div class="recommendation-list" id="step5"></div>'
-				    + '</div>'
-				    + '<div class="form-area step6">'
-				    + '	<div class="recommendation-list" id="step6"></div>'
-				    + '</div>';
-			
-			$("#cardSection").append(Tag);
-			
+	
 			stepTabEvent($('.step-tab:first'));
+			
 			for ( var index in data) {
 				var insurance = data[index];
 				insurance['imageAlt'] = '하나생명';
 				insurance['imagePath'] = 'resources/img/recommendation/hana_logo_small.png';
-				if(insurance.insuranceName=="질병보장보험"){
-					$("#step1").append(Utils.formatElement(insurance,Insurance.listCardFormat));		
-				}else if(insurance.insuranceName=="재해상해보험"){
+			
+				if(insurance.insuranceType=="질병보장보험"){
+					$("#step1").append(Utils.formatElement(insurance,Insurance.listCardFormat));
+					
+				}else if(insurance.insuranceType=="재해상해보험"){
 					$("#step2").append(Utils.formatElement(insurance,Insurance.listCardFormat))
-				}else if(insurance.insuranceName=="사망보험"){
+					
+				}else if(insurance.insuranceType=="사망보험"){
 					$("#step3").append(Utils.formatElement(insurance,Insurance.listCardFormat))
-				}else if(insurance.insuranceName=="연금보험"){
+					
+				}else if(insurance.insuranceType=="연금보험"){
 					$("#step4").append(Utils.formatElement(insurance,Insurance.listCardFormat))
-				}else if(insurance.insuranceName=="저축보험"){
+					
+				}else if(insurance.insuranceType=="저축보험"){
 					$("#step5").append(Utils.formatElement(insurance,Insurance.listCardFormat))
-				}else if(insurance.insuranceName=="간병보험"){
+					
+				}else if(insurance.insuranceType=="간병보험"){
 					$("#step6").append(Utils.formatElement(insurance,Insurance.listCardFormat))
-				}else if(insurance.insuranceName=="어린이보험"){
+				}else if(insurance.insuranceType=="어린이보험"){
 					$("#step6").append(Utils.formatElement(insurance,Insurance.listCardFormat))
 				}
+				
 			}// 추천보험 없을 때 처리해주기
 			
 		},
@@ -129,15 +117,41 @@ $('.step-tab').click(function() {
 		}
 	});
 }
- $('.recommendation-list').on('click', '.recommendation-list', function(event) {
- 	/*
-	 var insuranceId = $(this).find('input#insuranceId').val();
+ 
+function analysisResultText(){
+		
+		var isMarriedComment='';
+		if(isMarried == 'Y'){
+			isMarriedComment='행복한 가정을 이루고 사는 ';
+		}else{
+			isMarriedComment='싱글라이프를 살고 있는 ';
+		}
+		$("#isMarriedComment").empty();
+		$("#userNameResult").empty();
+		$("#insuranceTypeFirst").empty();
+		$("#insuranceTypeSecond").empty();
+		$("#insuranceTypeThird").empty();
+		$("#insuranceTypeFourth").empty();
+		
+		$("#isMarriedComment").append(isMarriedComment);
+		$("#userNameResult").append(userName);
+		$("#insuranceTypeFirst").append('재해상해보험');
+		$("#insuranceTypeSecond").append('질병보장보험');
+		$("#insuranceTypeThird").append('연금보험');
+		$("#insuranceTypeFourth").append('저축보험');
+}
+
+$('.recommendation-list').on('click', '.insurance-card', function(event) {
+
+	var insuranceId = $(this).find('input#insuranceId').val();
 	console.log(insuranceId)
+	
 	$.ajax({
 		type : "get",
 		url : "/user/insurances/" + insuranceId,
 		contentType : "application/json; charset=UTF-8",
 		success : function(data, status, xhr) {
+			console.log("성공?");
 			var detailList = data.detailList;
 			var tag = '<div class="containner" id="modal-top">'
 					+ '  <img src="resources/img/recommendation/hana_logo_small.png" width="20%" height="20%">'
@@ -168,10 +182,13 @@ $('.step-tab').click(function() {
 						+ '          </div>';
 			}
 			tag += '</div>';
+			console.log(tag);
+			
 			$('#insuranceDetailModal .modal-body').html(tag);
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			alert(jqXHR.responseText);
 		}
-	});*/
+	});
 });
+

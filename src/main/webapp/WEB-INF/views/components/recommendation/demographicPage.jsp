@@ -20,13 +20,13 @@
       <form role="form" class="ng-pristine ng-valid">
         <div class="form-txt-board">
           <p class="txt-board">
-            <span class="info-txt typeName ng-binding">김땡땡</span> 님은<br>
-            <span class="info-txt ng-binding">여자</span> 이며,<br
+            <span class="info-txt typeName ng-binding" id="spanUserName"></span> 님은<br>
+            <span class="info-txt ng-binding" id="spanUserGender" ></span> 이며,<br
               class="txt-board-br"> <span
-              class="info-txt ng-binding">60</span> 세의,<br> <span
-              class="info-txt ng-binding">개인사업자</span> 이며,<br
+              class="info-txt ng-binding" id="spanUserAge">60</span> 세의,<br> <span
+              class="info-txt ng-binding" id="spanUserJob">개인사업자</span> 이며,<br
               class="txt-board-br"> <span
-              class="info-txt ng-binding">미혼</span> 입니다.
+              class="info-txt ng-binding" id="spanUserMarried">미혼</span> 입니다.
           </p>
         </div>
       </form>
@@ -185,10 +185,8 @@
         </div>
       </div>
     </div>
-
   </div>
 </div>
-
 
 <!-- JavaScript -->
 <script src="resources/js/recommendation/demographic.js"></script>

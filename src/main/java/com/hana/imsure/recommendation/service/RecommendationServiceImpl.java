@@ -287,6 +287,8 @@ public class RecommendationServiceImpl implements RecommendationService {
 	    	income = "4800만원미만";
 		}else if ( incomeNum >= 3600 && incomeNum < 6000) {
 	    	income = "6000만원미만";
+		}else if ( incomeNum >= 6000 ) {
+	    	income = "6000만원이상";
 		}
 		
 		String job = params.get("job");

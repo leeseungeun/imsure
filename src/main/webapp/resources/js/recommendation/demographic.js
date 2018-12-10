@@ -93,9 +93,13 @@ function saveDemographicData(){
 		job : $('input:radio[name="job"]:checked').val(),
 		hasFamilyCancer: $('input:radio[name="hasFamilyCancer"]:checked').val()
 	}
-	console.log(Demographic.data);
 }
-
+ $('#userName').keydown(function(e) {
+ 	$("#spanUserName").append(e.keyCode);
+ })
 function checkDemographicValidation() {
+	
+}
+function addUserInformationText(){
 	
 }

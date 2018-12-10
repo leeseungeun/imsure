@@ -5,6 +5,7 @@
 <link rel="stylesheet" type="text/css" href="resources/css/recommendation/recommendation.index.css">
 <link rel="stylesheet" type="text/css" href="resources/css/recommendation/recommendation.demographicResult.css">
 <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+<link rel="stylesheet" type="text/css" href="resources/css/recommendation/recommendation.custom.common.css">
 <!-- header -->
 <jsp:include page="../../includes/header.jsp"/>
 
@@ -46,7 +47,25 @@
               <li class="step-tab" style="width:20%">저축</li>
               <li class="step-tab" style="width:20%">더보기</li>
             </ul>
-            <div id="cardSection"></div>
+            <div class="form-area step1">
+              <div class="recommendation-list" id="step1"></div>
+            </div>
+            <div class="form-area step2">
+              <div class="recommendation-list" id="step2"></div>
+            </div>
+            <div class="form-area step3">
+              <div class="recommendation-list" id="step3"></div>
+            </div> 
+            <div class="form-area step4">
+              <div class="recommendation-list" id="step4"></div>
+            </div>
+            <div class="form-area step5">
+              <div class="recommendation-list" id="step5"></div>
+            </div>
+            <div class="form-area step6">
+              <div class="recommendation-list" id="step6"></div>
+            </div>
+            
             <button class="buttonPrev"><span> 이전</span></button>
            </div>
         </div>
@@ -58,7 +77,23 @@
 <!-- 알고리즘 설명 모달 -->
 <!-- 인구통계학적 추천은 알고리즘 설명이 필요 없는지? -->
 
-<!-- 보험 상세 모달 -->
+<!-- 보험  상품 상세 보기-->
+<div class="modal fade" id="insuranceDetailModal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="modal-title">보험상품 상세보기</span>
+          <button type="button" class="close" data-dismiss="modal" style="width:10%">&times;</button>
+      </div>
+      <div class="modal-body">
+        <!-- 보험 상세 내역이 들어가는 부분 -->
+      </div>
+      <div class="modal-footer">'
+        <button type="button" class="btn" data-dismiss="modal" style="width:15%">닫기 </button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- JavaScript -->
 <script src="/resources/js/common/chartist.min.js"></script>

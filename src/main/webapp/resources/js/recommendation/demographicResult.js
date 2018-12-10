@@ -1,8 +1,10 @@
 /**
- * 인구 통계 기반 추천 결과를 보여주기 위한 javascript파일
+ * 인구 통계 기반 추천 결과시 분석 결과 뿌려주는 javascript
  * 
  * @author 박소연
  */
+
+DemographicRsultAnaly={};
 
 var userName = Demographic.data.userName;
 var isMarried = Demographic.data.isMarried;
@@ -12,8 +14,6 @@ var job = Demographic.data.job;
 	
 sendChartDataToServer();
 analysisResultText();
-//sendDataToServer();
-//drawChart();
 
 
 function sendChartDataToServer() {
@@ -29,7 +29,6 @@ function sendChartDataToServer() {
 		contentType : "application/json; charset=UTF-8",
 		success : function(data, status, xhr) {
 			console.log('성공' + data);
-			$('#userNameTitle').append(userName);
 			for ( var index in data) {
 				var dataIndex = data[index];
 				var resultData = [dataIndex.accidentInsurance, dataIndex.diseaseInsurance, dataIndex.pensionInsurance,
@@ -50,7 +49,6 @@ function sendChartDataToServer() {
 function drawChart(resultData, type){
 	//ajax통신으로 데이터 받아오기
 	//차트 그리기
-	
 	var ctx = '';
 	if(type == 0 ){
 		ctx = $("#incomeChart");
@@ -116,7 +114,7 @@ function analysisResultText(){
 // 버튼 눌렀을 때 화면 동적으로 바꿔주기
 $('#recommendButton').on('click', function(event) {
 	event.preventDefault();
-
+	console.log("여기");
+	Router.route('section', 'user/demographicResultPageDemo');
 });
-
 
