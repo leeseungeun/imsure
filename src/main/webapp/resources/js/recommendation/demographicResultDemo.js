@@ -91,53 +91,7 @@ function analysisResultText(){
 		$("#insuranceTypeFourth").append('저축보험');
 }
 
-$('.recommendation-list').on('click', '.insurance-card', function(event) {
-
-	var insuranceId = $(this).find('input#insuranceId').val();
-	
-	$.ajax({
-		type : "get",
-		url : "/user/insurances/" + insuranceId,
-		contentType : "application/json; charset=UTF-8",
-		success : function(data, status, xhr) {
-			var detailList = data.detailList;
-			var tag = '<div class="containner" id="modal-top">'
-					+ '  <img src="resources/img/recommendation/hana_logo_small.png" width="20%" height="20%">'
-					+ '  <span id="modal-top-span">'
-					+ data.insuranceName
-					+ '	 </span>'
-					+ '	 <a href="'
-					+ data.url
-					+ '" id="download"><span class="icon-cloud-download" id="download">상세자료</span></a>'
-					+ '</div>'
-					+ '<div class="containner" id="modal-bottom">'
-					+ '	 <div class="insurance-group">'
-					+ '    <label>보험종류</label><div>'
-					+ data.insuranceType
-					+ '    </div>'
-					+ '  </div>'
-					+ '  <div class="insurance-group">'
-					+ '    <label>채널종류</label><div>'
-					+ data.channel + '</div>'
-					+ '</div>';
-			for (var i = 0; i < detailList.length; i++) {
-				tag += '<div class="insurance-group">'
-						+ '  <label>'
-						+ detailList[i].title
-						+ '</label><div>'
-						+ detailList[i].value
-						+ '</div>' 
-						+ '          </div>';
-			}
-			tag += '</div>';
-			
-			$('#insuranceDetailModal .modal-body').html(tag);
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			alert(jqXHR.responseText);
-		}
-	});
-});
+$('.recommendation-list').on('click', '.insurance-card', Insurance.getInsuranceDetail);
 
 $('.buttonPrev').click(function() {
 	Router.route('section', 'user/demographicResultPage');

@@ -247,42 +247,18 @@
     <div class="col-sm-6">
       <div class="findContainer">
         <div class="callaction bg-gray">
-          <div class="bgChange">
+          <div class="bgChange recommendation-wrapper">
             <ul class="nav nav-tabs tabType2">
               <!-- 선택했을때 이벤트 처리! -->
-              <li class=".step-tab" style="width: 50%;">심리</li>
-              <li class=".step-tab" style="width: 50%;">인구</li>
+              <li class="step-tab on" style="width: 50%;" onclick="getPsychologicalRecommendationList();">심리</li>
+              <li class="step-tab shadow" style="width: 50%;" onclick="getDemographicRecommendationList()">인구</li>
             </ul>
             <br>
-            <div class="form-area step1 on">
-              <div class="insurance-card" data-toggle="modal"
-                data-target="#insuranceDetailModal">
-                <input type="hidden" id="insuranceId"
-                  value="###insuranceId###">
-                <div class="img-wrapper">
-                  <img alt="하나생명"
-                    src="resources/img/recommendation/hana_logo_small.png">
-                </div>
-                <div class="contents-wrapper">
-                  <h5 class="insurance-name">###insuranceName###</h5>
-                  <p class="insurance-type">###insuranceType###</p>
-                </div>
-              </div>
+            <div class="form-area step1">
+              <!-- 심리 추천 결과가 표시되는 곳 -->
             </div>
-            <div class="form-area step2 on">
-              <div class="insurance-card" data-toggle="modal"
-                data-target="#insuranceDetailModal">
-                <input type="hidden" id="insuranceId"
-                  value="###insuranceId###">
-                <div class="img-wrapper">
-                  <img alt="하나생명"
-                    src="resources/img/recommendation/hana_logo_small.png">
-                </div>
-                <div class="contents-wrapper">
-                  <h5 class="insurance-name">###insuranceName###</h5>
-                  <p class="insurance-type">###insuranceType###</p>
-                </div>
-              </div>
+            <div class="form-area step2">
+              <!-- 인구 통계 추천 결과가 표시되는 곳 -->
             </div>
 
           </div>
@@ -387,6 +363,24 @@
   </div>
 </div>
 
+<!-- 보험  상품 상세 보기-->
+<div class="modal fade" id="insuranceDetailModal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="modal-title">보험상품 상세보기</span>
+          <button type="button" class="close" data-dismiss="modal" style="width:10%">&times;</button>
+      </div>
+      <div class="modal-body">
+        <!-- 보험 상세 내역이 들어가는 부분 -->
+      </div>
+      <div class="modal-footer">'
+        <button type="button" class="btn" data-dismiss="modal" style="width:15%">닫기 </button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- 이미지 자르기 -->
 <style>
 .imgArea {
@@ -399,12 +393,77 @@
   margin-left: -5%;
   margin-bottom: -70%;
 }
+
+.modal-title{
+  padding: 1rem;
+    margin: -1rem -1rem -1rem auto;
+}
+
+#modal-top{
+  margin: 5% 0;
+}
+
+#modal-top img{
+  margin-left:3%;
+  margin-right:1%;
+}
+
+#modal-top-span{
+  width:75%;
+  margin:5% 0px;
+  display:inline-block;
+  text-align: center;
+  font-weight: bold;
+}
+
+#download{
+  width: 100%;
+    margin: 1% 2%;
+  display:inline-block;
+  text-align: left;
+  font-weight: bold;
+}
+
+
+.insurance-group{
+  margin:0.1rem auto;
+}
+
+.insurance-group label{
+  width:20%;
+  margin-left:3%;
+  background-color: #30b1b2;
+  border-radius: 0.2rem;
+  color: white;
+  padding:0.1rem 0.5rem;
+  text-align: center;
+  box-shadow: 5px 6px #B8C6C7;
+}
+
+.insurance-group div{
+  width:70%;
+  display:inline-block;
+  margin: 0px 3%;
+  text-align: left;
+  border-radius: 0.2rem;
+    padding: 0.5% 2%;
+  box-shadow: 3px 3px 5px lightgray;
+}
 </style>
 
 <!-- JavaScript -->
 <script src="resources/js/common/Chart.js"></script>
+<script src="resources/js/common/Utils.js"></script>
+<script src="resources/js/common/Insurance.js"></script>
 <script>
 	var loginUserId = '${userId}';
+	
+	// 처음 페이지 로딩 시 심리 추천 결과 가져오기
+	getPsychologicalRecommendationList();
+	
+	// 상세보기
+	$('.recommendation-wrapper').on('click', '.insurance-card', Insurance.getInsuranceDetail);
+	
 	var data = [ {
 		x : '2016-12-25',
 		y : 20
@@ -554,5 +613,84 @@ function getEnrolledInsurances() {
 	});
 }
 
+// 심리 추천 결과를 표시하는 함수
+function getPsychologicalRecommendationList() {
+	$.ajax({
+		type : "get",
+		url  : "/user/users/" + loginUserId + "/psychological-recommendation-results",
+		contentType : "application/json; charset=UTF-8",
+		success : function(data, status, xhr) {
+			
+			// 활성화된 탭의 인덱스를 가져와 CSS 변경
+			var activeIndex = $('.step-tab.on').index();
+			
+			var formToAppend = tabFormCss(activeIndex);
+			
+			for ( var index in data) {
+				var insurance = data[index];
+				
+				// 부족한 데이터 추가
+				insurance['imageAlt'] = '하나생명';
+				insurance['imagePath'] = 'resources/img/recommendation/hana_logo_small.png';
+				
+				var tag = Utils.formatElement(insurance, Insurance.listCardFormat);
+				
+				$(formToAppend).append(tag);
+			}
+			
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+		}
+	});
+}
+
+// 인구통계 추천 결과를 표시하는 함수
+function getDemographicRecommendationList() {
+	$.ajax({
+		type : "get",
+		url  : "/user/users/" + loginUserId + "/demographic-recommendation-results",
+		contentType : "application/json; charset=UTF-8",
+		success : function(data, status, xhr) {
+			
+			// 활성화된 탭의 인덱스를 가져와 CSS 변경
+			var activeIndex = $('.step-tab.on').index();
+			
+			var formToAppend = tabFormCss(activeIndex);
+
+			for ( var index in data) {
+				var insurance = data[index];
+				// 부족한 데이터 추가
+				insurance['imageAlt'] = '하나생명';
+				insurance['imagePath'] = 'resources/img/recommendation/hana_logo_small.png';
+				
+				var tag = Utils.formatElement(insurance, Insurance.listCardFormat);
+				
+				$(formToAppend).append(tag);
+			}
+			
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR.responseText);
+		}
+	});
+}
+
+function tabFormCss(index) {
+	
+	var tabSelector = '.recommendation-wrapper .step-tab:eq(' + index + ')';
+	var formSelector = '.recommendation-wrapper .form-area:eq(' + index + ')';
+	
+	// 탭에 CSS 추가
+	$('.recommendation-wrapper .step-tab').removeClass('on').addClass('shadow');
+	$(tabSelector).removeClass('shadow').addClass('on');
+	
+	// form CSS 추가
+	$('.recommendation-wrapper .form-area').removeClass('on').addClass('shadow');
+	$(formSelector).removeClass('shadow').addClass('on');
+	$(formSelector).empty();
+	
+	return formSelector;
+}
 
 </script>
