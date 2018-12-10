@@ -94,12 +94,51 @@ function saveDemographicData(){
 		hasFamilyCancer: $('input:radio[name="hasFamilyCancer"]:checked').val()
 	}
 }
- $('#userName').keydown(function(e) {
- 	$("#spanUserName").append(e.keyCode);
- })
+
+$('#userName').keyup(function(e) {
+	$("#spanUserName").html($('#userName').val());
+});
+$('input:radio[name="gender"]').click(function(e) {
+	var gender = '';
+	if($('input:radio[name="gender"]:checked').val()=='M'){
+		gender ='남성';
+	}else{
+		gender ='여성';
+	}
+	$("#spanUserGender").html(gender);
+}); 	
+$('#birthNumber').change(function(e) {
+	console.log(calcAge($('#birthNumber').val()));
+}); 	
+$('#userName').change(function(e) {
+	$("#spanUserName").html($('#userName').val());
+}); 	
 function checkDemographicValidation() {
 	
 }
-function addUserInformationText(){
-	
-}
+
+function computeAge(birthday) 
+{ 
+
+	var bday=parseInt(birthday.substring(6,8)); 
+	var bmo=(parseInt(birthday.substring(4,6))-1); 
+var byr=parseInt(birthday.substring(0,4)); 
+alert(byr + "-" + bmo + "-" + bday); 
+var byr; 
+var age; 
+var now = new Date(); 
+tday=now.getDate(); 
+tmo=(now.getMonth()); 
+tyr=(now.getFullYear()); 
+
+
+if((tmo > bmo)||(tmo==bmo & tday>=bday)) { 
+age=byr 
+} else{ 
+age=byr+1; 
+} 
+
+return tyr-age; 
+
+} 
+
