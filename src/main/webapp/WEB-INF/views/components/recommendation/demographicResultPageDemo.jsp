@@ -39,15 +39,14 @@
               data-target="#algorithmDescriptionModal">Why SURE ?</button>
           </div>
             <ul class="nav nav-tabs">
-              <li class=".step-tab" style="width:20%">암/성인병</li>
-              <li class=".step-tab" style="width:20%">질병</li>
-              <li class=".step-tab" style="width:20%">연금</li>
-              <li class=".step-tab" style="width:20%">저축</li>
-              <li class=".step-tab" style="width:20%">더보기</li>
+              <li class="step-tab" style="width:20%">질병</li>
+              <li class="step-tab" style="width:20%">재해/상해</li>
+              <li class="step-tab" style="width:20%">사망</li>
+              <li class="step-tab" style="width:20%">연금</li>
+              <li class="step-tab" style="width:20%">저축</li>
+              <li class="step-tab" style="width:20%">더보기</li>
             </ul>
-            <div class="form-area step1 on">
-              <div class="recommendation-list"></div>
-            </div>
+            <div id="cardSection"></div>
             <button class="buttonPrev"><span> 이전</span></button>
            </div>
         </div>
@@ -63,8 +62,8 @@
 
 <!-- JavaScript -->
 <script src="/resources/js/common/chartist.min.js"></script>
-
-
+<script src="/resources/js/common/Insurance.js"></script>
+<script src="/resources/js/recommendation/demographicResultDemo.js"></script>
 <!-- Plugins -->
 
 

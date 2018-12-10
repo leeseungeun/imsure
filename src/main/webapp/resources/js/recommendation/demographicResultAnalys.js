@@ -14,8 +14,6 @@ var job = Demographic.data.job;
 	
 sendChartDataToServer();
 analysisResultText();
-//sendDataToServer();
-//drawChart();
 
 
 function sendChartDataToServer() {
@@ -115,7 +113,8 @@ function analysisResultText(){
 
 // 버튼 눌렀을 때 화면 동적으로 바꿔주기
 $('#recommendButton').on('click', function(event) {
-
-	
+	event.preventDefault();
+	console.log("여기");
+	Router.route('section', 'user/demographicResultPageDemo');
 });
 

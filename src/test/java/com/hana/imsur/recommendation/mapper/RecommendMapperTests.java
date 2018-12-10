@@ -33,14 +33,14 @@ public class RecommendMapperTests {
 //		log.info(board);
 //	}
 	
-	@Test
-	public void testReadGraphicResult() {
-
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("age", "29세이하");
-		map.put("income", "3600만원미만");
-		map.put("job", "관리자");
-		List<String> list = mapper.readGraphInformation(map);
-		log.info(list.toString());
-	}
+//	@Test
+//	public void testReadGraphicResult() {
+//
+//		Map<String, String> map = new HashMap<String, String>();
+//		map.put("age", "29세이하");
+//		map.put("income", "3600만원미만");
+//		map.put("job", "관리자");
+//		List<String> list = mapper.readGraphInformation(map);
+//		log.info(list.toString());
+//	}
 }
