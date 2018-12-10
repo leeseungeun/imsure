@@ -132,6 +132,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 			String email = ((com.hana.imsure.user.domain.UserDetails)currentAuth.getPrincipal()).getUsername();
 			UserDetails userDetails = this.loadUserByUsername (email);
 			
+			log.debug(userDetails);
+			log.debug(userDetails.getAuthorities());
+			
 			// 새로운 정보를 넣어줌
 			Authentication newAuth = new UsernamePasswordAuthenticationToken (userDetails, null, userDetails.getAuthorities ());
 			SecurityContextHolder.getContext().setAuthentication(newAuth);

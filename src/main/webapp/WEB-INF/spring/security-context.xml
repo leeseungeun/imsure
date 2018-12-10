@@ -16,7 +16,7 @@
 <!-- 인증을 위한 엔트리 포인트 변경 -->
 <security:http entry-point-ref="authenticationEntryPoint">
 	<security:intercept-url pattern="/all/*" access="permitAll"/>
-	<security:intercept-url pattern="/uncertified-user/*" access="hasRole('ROLE_UNCERTIFIED_USER')"/>
+	<security:intercept-url pattern="/uncertified-user/*" access="hasAnyRole('ROLE_UNCERTIFIED_USER', 'ROLE_USER')"/>
 	<security:intercept-url pattern="/user/*" access="hasRole('ROLE_USER')"/>
 	
 	<!-- 인가 안 됐을 경우 사용자 정의 클래스에서 처리 -->
