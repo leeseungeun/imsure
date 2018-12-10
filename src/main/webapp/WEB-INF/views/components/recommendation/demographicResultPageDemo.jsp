@@ -1,4 +1,5 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <link rel="stylesheet" type="text/css" href="resources/css/recommendation/recommendation.common.css">
 <link rel="stylesheet" type="text/css" href="resources/css/recommendation/recommendation.index.css">
@@ -14,6 +15,9 @@
         <div class="col-sm-4 output step-txt"style="min-height: 589px;">
           <form role="form" class="ng-pristine ng-valid">
             <div class="analysResultDiv">
+              <span style="display: none;">
+                <sec:authentication property="principal.user.userId" var="userId"/>
+              </span>
               <p class="txt-board">
                 <span id="isMarriedComment"></span><br>
                 <span id="userNameResult" class="info-txt typeName ng-binding"></span>
@@ -94,6 +98,75 @@
 
 <!-- JavaScript -->
 <script src="/resources/js/common/chartist.min.js"></script>
+<script>
+function sendCardDataToServer(){
+	
+	Demographic.data['userId'] = '${userId}';
+	
+	$.ajax({
+		type : "post",
+		url : "/user/recommend-based-on-demographical-features",
+		data : JSON.stringify(Demographic.data),
+		contentType : "application/json; charset=UTF-8",
+		success : function(data, status, xhr) {
+		
+			var tag = '<div class="noInsuranceInfo">추천 보험이 존재하지 않습니다.</div> ';
+			// data에서 종류를 뽑아서 남기고,
+			var insuranceTypeMap = data.map(insurance => insurance['insuranceType']).filter((v, i, a) => a.indexOf(v) === i)			
+			//["질병보장보험", "재해상해보험", "사망보험", "연금보험"]
+			if(insuranceTypeMap.indexOf('질병보장보험') == -1){
+				$('#step1').append(tag)
+			}
+			if(insuranceTypeMap.indexOf('재해상해보험') == -1){
+				$('#step2').append(tag)
+			}
+			if(insuranceTypeMap.indexOf('사망보험') == -1){
+				$('#step3').append(tag)
+			}
+			if(insuranceTypeMap.indexOf('연금보험') == -1){
+				$('#step4').append(tag)
+			}
+			if(insuranceTypeMap.indexOf('저축보험') == -1){
+				$('#step5').append(tag)
+			}
+			if(insuranceTypeMap.indexOf('간병보험') == -1 && insuranceTypeMap.indexOf('어린이보험') == -1){
+				$('#step6').append(tag)
+			}
+			stepTabEvent($('.step-tab:first'));
+			for ( var index in data) {
+				var insurance = data[index];
+				insurance['imageAlt'] = '하나생명';
+				insurance['imagePath'] = 'resources/img/recommendation/hana_logo_small.png';
+				
+				if(insurance.insuranceType=="질병보장보험"){
+					$("#step1").append(Utils.formatElement(insurance,Insurance.listCardFormat));
+					
+				}else if(insurance.insuranceType=="재해상해보험"){
+					$("#step2").append(Utils.formatElement(insurance,Insurance.listCardFormat))
+					
+				}else if(insurance.insuranceType=="사망보험"){
+					$("#step3").append(Utils.formatElement(insurance,Insurance.listCardFormat))
+					
+				}else if(insurance.insuranceType=="연금보험"){
+					$("#step4").append(Utils.formatElement(insurance,Insurance.listCardFormat))
+					
+				}else if(insurance.insuranceType=="저축보험"){
+					$("#step5").append(Utils.formatElement(insurance,Insurance.listCardFormat))
+					
+				}else if(insurance.insuranceType=="간병보험"){
+					$("#step6").append(Utils.formatElement(insurance,Insurance.listCardFormat))
+				}else if(insurance.insuranceType=="어린이보험"){
+					$("#step6").append(Utils.formatElement(insurance,Insurance.listCardFormat))
+				}	
+			}
+			
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR);
+		}
+	});
+}
+</script>
 <script src="/resources/js/common/Insurance.js"></script>
 <script src="/resources/js/recommendation/demographicResultDemo.js"></script>
 <!-- Plugins -->
