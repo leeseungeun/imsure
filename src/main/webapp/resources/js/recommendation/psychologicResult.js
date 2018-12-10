@@ -76,7 +76,6 @@ $.ajax({
 $('.recommendation-list').on('click', '.insurance-card', function(event) {
 
 	var insuranceId = $(this).find('input#insuranceId').val();
-	console.log(insuranceId)
 	$.ajax({
 		type : "get",
 		url : "/user/insurances/" + insuranceId,

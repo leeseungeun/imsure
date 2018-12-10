@@ -58,7 +58,6 @@ function stepTabEvent(clickedTab) {
 	$(clickedTab).removeClass('shadow').addClass('on');
 	// 탭에 대한 내용 표시
 	var index = $(clickedTab).index();
-	console.log(index);
 	
 	$('.form-area').removeClass('on');
 	$('.form-area').eq(index).addClass('on');
@@ -68,8 +67,7 @@ $('.step-tab').click(function() {
 	// 유효성 검사 추가
 	stepTabEvent(this);
 });
- function sendCardDataToServer(){
-	console.log(Demographic.data)
+function sendCardDataToServer(){
 	
 	$.ajax({
 		type : "post",
@@ -77,8 +75,7 @@ $('.step-tab').click(function() {
 		data : JSON.stringify(Demographic.data),
 		contentType : "application/json; charset=UTF-8",
 		success : function(data, status, xhr) {
-			console.log('성공');
-			console.log(data);
+		
 			var tag = '<div class="noInsuranceInfo">추천 보험이 존재하지 않습니다.</div> ';
 			// data에서 종류를 뽑아서 남기고,
 			var insuranceTypeMap = data.map(insurance => insurance['insuranceType']).filter((v, i, a) => a.indexOf(v) === i)			
@@ -126,14 +123,12 @@ $('.step-tab').click(function() {
 					$("#step6").append(Utils.formatElement(insurance,Insurance.listCardFormat))
 				}else if(insurance.insuranceType=="어린이보험"){
 					$("#step6").append(Utils.formatElement(insurance,Insurance.listCardFormat))
-				}
-				
-			}// 추천보험 없을 때 처리해주기
+				}	
+			}
 			
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			console.log(jqXHR);
-			console.log('실패');
 		}
 	});
 }
@@ -164,14 +159,12 @@ function analysisResultText(){
 $('.recommendation-list').on('click', '.insurance-card', function(event) {
 
 	var insuranceId = $(this).find('input#insuranceId').val();
-	console.log(insuranceId)
 	
 	$.ajax({
 		type : "get",
 		url : "/user/insurances/" + insuranceId,
 		contentType : "application/json; charset=UTF-8",
 		success : function(data, status, xhr) {
-			console.log("성공?");
 			var detailList = data.detailList;
 			var tag = '<div class="containner" id="modal-top">'
 					+ '  <img src="resources/img/recommendation/hana_logo_small.png" width="20%" height="20%">'
@@ -202,7 +195,6 @@ $('.recommendation-list').on('click', '.insurance-card', function(event) {
 						+ '          </div>';
 			}
 			tag += '</div>';
-			console.log(tag);
 			
 			$('#insuranceDetailModal .modal-body').html(tag);
 		},

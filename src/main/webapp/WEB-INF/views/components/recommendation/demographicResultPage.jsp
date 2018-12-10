@@ -30,7 +30,7 @@
               <h5>직업군별 보험종류</h5>
               <canvas id="jobChart" width="5" ></canvas>
             </div>
-                <!-- 소득 -->
+            <!-- 소득 -->
             <div id="incomeChartDiv" style="float:right;">
                <h5>소득별 보험종류</h5>
                <canvas id="incomeChart" width="5"></canvas>
@@ -42,7 +42,7 @@
               <form role="form" class="ng-pristine ng-valid">
                 <div class="analysResultDiv">
                   <p class="txt-board">
-                    <span id="isMarriedComment">싱글라이프를 살고 있는</span><br>
+                    <span id="isMarriedComment"></span><br>
                     <span id="userNameResult"
                       class="info-txt typeName ng-binding"></span>
                     님에게  꼭 필요한 보험은<br> <span id="insuranceTypeFirst"
@@ -64,13 +64,9 @@
   </div>
 </div>
 
-<!-- 알고리즘 설명 모달 -->
-<!-- 인구통계학적 추천은 알고리즘 설명이 필요 없는지? -->
-
 <!-- 보험 상세 모달 -->
 
 <!-- JavaScript -->
 <script src="/resources/js/common/Chart.js"></script>
 <script src="/resources/js/recommendation/demographicResult.js"></script>
-<!-- <script src="/resources/js/recommendation/demographicResultAnalys.js"></script>-->
 <!-- Plugins -->

@@ -1,6 +1,5 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-
 <link rel="stylesheet" type="text/css" href="resources/css/recommendation/recommendation.common.css">
 <link rel="stylesheet" type="text/css" href="resources/css/recommendation/recommendation.index.css">
 <link rel="stylesheet" type="text/css" href="resources/css/recommendation/recommendation.demographicResult.css">
@@ -64,7 +63,6 @@
             <div class="form-area step6">
               <div class="recommendation-list" id="step6"></div>
             </div>
-            
             <button class="buttonPrev"><span> 이전</span></button>
            </div>
         </div>

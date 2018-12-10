@@ -11,10 +11,14 @@ var isMarried = Demographic.data.isMarried;
 var birthNumber = Demographic.data.birthNumber;
 var income = Demographic.data.income;
 var job = Demographic.data.job;
-	
-sendChartDataToServer();
-analysisResultText();
 
+// 사용자 이름 보여주기
+$('#userNameTitle').append(userName);
+
+// 차트를 위한 데이터 서버로 보내주기
+sendChartDataToServer();
+// 분석 결과 텍스트 부분 보여주기
+analysisResultText();
 
 function sendChartDataToServer() {
 	
@@ -28,16 +32,16 @@ function sendChartDataToServer() {
 		}),
 		contentType : "application/json; charset=UTF-8",
 		success : function(data, status, xhr) {
-			console.log('성공' + data);
+
 			for ( var index in data) {
 				var dataIndex = data[index];
 				var resultData = [dataIndex.accidentInsurance, dataIndex.diseaseInsurance, dataIndex.pensionInsurance,
 					dataIndex.savingsInsurance, dataIndex.deadInsurance, dataIndex.variableInsurance, dataIndex.medicalInsurance, dataIndex.nursingInsurance];
-				console.log(resultData);
+
 				var type = index;
 				
 				drawChart(resultData, type);
-				// 값 계산하기 추가 되야함
+
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
@@ -114,7 +118,6 @@ function analysisResultText(){
 // 버튼 눌렀을 때 화면 동적으로 바꿔주기
 $('#recommendButton').on('click', function(event) {
 	event.preventDefault();
-	console.log("여기");
 	Router.route('section', 'user/demographicResultPageDemo');
 });
 

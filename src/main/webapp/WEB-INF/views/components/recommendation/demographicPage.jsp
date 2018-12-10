@@ -49,8 +49,12 @@
                 <input type="text"
                   class="form-control ng-pristine ng-untouched ng-valid ng-not-empty ng-valid-maxlength"
                   id="userName" ng-model="inName" maxlength="12"
-                  ng-maxlength="12" placeholder="이름을 입력하세요" kr-input="">
-              </div>
+                  ng-maxlength="12" placeholder="ex)홍길동" kr-input="">
+              </div> 
+              <span class="validation-demographic-information">
+                  <small id="valiUsername">
+                  </small>
+              </span>
             </div>
             <div class="form-group">
               <label class="control-label col-sm-2">성별</label>
@@ -62,6 +66,10 @@
                   id="W" name="gender" value="W"> <label
                   for="W">여자</label></li>
               </ul>
+              <span class="validation-demographic-information">
+                  <small id="valiUserGender">
+                  </small>
+              </span>
             </div>
             <div class="form-group">
               <label class="control-label col-sm-2" for="birthNumber">생년월일</label>
@@ -71,7 +79,7 @@
                   id="birthNumber" ng-model="inAge" maxlength="8"
                   placeholder="예) 1990212">
                 <p class="notice is-pl">
-                  <small>주민등록상의 생년월일을 입력하세요<br>
+                  <small id="valiUserBirth">주민등록상의 생년월일을 입력하세요<br>
                   </small>
                 </p>
               </div>
@@ -88,16 +96,16 @@
                     id="single" name="isMarried" value="N"> <label
                     for="single">미혼</label></li>
                 </ul>
+                <span class="validation-demographic-information">
+                  <small id="valiUserMarried">
+                  </small>
+              </span>
               </div>
-              <!-- 결혼 '유' 선택했을 경우 추가 -->
               <div class="form-group" id="childOrFamily"></div>
-              <!-- 결혼무 선택했을 경우 보여줘야함-->
-
             </div>
           </form>
 
           <div class="btn-block btn-input">
-            <!-- style="display: none;" -->
             <p class="notice errormsg">
               <small class="ng-binding" style="color: rgb(255, 0, 0);"></small>
             </p>
@@ -121,6 +129,10 @@
                   id="cancer-none" name="hasFamilyCancer" value="N"> <label
                   for="cancer-none">무</label></li>
               </ul>
+              <span class="validation-demographic-information">
+                  <small id="valiUserFamily">
+                  </small>
+              </span>
             </div>
             <div class="form-group" style="margin-bottom: 2%">
               <label class="control-label col-sm-4" for="income">년소득</label>
@@ -129,8 +141,8 @@
                   class="form-control onlyNumber ng-pristine ng-untouched ng-valid ng-not-empty ng-valid-maxlength"
                   id="income" ng-model="inSalary" maxlength="4"
                   placeholder="예) 2800"> <span class="unit">만원</span>
-                <p class="notice">
-                  <small>세금을 제외한 금액을 만원 단위로 입력해 주세요.</small>
+                <p class="notice is-pl" >
+                  <small id="valiUserIncome">세금을 제외한 금액을 만원 단위로 입력해 주세요.</small>
                 </p>
               </div>
             </div>
@@ -170,10 +182,13 @@
                   id="etc" name="job" value="기타"> <label
                   for="etc">기타</label></li>
               </ul>
+              <span class="validation-demographic-information">
+                  <small id="valiUserJob">
+                  </small>
+              </span>
             </div>
           </form>
           <div class="btn-block btn-input">
-            <!-- style="display: none;" -->
             <p class="notice errormsg">
               <small class="ng-binding" style="color: rgb(255, 0, 0);"></small>
             </p>

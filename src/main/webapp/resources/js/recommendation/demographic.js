@@ -4,7 +4,6 @@
  * @author 박소연
  */
 
-
 initPsychologicPage();
 var Demographic = {};
 Demographic.data={};
@@ -30,19 +29,18 @@ $('input:radio[name="isMarried"]').click(function() {
 				 	+ '		<label for="child-none">무</label></li>'
 				 	+ '</ul>'
 				 	+ '<p class="notice is-pl notice-under-ul" id="childNotice">'
-				 	+ '	<small> 자녀가 성인인 경우는 \'무\'를 선택해주세요.<br></small>'
+				 	+ '	<small id="valiUserChild"> 자녀가 성인인 경우는 \'무\'를 선택해주세요.<br></small>'
 				 	+ '</p>';
 
 	$('#childOrFamily').empty();
 	if (isMarried == 'Y') {
-		console.log('여기는?')
 		$('#childOrFamily').append(hasChildTag);
 	}
 });
 
 // 탭 클릭 이벤트 처리 함수
 function stepTabEvent(clickedTab) {
-
+	
 	// 탭 관련 처리
 	$('.step-tab').removeClass('on').addClass('shadow');
 	$(clickedTab).removeClass('shadow').addClass('on');
@@ -55,23 +53,23 @@ function stepTabEvent(clickedTab) {
 // 탭클릭 이벤트
 $('.step-tab').click(function() {
 	// 유효성 검사 추가
-	stepTabEvent(this);
+	if(checkDemographicValidation(this) == true){
+		stepTabEvent(this);	
+	}
 });
 
 // 버튼 이벤트 처리 함수
 function moveStepEvent(buttonType) {
 	var activeStep = $('.step-tab.on');
 	if (buttonType === 'prev') {
-		stepTabEvent(activeStep.prev());
+		if(checkDemographicValidation('prev') == true){
+			stepTabEvent(activeStep.prev());
+		}
 	} else if (buttonType === 'next') {
-		stepTabEvent(activeStep.next());
+		if(checkDemographicValidation('next') == true){
+			stepTabEvent(activeStep.next());
+		}
 	}
-}
-
-function getDemographicResult() {
-	saveDemographicData();
-	//페이지 전환
-	Router.route('section', 'user/demographicResultPage');
 }
 
 function saveDemographicData(){
@@ -92,9 +90,20 @@ function saveDemographicData(){
 	}
 }
 
+
+//분석 결과로 넘어가는 부분
+function getDemographicResult() {
+	if(checkDemographicValidation('prev') == true){
+		saveDemographicData();
+		Router.route('section', 'user/demographicResultPage');
+	}
+}
+
 // 이름 작성시 이벤트 처리
-$('#userName').keyup(function(e) {
+$('#userName').on('keyup blur ', function(e) {
+	$('#valiUsername').empty();
 	$("#spanUserName").html($('#userName').val());
+
 });
 // 성별선택시 이벤트 처리
 $('input:radio[name="gender"]').click(function(e) {
@@ -104,6 +113,7 @@ $('input:radio[name="gender"]').click(function(e) {
 	}else{
 		gender ='여성';
 	}
+	$('#spanUserGender').empty();
 	$("#spanUserGender").html(gender);
 });
 // 생일 입력시 이벤트 처리
@@ -125,10 +135,80 @@ $('input:radio[name="isMarried"]').click(function(e) {
 	$("#spanUserMarried").html(married);
 }); 
 
-function checkDemographicValidation() {
+function checkDemographicValidation(clickedTab) {
+
+	$('#valiUsername').empty();
+	$('#valiUserGender').empty();
+	$('#valiUserBirth').empty();
+	$('#valiUserMarried').empty();
+	$('#valiUserChild').empty();
+	var reg = /^[0-9]*$/;
+	if(clickedTab == 'next' || clickedTab.innerHTML === '2 STEP'){
+		// 이름은 빈공백만 체크
+		if($('#userName').val().trim() == '' || $('#userName').val() == null ){
+			$('#valiUsername').append('※이름을 입력해주세요');
+			$('#valiUsername').focus();
+			return false;
+		}
+		// 성별 선택 했는지
+		if($('input:radio[name="gender"]:checked').length == 0){
+			$('#valiUserGender').append('※성별을 체크해주세요');
+			return false;
+		}
+		// 생일(숫자만 추가)
+		if(isValidDate($('#birthNumber').val()) != true || $('#birthNumber').val().trim() ==''){
+			$('#valiUserBirth').css('color','#ff0056');
+			$('#valiUserBirth').append('※20세 이상만 가능하며, 올바른 생년월일을 입력하세요');
+			return false;
+		}
+		// 결혼여부체크했는지
+		if($('input:radio[name="isMarried"]:checked').length == 0){
+			
+			$('#valiUserMarried').append('※결혼여부를 체크해주세요');
+			return false;
+		}
+	
+	
+		if($('input:radio[name="isMarried"]:checked').val() == 'Y'){
+			if($('input:radio[name="hasChild"]:checked').length ==0){
+				$('#valiUserChild').css('color','#ff0056');
+				$('#valiUserChild').append('※자녀유무를 체크해주세요');
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	if(clickedTab == 'prev' || clickedTab.innerHTML == "1 STEP"){
+		
+		$('#valiUserFamily').empty();
+		$('#valiUserIncome').empty();
+		$('#valiUserJob').empty();
+		// 암가족력 여부 체크했는지
+		if($('input:radio[name="hasFamilyCancer"]:checked').length == 0){
+			$('#valiUserFamily').append('※암가족력 여부를 체크해주세요');
+			return false;
+		}
+		if(reg.test($('#income').val())==false || $('#income').val().trim() == ''){
+			
+			$('#valiUserIncome').css('color','#ff0056');
+			$('#valiUserIncome').append('※만원 단위로 숫자만 입력해주세요');
+			return false;
+		}
+		if($('input:radio[name="job"]:checked').length == 0){
+			$('#valiUserJob').append('※직업을 체크해주세요');
+			return false;
+		}
+		
+		return true;
+	}
+	
+	
+	// 소득(숫자만 추가)
 	
 }
 
+// 생년월일을 나이로 바꿔주는 메소드
 function calcAge(birthday) {
 	
 	var bday=parseInt(birthday.substring(6,8)); 
@@ -146,8 +226,42 @@ function calcAge(birthday) {
 	}else{ 
 		age=byr+1; 
 	} 
-
 	return tyr-age; 
+}
 
-} 
+//생년월일 유효성 체크
+function isValidDate(dateStr) {
+     var year = Number(dateStr.substr(0,4)); 
+     var month = Number(dateStr.substr(4,2));
+     var day = Number(dateStr.substr(6,2));
+     var today = new Date(); // 날자 변수 선언
+     var yearNow = today.getFullYear();
+     var adultYear = yearNow-20;
+ 
+     
+     if (year < 1900 || year > adultYear){
+         
+          return false;
+     }
+     if (month < 1 || month > 12) { 
+
+          return false;
+     }
+    if (day < 1 || day > 31) {
+         
+          return false;
+     }
+     if ((month==4 || month==6 || month==9 || month==11) && day==31) {
+          
+          return false;
+     }
+     if (month == 2) {
+          var isleap = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
+          if (day>29 || (day==29 && !isleap)) {
+        	  return false;
+          }
+     }
+     return true;
+}
+
 
