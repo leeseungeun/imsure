@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.google.gson.Gson;
 import com.hana.imsure.common.utils.Convertor;
 import com.hana.imsure.common.utils.UTF8;
+import com.hana.imsure.recommendation.domain.GraphInformation;
 import com.hana.imsure.recommendation.mapper.RecommendationMapper;
 
 import lombok.AllArgsConstructor;
@@ -246,5 +247,61 @@ public class RecommendationServiceImpl implements RecommendationService {
 			resultForView.add(insuranceData);
 		}
 		return resultForView;
+	}
+
+	@Override
+	public List<GraphInformation> drawGraphBasedOnDemographicalFeatures(Map<String, String> params)
+			throws Exception {
+		//params값 파싱
+		log.info(params);
+		Map<String, String> paramsToMapper = new HashMap<String, String>();
+		Convertor convertor = new Convertor();
+		// 나이값 변환
+		String age = "";
+		int ageNum = Integer.parseInt(convertor.ageConvertor(params.get("birthNumber")));
+		if(ageNum <= 29) {
+			age="29세이하";
+		}else if( ageNum > 29 && ageNum <=34) {
+			age="34세이하";
+		}else if( ageNum > 34 && ageNum <=39) {
+			age="39세이하";
+		}else if( ageNum > 39 && ageNum <=44) {
+			age="44세이하";
+		}else if( ageNum > 44 && ageNum <=49) {
+			age="49세이하";
+		}else if( ageNum > 49 && ageNum <=54) {
+			age="44세이하";
+		}else if( ageNum >= 55) {
+			age="55세이상";
+		}
+		
+		int incomeNum = Integer.parseInt(params.get("income"));
+		String income="";
+		if (incomeNum <= 1200) {
+	        income = "1200만원이하";
+		}else if ( incomeNum > 1200 && incomeNum < 2400) {
+	    	income = "2400만원미만";
+		}else if ( incomeNum >= 2400 && incomeNum < 3600) {
+	    	income = "3600만원미만";
+		}else if ( incomeNum >= 3600 && incomeNum < 4800) {
+	    	income = "4800만원미만";
+		}else if ( incomeNum >= 3600 && incomeNum < 6000) {
+	    	income = "6000만원미만";
+		}else if ( incomeNum >= 6000 ) {
+	    	income = "6000만원이상";
+		}
+		
+		String job = params.get("job");
+		paramsToMapper.put("age", age);
+		paramsToMapper.put("income", income);
+		paramsToMapper.put("job", job);
+		List<GraphInformation> graphResult = mapper.readGraphInformation(paramsToMapper);
+		
+		if (graphResult == null) {
+			// 404임을 알 수 있도록 지정해줘야 함
+			throw new Exception();
+		}
+		
+		return graphResult;
 	}
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.hana.imsure.recommendation.domain.GraphInformation;
 import com.hana.imsure.recommendation.service.RecommendationService;
 
 import lombok.AllArgsConstructor;
@@ -118,6 +119,33 @@ public class RecommendationController {
 		}
 	}
 	
+	// 인구통계학적 특성을 이용한 생명보험 추천- 그래프를 위한 데이터 갖고오기
+		@RequestMapping(
+			method = RequestMethod.POST,
+			value = "/user/draw-graph-based-on-demographical-features",
+			consumes = "application/json",
+			produces = MediaType.APPLICATION_JSON_UTF8_VALUE
+		)
+		public ResponseEntity<List<GraphInformation>> drawGraphBasedOnDemographicalFeatures(
+			@RequestBody Map<String, String> params) {
+			try {
+						
+				log.debug("draw graph based on demographical features called");
+						
+				List<GraphInformation> result = service.drawGraphBasedOnDemographicalFeatures(params);
+				System.out.println(result.toString());
+				
+				return new ResponseEntity<List<GraphInformation>>(result, HttpStatus.OK);
+					
+			} catch (Exception e) {
+				log.debug(e);
+				return new ResponseEntity<List<GraphInformation>>(HttpStatus.INTERNAL_SERVER_ERROR);
+			}
+		}
+	
+	
+	
+	// 보험상세보기
 	@GetMapping(
 		value = "/user/insurances/{insuranceId}",
 		produces = MediaType.APPLICATION_JSON_UTF8_VALUE

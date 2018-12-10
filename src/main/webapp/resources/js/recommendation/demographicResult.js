@@ -1,49 +1,66 @@
 /**
- * 인구 통계 기반 추천 결과를 보여주기 위한 javascript파일
+ * 인구 통계 기반 추천 결과시 분석 결과 뿌려주는 javascript
  * 
  * @author 박소연
  */
-sendDataToServer();
-drawChart();
 
-function sendDataToServer(){
-	/*
+DemographicRsultAnaly={};
+
+var userName = Demographic.data.userName;
+var isMarried = Demographic.data.isMarried;
+var birthNumber = Demographic.data.birthNumber;
+var income = Demographic.data.income;
+var job = Demographic.data.job;
+
+// 사용자 이름 보여주기
+$('#userNameTitle').append(userName);
+
+// 차트를 위한 데이터 서버로 보내주기
+sendChartDataToServer();
+// 분석 결과 텍스트 부분 보여주기
+analysisResultText();
+
+function sendChartDataToServer() {
+	
 	$.ajax({
 		type : "post",
-		url : "/user/recommend-based-on-demographical-features",
-		data : JSON.stringify(Demographic.data),
+		url : "/user/draw-graph-based-on-demographical-features",
+		data : JSON.stringify({
+			"birthNumber" : birthNumber,
+			"income" : income,
+			"job" : job
+		}),
 		contentType : "application/json; charset=UTF-8",
 		success : function(data, status, xhr) {
-			console.log('성공');
+
 			for ( var index in data) {
-				var insurance = data[index];
-				insurance['imageAlt'] = '하나생명';
-				insurance['imagePath'] = 'resources/img/recommendation/hana_logo_small.png';
+				var dataIndex = data[index];
+				var resultData = [dataIndex.accidentInsurance, dataIndex.diseaseInsurance, dataIndex.pensionInsurance,
+					dataIndex.savingsInsurance, dataIndex.deadInsurance, dataIndex.variableInsurance, dataIndex.medicalInsurance, dataIndex.nursingInsurance];
+
+				var type = index;
 				
-				$(".recommendation-list").append(Utils.formatElement(insurance,Insurance.listCardFormat));
+				drawChart(resultData, type);
+
 			}
-			//보험 종류 차트 그리기
-			//drawChart();
-			//보험 분석 결과
-			//analysisResultText();
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			console.log(jqXHR);
 		}
-	});*/
-	
+	});
 }
-function drawChart() {
-	
+
+function drawChart(resultData, type){
 	//ajax통신으로 데이터 받아오기
-	var ageData = [ 18, 61.2, 0, 0, 0, 0, 20.9, 0 ];
-	var jobData = [ 18, 61.2, 0, 0, 0, 0, 20.9, 0 ];
-	var incomeData = [ 18, 61.2, 0, 0, 0, 0, 20.9, 0 ];
 	//차트 그리기
-	var ctx = document.getElementById("ageChart");
-	var ctx2 = document.getElementById("jobChart");
-	var ctx3 = document.getElementById("incomeChart");
-	
+	var ctx = '';
+	if(type == 0 ){
+		ctx = $("#incomeChart");
+	}else if(type == 1){
+		ctx = $("#ageChart");
+	}else if(type == 2){
+		ctx = $("#jobChart");
+	}
 	
 	// 공통부분 함수로 뿌리기
 	var data = {
@@ -72,14 +89,35 @@ function drawChart() {
 		data : data,
 		options : options
 	});
-
 }
+
 
 function analysisResultText(){
-}
 	
+	var isMarriedComment='';
+	if(isMarried == 'Y'){
+		isMarriedComment='행복한 가정을 이루고 사는 ';
+	}else{
+		isMarriedComment='싱글라이프를 살고 있는 ';
+	}
+	$("#isMarriedComment").empty();
+	$("#userNameResult").empty();
+	$("#insuranceTypeFirst").empty();
+	$("#insuranceTypeSecond").empty();
+	$("#insuranceTypeThird").empty();
+	$("#insuranceTypeFourth").empty();
+	
+	$("#isMarriedComment").append(isMarriedComment);
+	$("#userNameResult").append(userName);
+	$("#insuranceTypeFirst").append('재해상해보험');
+	$("#insuranceTypeSecond").append('질병보장보험');
+	$("#insuranceTypeThird").append('연금보험');
+	$("#insuranceTypeFourth").append('저축보험');
+}
 
-	/*$('#recommendButton').on('click', function(event) {
-
-	});*/
+// 버튼 눌렀을 때 화면 동적으로 바꿔주기
+$('#recommendButton').on('click', function(event) {
+	event.preventDefault();
+	Router.route('section', 'user/demographicResultPageDemo');
+});
 

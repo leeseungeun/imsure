@@ -7,6 +7,8 @@ import java.util.Map;
 
 import org.apache.http.client.ClientProtocolException;
 
+import com.hana.imsure.recommendation.domain.GraphInformation;
+
 /**
  * 생명보험 추천 관련 비지니스 로직 수행을 위한 인터페이스 
  * 
@@ -23,4 +25,8 @@ public interface RecommendationService {
 	//인구통계학적 보험 추천
 	public List<Map<String, String>> recommendBasedOnDemographicalFeatures(Map<String, Object> params)
 			throws ClientProtocolException, IOException;
+	
+	//인구통계학적 보험 추천 - 그래프 그리기
+	public List<GraphInformation> drawGraphBasedOnDemographicalFeatures(Map<String, String> params)
+				throws Exception;
 }

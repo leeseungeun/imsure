@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 .step-tab {
-	width: 15% !important;
+	width: 16.66% !important;
 }
 
 #ageChart, #jobChart, #incomeChart{
@@ -24,6 +24,7 @@
     background-color: #373c44;
     width:50%;
     float:right;
+    margin-top:20px;
 }
 
 .button span {
@@ -57,7 +58,7 @@
     line-height: 1.6;
     color: #FFF;
     background-color: #373c44;
-    width:50%;
+    width:30%;
     float:right;
 }
 
@@ -84,5 +85,24 @@
 .buttonPrev:hover span:after {
   opacity: 1;
   left: 0;
+}
+
+.analysResultDiv {
+    padding-top: 150px;
+    padding-left: 10px;
+    position: relative;
+}
+
+.btn .whysure{
+	margin-left:70%;
+}
+
+.noInsuranceInfo{
+	height: 300%;
+	padding: 20% 0%;
+	text-align: center;
+	color: #ff0057;
+	font-size: 13pt;
+	font-weight: bold;
 }
 

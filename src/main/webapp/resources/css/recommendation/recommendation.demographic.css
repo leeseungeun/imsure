@@ -145,3 +145,11 @@ input[type="radio"] {
 		width: 90%;
 	}
 }
+
+.validation-demographic-information{
+	color: #ff0057;
+	padding-left: 5%;
+	display:inline-block;
+	margin-bottom: 0px;
+}
+

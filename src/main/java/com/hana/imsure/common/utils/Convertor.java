@@ -9,6 +9,7 @@ public class Convertor {
 	//보험나이 변환
 	public String ageConvertor(String birth) {
 		
+		System.out.println(birth);
 		int birthYear = Integer.parseInt(birth.substring(0, 4));
 		int birthMonth = Integer.parseInt(birth.substring(4, 6));
 		int birthDay = Integer.parseInt(birth.substring(6, 8));
