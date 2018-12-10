@@ -1,3 +1,68 @@
+.button {
+  line-height: 1.2;
+  text-transform: uppercase;
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  height: 50px;
+  background-color: #30b1b2;
+  border-radius: 25px;
+
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+	
+  height: 48px;
+  font-size: 0.85rem;
+  color: #FFF;
+  border: 1px solid transparent;
+  background-color: #373c44;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+.button:hover {
+  outline: 0 none;
+  color: #fff;
+  -webkit-box-shadow: 0;
+  -moz-box-shadow: 0;
+  box-shadow: 0;
+  background-color: #f4485d;
+  cursor: pointer;
+}
+
+.faq {
+	margin-left: 0;
+	border-radius: .25rem;
+	background-color: #30b1b2;
+	border-color: #30b1b2;
+	color: white;
+}
+.dropdown-menu {
+	background-color: #30b1b2;
+	border-color: #30b1b2;
+	color: white;
+}
+#one:hover {
+	color: black;
+}
+#two:hover {
+	color: black;
+}
+#three:hover {
+	color: black;
+}
+.dropdown-item {
+	color: white;
+}
+
 #chat {
 	margin-right: 0;
 	border-radius: .25rem 0 0 .25rem;
@@ -31,22 +96,22 @@
 .received_msg {
   display: inline-block;
   vertical-align: top;
-  width: 47%;
+  width: 100%;
+  margin-top: 10px;
 }
 .received_with_msg p {
   background: white none repeat scroll 0 0;
-  border-radius: 5px;
+  border-radius: 10px;
   color: #646464;
-  font-size: 16px;
+  font-size: 14px;
   margin: 0;
   padding: 5px 10px 5px 12px;
-  width: 100%;
+  width: 75%;
 }
 .time_date {
   color: #747474;
   display: block;
   font-size: 12px;
-  margin: 8px 0 0;
 }
 .outgoing_msg{ 
   overflow: hidden;
@@ -54,12 +119,13 @@
 }
 .sent_msg {
   float: right;
-  width: 47%;
+  width: 40%;
 }
 .sent_msg p {
   background: #30b1b2 none repeat scroll 0 0;
-  border-radius: 5px;
+  border-radius: 10px;
   font-size: 16px;
+  
   margin: 0;
   color: #fff;
   padding: 5px 10px 5px 12px;

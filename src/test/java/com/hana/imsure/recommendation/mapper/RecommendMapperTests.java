@@ -1,4 +1,4 @@
-package com.hana.imsur.recommendation.mapper;
+package com.hana.imsure.recommendation.mapper;
 
 import java.util.Map;
 
