@@ -79,14 +79,34 @@ $('.step-tab').click(function() {
 		success : function(data, status, xhr) {
 			console.log('성공');
 			console.log(data);
-	
+			var tag = '<div class="noInsuranceInfo">추천 보험이 존재하지 않습니다.</div> ';
+			// data에서 종류를 뽑아서 남기고,
+			var insuranceTypeMap = data.map(insurance => insurance['insuranceType']).filter((v, i, a) => a.indexOf(v) === i)			
+			//["질병보장보험", "재해상해보험", "사망보험", "연금보험"]
+			if(insuranceTypeMap.indexOf('질병보장보험') == -1){
+				$('#step1').append(tag)
+			}
+			if(insuranceTypeMap.indexOf('재해상해보험') == -1){
+				$('#step2').append(tag)
+			}
+			if(insuranceTypeMap.indexOf('사망보험') == -1){
+				$('#step3').append(tag)
+			}
+			if(insuranceTypeMap.indexOf('연금보험') == -1){
+				$('#step4').append(tag)
+			}
+			if(insuranceTypeMap.indexOf('저축보험') == -1){
+				$('#step5').append(tag)
+			}
+			if(insuranceTypeMap.indexOf('간병보험') == -1 && insuranceTypeMap.indexOf('어린이보험') == -1){
+				$('#step6').append(tag)
+			}
 			stepTabEvent($('.step-tab:first'));
-			
 			for ( var index in data) {
 				var insurance = data[index];
 				insurance['imageAlt'] = '하나생명';
 				insurance['imagePath'] = 'resources/img/recommendation/hana_logo_small.png';
-			
+				
 				if(insurance.insuranceType=="질병보장보험"){
 					$("#step1").append(Utils.formatElement(insurance,Insurance.listCardFormat));
 					
@@ -191,4 +211,8 @@ $('.recommendation-list').on('click', '.insurance-card', function(event) {
 		}
 	});
 });
+
+$('.buttonPrev').click(function() {
+	Router.route('section', 'user/demographicResultPage');
+})
 

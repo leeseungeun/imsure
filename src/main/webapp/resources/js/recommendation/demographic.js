@@ -55,7 +55,6 @@ function stepTabEvent(clickedTab) {
 // 탭클릭 이벤트
 $('.step-tab').click(function() {
 	// 유효성 검사 추가
-	
 	stepTabEvent(this);
 });
 
@@ -70,9 +69,7 @@ function moveStepEvent(buttonType) {
 }
 
 function getDemographicResult() {
-	
 	saveDemographicData();
-	
 	//페이지 전환
 	Router.route('section', 'user/demographicResultPage');
 }
@@ -95,9 +92,11 @@ function saveDemographicData(){
 	}
 }
 
+// 이름 작성시 이벤트 처리
 $('#userName').keyup(function(e) {
 	$("#spanUserName").html($('#userName').val());
 });
+// 성별선택시 이벤트 처리
 $('input:radio[name="gender"]').click(function(e) {
 	var gender = '';
 	if($('input:radio[name="gender"]:checked').val()=='M'){
@@ -106,39 +105,49 @@ $('input:radio[name="gender"]').click(function(e) {
 		gender ='여성';
 	}
 	$("#spanUserGender").html(gender);
-}); 	
-$('#birthNumber').change(function(e) {
-	console.log(calcAge($('#birthNumber').val()));
-}); 	
-$('#userName').change(function(e) {
-	$("#spanUserName").html($('#userName').val());
-}); 	
+});
+// 생일 입력시 이벤트 처리
+$('#birthNumber').on('change blur',function(e) {
+	$('#spanUserAge').html(calcAge($('#birthNumber').val()));
+});
+// 직업선택시 이벤트처리
+$('input:radio[name="job"]').click(function(e) {
+	$("#spanUserJob").html($('input:radio[name="job"]:checked').val());
+});
+//결혼여부 선택시 이벤트처리
+$('input:radio[name="isMarried"]').click(function(e) {
+	var married = '';
+	if($('input:radio[name="isMarried"]:checked').val()=='Y'){
+		married ='기혼';
+	}else{
+		married ='미혼';
+	}
+	$("#spanUserMarried").html(married);
+}); 
+
 function checkDemographicValidation() {
 	
 }
 
-function computeAge(birthday) 
-{ 
-
+function calcAge(birthday) {
+	
 	var bday=parseInt(birthday.substring(6,8)); 
 	var bmo=(parseInt(birthday.substring(4,6))-1); 
-var byr=parseInt(birthday.substring(0,4)); 
-alert(byr + "-" + bmo + "-" + bday); 
-var byr; 
-var age; 
-var now = new Date(); 
-tday=now.getDate(); 
-tmo=(now.getMonth()); 
-tyr=(now.getFullYear()); 
+	var byr=parseInt(birthday.substring(0,4));
+	var byr; 
+	var age; 
+	var now = new Date(); 
+	tday=now.getDate(); 
+	tmo=(now.getMonth()); 
+	tyr=(now.getFullYear()); 
 
+	if((tmo > bmo)||(tmo==bmo & tday>=bday)) { 
+		age=byr 
+	}else{ 
+		age=byr+1; 
+	} 
 
-if((tmo > bmo)||(tmo==bmo & tday>=bday)) { 
-age=byr 
-} else{ 
-age=byr+1; 
-} 
-
-return tyr-age; 
+	return tyr-age; 
 
 } 
 

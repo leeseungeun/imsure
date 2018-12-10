@@ -24,9 +24,9 @@
             <span class="info-txt ng-binding" id="spanUserGender" ></span> 이며,<br
               class="txt-board-br"> <span
               class="info-txt ng-binding" id="spanUserAge"></span> 세의,<br> <span
-              class="info-txt ng-binding" id="spanUserJob">개인사업자</span> 이며,<br
+              class="info-txt ng-binding" id="spanUserMarried"></span> 이며,<br
               class="txt-board-br"> <span
-              class="info-txt ng-binding" id="spanUserMarried">미혼</span> 입니다.
+              class="info-txt ng-binding" id="spanUserJob"></span> 입니다.
           </p>
         </div>
       </form>

@@ -4,7 +4,6 @@
 <link rel="stylesheet" type="text/css" href="resources/css/recommendation/recommendation.common.css">
 <link rel="stylesheet" type="text/css" href="resources/css/recommendation/recommendation.index.css">
 <link rel="stylesheet" type="text/css" href="resources/css/recommendation/recommendation.demographicResult.css">
-<link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
 <link rel="stylesheet" type="text/css" href="resources/css/recommendation/recommendation.custom.common.css">
 <!-- header -->
 <jsp:include page="../../includes/header.jsp"/>
@@ -31,21 +30,21 @@
         </div>
         <div class="col-sm-8 forms step-area" style="min-height: 589px;">
           <div class="bgChange">
-          <div class="title-wrapper">
+          <div class="title-wrapper-demo">
             <h4 class="recommendation-header">
               <span class="application-name">I'M SURE</span>에서 확신하는 
               <span class="recommendation-highlight">추천</span> 생명보험은?
             </h4>
-            <button type="button" class="btn" data-toggle="modal"
+            <button type="button" class="btn whysure" data-toggle="modal" style="width:30%;margin:0% 0% 2% 70%"
               data-target="#algorithmDescriptionModal">Why SURE ?</button>
           </div>
             <ul class="nav nav-tabs">
-              <li class="step-tab" style="width:20%">질병</li>
-              <li class="step-tab" style="width:20%">재해/상해</li>
-              <li class="step-tab" style="width:20%">사망</li>
-              <li class="step-tab" style="width:20%">연금</li>
-              <li class="step-tab" style="width:20%">저축</li>
-              <li class="step-tab" style="width:20%">더보기</li>
+              <li class="step-tab" >질병</li>
+              <li class="step-tab" >재해/상해</li>
+              <li class="step-tab" >사망</li>
+              <li class="step-tab" >연금</li>
+              <li class="step-tab" >저축</li>
+              <li class="step-tab" >더보기</li>
             </ul>
             <div class="form-area step1">
               <div class="recommendation-list" id="step1"></div>
