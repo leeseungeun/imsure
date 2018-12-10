@@ -1,0 +1,298 @@
+@charset "utf-8";
+
+.callaction {
+    padding: 30px 30px 20px 30px;
+    border-radius: 4px;
+    border-bottom: 2px solid #f2f2f2;
+	margin-top: 10px;
+}
+.bg-gray {
+    background: #fafafa;
+}
+
+.cta-text h3 {
+    font-weight: 900;
+    line-height: 1.1em;
+    margin-bottom: 20px;
+}
+
+p {
+    margin: 0 0 20px;
+}
+.find-btn {
+    margin: 3% auto;
+}
+
+.btn {
+    position: relative;
+    display: inline-block;
+    outline: none;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 400;
+    text-shadow: 0 0 1px rgba(255,255,255,0.3);
+    font-size: 14px;
+    height: 48px;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    background-color: #373c44;
+
+}
+
+.btn-lg, .btn-group-lg > .btn {
+    padding: 10px 16px;
+    font-size: 16px;
+    line-height: 1.5em;
+    border-radius: 0px;
+    margin-top: 16%;
+    margin-left: 25%;
+    width: 70%;
+}
+
+.findContainer{
+	margin-top: 20px;
+}
+
+.nav-tabs li {
+    width: 33.333333%;
+    padding: 10px 15px;
+    text-align: center;
+    border: 1px solid #e5e5e5;
+    border-left: 0 none;
+    background: #fff;
+}
+.nav-tabs .tabType2 li{
+  width: 50%;
+}
+li {
+    list-style: none;
+}
+.nav::after {
+    content: "";
+    display: block;
+    width: calc(100% - 2px);
+    height: 5px;
+    margin: 0 auto;
+    background: url(/resources/img/recommendation/nav-tabs-before.png) repeat-x 0 0;
+}
+
+/*여기서부터는 일단 붙여놓음*/
+.nav-tabs li:active{
+  border-color:#e5e5e5 !important;
+}
+.nav-tabs li.on:active{
+  border-top-color:#30b1b2 !important;
+}
+.nav-tabs li:first-child{
+  border-left:1px solid #e5e5e5;
+}
+
+.btn-tab01.shadow{
+  /*background:#fff url(./img/tabs-1-off.png) no-repeat right 0;*/
+  border-right:0 none;
+}
+.btn-tab02.shadow{
+  /*background:#fff url(./img/tabs-2-off.png) no-repeat left 0;*/
+}
+.btn-tab02.shadow2{
+ /* background:#fff url(./img/tabs-1-off.png) no-repeat right 0;*/
+}
+.btn-tab03.shadow{
+ /* background:url(./img/tabs-2-off.png) no-repeat left 0;*/
+}
+.nav-tabs li.on{
+  padding-top:7px;
+  background:none;
+  border-top:4px solid #30b1b2;
+}
+
+.input100 {
+    font-size: 18px;
+    color: #555555;
+    line-height: 1.2;
+    display: inline-block;
+    width: 60%;
+    height: 52px;
+    background: transparent;
+    padding: 0 5px;
+    position: relative;
+    border-bottom: 2px solid #d9d9d9;
+}
+input {
+    outline: none;
+    border: none;
+}
+
+.find-info-label{
+	width:30%;
+	padding:5%
+}
+
+.graph-area{
+	width:100%;
+}
+
+#analysChart{
+	position: relative;
+}
+
+.analysText{
+	margin:10% auto;
+	padding: 2% 10%;
+}
+
+.phoneCarrier .custom-li-left {
+    display: inline-block;
+    width: 49.5%;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+.phoneCarrier .custom-li-left label {
+    font-size: 11pt;
+    margin-bottom: 0px;
+    height: 50px;
+    line-height: 3.5em;
+}
+.two-option-radio label, .custom-li-left label {
+    background-color: #ebebeb;
+    width: 100%;
+    height: 40px;
+    line-height: 2.5em;
+    text-align: center;
+    font-size: 12pt;
+}
+
+.phoneCarrier{
+    width: 60%;
+    display: block;
+    font-size:13pt; 
+}
+
+.thead-color{
+	background-color: #373c44;
+	color:#fff;
+
+}
+#seq{
+	width: 5%;
+}
+#insuranceName{
+	width:50%;
+}
+#insuranceType{
+	width:45%;
+}
+#title{
+	width: 30%;
+}
+#value{
+	width:70%;
+}
+
+.modal-label{
+    width: 30%;
+    font-size: 13pt;
+    padding-left: 5%;
+    font-weight: bold;
+}
+
+.input-phone{
+	font-size: 18px;
+    color: #555555;
+    line-height: 1.2;
+    display: inline-block;
+    width: 19%;
+    height: 52px;
+    background: transparent;
+    padding: 0 5px;
+    position: relative;
+    border-bottom: 2px solid #d9d9d9;
+}
+
+.input-id-number{
+	font-size: 18px;
+    color: #555555;
+    line-height: 1.2;
+    display: inline-block;
+    width: 30%;
+    height: 52px;
+    background: transparent;
+    padding: 0 5px;
+    position: relative;
+    border-bottom: 2px solid #d9d9d9;
+}
+
+th[scope="row"] {
+	width: 30%;	
+}
+
+.img-wrapper{
+	height: inherit;
+}
+
+#insuranceMoney{
+	width: 30%;
+	font-weight: bold;
+	font-size: 11pt;
+	text-align: center;
+	margin-right: 15px;
+}
+#insuranceLink{
+	display:inline-block;
+	padding:5%;
+}
+
+.two-option-radio label:hover, input[type="radio"]:checked + label {
+    background-color: #ff0057;
+    color: white;
+    font-weight: bold;
+}
+
+.phoneCarrier, .gender {
+
+    padding: 5px;
+    overflow: hidden;
+    font-size: 9.5pt;
+    width: 70%;
+    /* position: relative; */
+    float: right;
+}
+
+.info-txt {
+    display: inline-block;
+    line-height: 1.2;
+    padding: 0.28em;
+    font-size: 1.725rem;
+    font-weight: 700;
+    color: #373c44;
+    text-align: center;
+    vertical-align: super;
+    border-bottom: 1px solid #373c44;
+}
+
+.button-cancel, .button-next{
+	width: 48%;
+	margin : 1%;
+	color: white;
+}
+.button-cancel{
+	float:left;
+}
+.button-next{
+	float:right;
+}
+
+.form-area {
+    display: none;
+}
+
+.form-area.on {
+    display: block;
+}
+
+
+ 

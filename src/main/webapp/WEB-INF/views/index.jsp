@@ -74,24 +74,6 @@
               <span>내 보험 관리하기</span>
             </a>
           </li>
-          <li class="sidebar-nav-item">
-            <a class="nav-a js-scroll-trigger" href="user/psychologicResultPage">
-              <i class="icon-list"></i>
-              <span>(임시) 심리지표 결과페이지</span>
-            </a>
-          </li>
-          <li class="sidebar-nav-item">
-            <a class="nav-a js-scroll-trigger" href="user/demographicResultPage">
-              <i class="icon-list"></i>
-              <span>(임시) 인구통계 결과페이지</span>
-            </a>
-          </li>
-          <li class="sidebar-nav-item">
-            <a class="nav-a js-scroll-trigger" href="user/demographicResultPageDemo">
-              <i class="icon-list"></i>
-              <span>(임시) 인구통계 결과페이지 두번째(demo)</span>
-            </a>
-          </li>
         </ul>
       </nav>
     </nav>
