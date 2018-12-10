@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
+<%@taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <link rel="stylesheet" type="text/css"
   href="resources/css/recommendation/recommendation.common.css">
 <link rel="stylesheet" type="text/css"
@@ -10,6 +11,9 @@
   <div class="findContainer">
     <div class="callaction bg-gray">
       <div class="row">
+        <span style="display: none;">
+          <sec:authentication property="principal.user.userId" var="userId"/>
+        </span>
         <div class="col-md-8">
           <div class="find-text">
             <h3>내가 가입한 보험이 궁금하지 않으세요?</h3>
@@ -400,6 +404,7 @@
 <!-- JavaScript -->
 <script src="resources/js/common/Chart.js"></script>
 <script>
+	var loginUserId = '${userId}';
 	var data = [ {
 		x : '2016-12-25',
 		y : 20
@@ -521,11 +526,9 @@ $('.modal-body').on('click','#step2Button',function(event) {
 //Step3 ajax 통신
 $('.modal-body').on('click','#step3Button',function(event) {
 	
-	var userId = 1;
-	
 	$.ajax({
 		type : "post",
-		url  : "/user/users/" + userId + "/insurances?uuid=" + $('#uuid').val(),
+		url  : "/user/users/" + loginUserId + "/insurances?uuid=" + $('#uuid').val(),
 		contentType : "application/json; charset=UTF-8",
 		success : function(data, status, xhr) {
 			getEnrolledInsurances();
@@ -538,11 +541,9 @@ $('.modal-body').on('click','#step3Button',function(event) {
 
 function getEnrolledInsurances() {
 	
-	var userId = 1;
-	
 	$.ajax({
 		type : "get",
-		url  : "/user/users/" + userId + "/insurances",
+		url  : "/user/users/" + loginUserId + "/insurances",
 		contentType : "application/json; charset=UTF-8",
 		success : function(data, status, xhr) {
 			console.log(data);
@@ -552,4 +553,6 @@ function getEnrolledInsurances() {
 		}
 	});
 }
+
+
 </script>
