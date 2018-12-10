@@ -312,14 +312,14 @@
           	</div>
           	<div class="form-group">
           	  <label class="modal-label">휴대폰번호</label>
-          	  <input type="text" class="input-phone" id="step1Mobile1" placeholder="010">
-          	  -<input type="text" class="input-phone" id="step1Mobile2" placeholder="0000">
-          	  -<input type="text" class="input-phone" id="step1Mobile3" placeholder="0000">
+          	  <input type="text" class="input-phone" id="step1Mobile1" placeholder="010" maxlength="3">
+          	  -<input type="text" class="input-phone" id="step1Mobile2" placeholder="0000" maxlength="4">
+          	  -<input type="text" class="input-phone" id="step1Mobile3" placeholder="0000" maxlength="4">
           	</div>
           	<div class="form-group">
           	  <label class="modal-label">주민등록번호</label>
-          	  <input type="text" class="input-id-number" id="step1Ssn1">
-          	  -<input type="password" class="input-id-number" id="step1Ssn2">
+          	  <input type="text" class="input-id-number" id="step1Ssn1" maxlength="6">
+          	  -<input type="password" class="input-id-number" id="step1Ssn2" maxlength="7">
           	</div>
           	<div class="form-group">
           	  <label class="modal-label">통신사</label>
@@ -333,11 +333,11 @@
                   <label for="KT">KT</label>
                 </li>
                 <li class="custom-li-left">
-                  <input type="radio" id="LG U+" name="phoneCarrier" value="LG U+">
+                  <input type="radio" id="LG U+" name="phoneCarrier" value="LG">
                   <label for="LG U+">LG U+</label>
                 </li>
                 <li class="custom-li-left">
-                  <input type="radio" id="etcPhone" name="phoneCarrier" value="알뜰폰">
+                  <input type="radio" id="etcPhone" name="phoneCarrier" value="ETC">
                   <label for="etcPhone">알뜰폰</label>
                 </li>   
              </ul>
@@ -358,7 +358,7 @@
           <div>
           	<div class="form-group">
               <label class="modal-label">보안문자입력</label>
-          	  <input type="text" class="input100" placeholder="보안문자를 입력해주세요">
+          	  <input type="text" class="input100" id="step2Security" placeholder="보안문자를 입력해주세요">
           	</div>
           	<div class="imgArea">
           	  <img src="/resources/img/management/e88baf38-7fc1-461d-b7d1-687c674fc2f5.png" >
@@ -375,7 +375,8 @@
           </div>
         </div>
         <div class="form-area step3">
-          <button type="button" class="btn" style="margin-bottom: 10px;">불러오기</button>
+          <input type="hidden" id="uuid">
+          <button type="button" class="btn" id="step3Button" style="margin-bottom: 10px;">불러오기</button>
         </div>
       </div>
     </div>
@@ -458,9 +459,6 @@ $('.step-tab').click(function() {
 });
 
 
-//이미지 API로 넘겨줘야 할 값 (ajax할때 쓰세요)
-$('.imgArea img').attr("src").split("/")[4];
-
 //이미지 동적 추가
 function imageAppend(imagePath) {
 	//이미지가 들어갈 부분 삭제
@@ -502,16 +500,56 @@ $('.modal-body').on('click','#step2Button',function(event) {
 		type : "post",
 		url  : "http://localhost:5000/python-server/enter-security-number-to-get-enrolled-insurances",
 		data : JSON.stringify({
-			"uuid":"56078f9e-09da-4de9-bd1f-7ba69cc44f9e",
-		    "securityNumber":"112309"
+			"uuid": $('.imgArea img').attr("src").split("/")[5].split(".")[0],
+		    "securityNumber": $('#step2Security').val()
 		}),
 		contentType : "application/json; charset=UTF-8",
 		success : function(data, status, xhr) {
-			stepTabEvent($('.step-tab')[2]);
+			if (data.is_success) {
+				stepTabEvent($('.step-tab')[2]);
+				$('#uuid').val(data.uuid);
+			} else {
+				imageAppend(data.uuid + '.png');
+			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			alert(jqXHR.responseText);
 		}
 	});
 });
+
+//Step3 ajax 통신
+$('.modal-body').on('click','#step3Button',function(event) {
+	
+	var userId = 1;
+	
+	$.ajax({
+		type : "post",
+		url  : "/user/users/" + userId + "/insurances?uuid=" + $('#uuid').val(),
+		contentType : "application/json; charset=UTF-8",
+		success : function(data, status, xhr) {
+			getEnrolledInsurances();
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert(jqXHR.responseText);
+		}
+	});
+});
+
+function getEnrolledInsurances() {
+	
+	var userId = 1;
+	
+	$.ajax({
+		type : "get",
+		url  : "/user/users/" + userId + "/insurances",
+		contentType : "application/json; charset=UTF-8",
+		success : function(data, status, xhr) {
+			console.log(data);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert(jqXHR.responseText);
+		}
+	});
+}
 </script>
