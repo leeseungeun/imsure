@@ -98,6 +98,7 @@
 	<!-- 가입 보험 상세보기를 조회하는 SQL -->
 	<select id="selectEnrolledInsuranceDetail" resultType="java.util.Map">
 		SELECT insurance_name AS "insuranceName",
+			   insurance_type AS "insuranceType",
 		       contract_status AS "contractStatus",
 		       store_in_charge AS "storeInCharge",
 		       insurance_term AS "insuranceTerm",
