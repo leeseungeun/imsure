@@ -96,5 +96,4 @@
     <script src="resources/js/common/Utils.js"></script>
     <script src="resources/js/common/common.js"></script>
   </body>
-
 </html>
