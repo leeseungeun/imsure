@@ -35,7 +35,7 @@ $(document).ready(function (){
 				+ '</div>'
 
 		$('.mesgs').append(tag);
-		$('.modal-body').scrollTop($('.modal-body')[0].scrollHeight);
+		$('#chatbot .modal-body').scrollTop($('#chatbot .modal-body')[0].scrollHeight);
 	});
 	$('#two').click(function(event){
 		event.preventDefault();
@@ -66,7 +66,7 @@ $(document).ready(function (){
 	    		+ '</div>'
 
 	    $('.mesgs').append(tag);
-		$('.modal-body').scrollTop($('.modal-body')[0].scrollHeight);
+		$('#chatbot .modal-body').scrollTop($('#chatbot .modal-body')[0].scrollHeight);
 	});
 	$('#three').click(function(event){
 		event.preventDefault();
@@ -97,7 +97,7 @@ $(document).ready(function (){
     			+ '</div>'
 
     	$('.mesgs').append(tag);
-		$('.modal-body').scrollTop($('.modal-body')[0].scrollHeight);
+		$('#chatbot .modal-body').scrollTop($('#chatbot .modal-body')[0].scrollHeight);
 	});
 });
 
@@ -125,7 +125,7 @@ $('.modal-content').on('click','#send',function(event) {
 					
 			$('.mesgs').append(tag);
 			$('#chat').val("");
-			$('.modal-body').scrollTop($('.modal-body')[0].scrollHeight);
+			$('#chatbot .modal-body').scrollTop($('#chatbot .modal-body')[0].scrollHeight);
         },
 		success : function(data, status, xhr) {
 			//현재 시간
@@ -140,7 +140,7 @@ $('.modal-content').on('click','#send',function(event) {
 					+ '</div>'
 
 			$('.mesgs').append(tag);
-			$('.modal-body').scrollTop($('.modal-body')[0].scrollHeight);
+			$('#chatbot .modal-body').scrollTop($('#chatbot .modal-body')[0].scrollHeight);
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			alert(jqXHR.responseText);
