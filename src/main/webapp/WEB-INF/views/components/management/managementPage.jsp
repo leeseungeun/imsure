@@ -8,10 +8,10 @@
 <jsp:include page="../../includes/header.jsp" />
 <div class="container ng-scope">
   <!-- 처음 화면 -->
-  <div class="findContainer">
+  <div class="findContainer" id="first-find-list">
     <div class="callaction bg-gray">
       <div class="row">
-        <span style="display: none;">
+        <span style="display:none;">
           <sec:authentication property="principal.user.userId" var="userId"/>
         </span>
         <div class="col-md-8">
@@ -32,7 +32,7 @@
   <!-- 처음화면 끝 -->
 
   <!-- 보험찾기 눌러서 보험 찾고 난 뒤 뿌려줄 영역 -->
-  <div class="row">
+  <div class="row" id="after-find-insurance" style="display:none">
     <div class="col-sm-4">
       <div class="findContainer">
         <div class="callaction bg-gray">
@@ -52,12 +52,12 @@
     </div>
     <!-- 보험리스트 -->
     <div class="col-sm-8">
-      <div class="findContainer">
+      <div class="findContainer" id="insurance-large-list">
         <div class="callaction bg-gray">
           <div class="find-text">
             <div class="insurance-list">
               <h5>내 보험 목록</h5>
-			  <table class="table">
+			  <table class="table-large-list">
   				<thead class="thead-color">
     			  <tr>
       				<th scope="col" id="seq">#</th>
@@ -66,21 +66,7 @@
     			  </tr>
   				</thead>
   				<tbody>
-    			  <tr>
-      				<th scope="row">1</th>
-      				<td>해외여행보험</td>
-      				<td>손해보험</td>
-    			  </tr>
-    			  <tr>
-      				<th scope="row">2</th>
-      				<td>OOOOOO보험</td>
-      				<td>재해상해보험</td>
-    			  </tr>
-    			  <tr>
-      				<th scope="row">3</th>
-      				<td>OOOOO보험</td>
-      				<td>연금보험</td>
-    			  </tr>
+                  <!-- 내 보험 리스트 동적추가 -->
   			 	</tbody>
 			  </table>
 			</div>
@@ -93,7 +79,7 @@
   <!-- 보험찾기 눌러서 보험 찾고 난 뒤 뿌려줄 영역 끝 -->
 
   <!-- 보험리스트 클릭할 경우 보험 리스트 영역과 상세영역 -->
-  <div class="row">
+  <div class="row" id="detail-insurance" style="display:none">
     <div class="col-sm-4">
       <div class="findContainer">
         <div class="callaction bg-gray">
@@ -174,7 +160,7 @@
   <!-- 보험리스트 클릭할 경우 보험 리스트 영역과 상세영역 -->
 
 
-  <div class="findContainer">
+  <div class="findContainer" id="input-analys-info" style="display:none">
     <div class="callaction bg-gray">
       <div class="form-example-wrap mg-t-30">
         <div class="cmp-tb-hd cmp-int-hd">
@@ -223,8 +209,8 @@
   </div>
 
   <!-- 보험분석하기 영역 -->
-  <div class="wrapper row">
-    <div class="col-sm-6">
+  <div class="wrapper row"  >
+    <div class="col-sm-6" id="after-analys-graph" style="display:none">
       <div class="findContainer">
         <div class="callaction bg-gray">
           <div class="find-text">
@@ -244,7 +230,7 @@
 
       </div>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-6" id="my-recommend-insurance">
       <div class="findContainer">
         <div class="callaction bg-gray">
           <div class="bgChange recommendation-wrapper">
@@ -553,7 +539,7 @@ $('.modal-body').on('click','#step1Button',function(event) {
 			imageAppend(data.imagePath);
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
-			alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
 		}
 	});
 });
@@ -577,23 +563,24 @@ $('.modal-body').on('click','#step2Button',function(event) {
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
-			alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
 		}
 	});
 });
 
 //Step3 ajax 통신
 $('.modal-body').on('click','#step3Button',function(event) {
-	
+	console.log('여기')
 	$.ajax({
 		type : "post",
 		url  : "/user/users/" + loginUserId + "/insurances?uuid=" + $('#uuid').val(),
 		contentType : "application/json; charset=UTF-8",
 		success : function(data, status, xhr) {
+			console.log($('#uuid').val());
 			getEnrolledInsurances();
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
-			alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
 		}
 	});
 });
@@ -606,12 +593,26 @@ function getEnrolledInsurances() {
 		contentType : "application/json; charset=UTF-8",
 		success : function(data, status, xhr) {
 			console.log(data);
+			$('#first-find-list').css('display','none');
+			$('#after-find-insurance').css('display','block');
+			
+			for ( var index in data) {
+				var insurance = data[index];
+				var tag = '<tr>'
+                		+ '	<input type="hidden" id="hidden-insuranceId" value="'+insurance.insuranceId+'">'
+  						+ '	<th scope="row">'+index+'</th>'
+  						+ '	<td>'+insurance.insuranceName+'</td>'
+  						+ '	<td>'+insurance.insuranceType+'</td>'
+			  			+ '</tr>';
+				$('.table-large-list tbody').append(tag);
+			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			alert(jqXHR.responseText);
 		}
 	});
 }
+
 
 // 심리 추천 결과를 표시하는 함수
 function getPsychologicalRecommendationList() {
@@ -692,5 +693,26 @@ function tabFormCss(index) {
 	
 	return formSelector;
 }
+
+//내보험 목록 상세보기
+/*
+$(".table-large-list tbody tr").on('click','#step3Button',function(event){
+	
+	var insuranceId = $('#hidden-insuranceId').val();
+	$.ajax({
+		type : "get",
+		url  : "/user/users/"+loginUserId+"/insurances/"+insuranceId,
+		contentType : "application/json; charset=UTF-8",
+		success : function(data, status, xhr) {
+			console.log(data);
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert(jqXHR.responseText);
+		}
+	});
+	
+}
+*/
+
 
 </script>
