@@ -155,7 +155,7 @@
           </div>
           <div class="col-sm-2">
             <div class="form-example-int">
-              <button class="btn">분석하기</button>
+              <button class="btn" id="btn-analys-myinsurance">분석하기</button>
             </div>
           </div>
         </div>
@@ -165,20 +165,19 @@
 
   <!-- 보험분석하기 영역 -->
   <div class="wrapper row"  >
-    <div class="col-sm-6" id="after-analys-graph" style="display:none">
+  <!-- style="display:none" -->
+    <div class="col-sm-6" id="after-analys-graph" >
       <div class="findContainer">
         <div class="callaction bg-gray">
           <div class="find-text">
             <div class="graph-area">
               <h5>내 현재 보험은?</h5>
               <br>
-              <canvas id="analysChart" width="300"></canvas>
+              <canvas id="analysChart" width="300" height="250"></canvas>
             </div>
             <div class="analysText">
-             <span class="info-txt ng-binding">질병보장보험</span> 의 경우<br>
-             <span class="info-txt ng-binding">평균보장금액</span>보다 
-             <span class="info-txt ng-binding">부족</span> 하시네요!<br>
-             <span class="info-txt ng-binding">하나생명</span> 보험을 추천합니다.
+             <span class="info-txt ng-binding">20대 </span> <span class="info-txt ng-binding">여자</span>평균에 비해<br>
+             <span class="info-txt ng-binding">암진단</span>보장 금액이 부족하십니다. <br>
             </div>
           </div>
         </div>
@@ -437,43 +436,68 @@ th[scope="row"] {
 	// getEnrolledInsurance() 함수가 보험 불러오기 div를 숨기고 가입 목록 div를 표시하므로 없을 경우 처리가 필요
 	getEnrolledInsurances();
 	
-	var data = [ {
-		x : '2016-12-25',
-		y : 20
-	}, {
-		x : '2016-12-26',
-		y : 10
-	} ];
+	
+	// 그래프
+	$('#btn-analys-myinsurance').on('click', '#btn-analys-myinsurance', function () {
+		$('#after-analys-graph').css('display', 'block');
+		
+	});
+	
 	var ctx = $('#analysChart');
 	new Chart(ctx, {
 		type : "horizontalBar",
 		data : {
-			labels : [ "질병보장", "재해상해", "연금", "저축", "기타" ],
+			/*36278, 123645, 22796, 10824, 3523, 658
+				암진단, 상해사망, 급성심근경색단, 특정질병 수술, 암수술, 화상진단
+				20000, 260000, 20000, 23000, 3000, 1000
+			*/
+			
+			labels : [ "암진단", "상해", 
+				 "급성심근경색진단", "특정질병수술", "암수술", "화상진단" ],
 			datasets : [ {
-				data : [ 65, 59, 80, 81, 56 ],
+				label : '평균보장금액',
+				data : [36278, 123645, 22796, 10824, 3523, 658],
 				fill : false,
-				backgroundColor : [ "rgba(255, 99, 132, 0.2)",
-						"rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)",
-						"rgba(75, 192, 192, 0.2)", "rgba(54, 162, 235, 0.2)" ],
-				borderColor : [ "rgb(255, 99, 132)", "rgb(255, 159, 64)",
-						"rgb(255, 205, 86)", "rgb(75, 192, 192)",
-						"rgb(54, 162, 235)", ],
+				backgroundColor :  "rgba(75, 192, 192, 0.2)",
+				borderColor : "rgb(75, 192, 192)",
 				borderWidth : 1
-			} ]
+			},
+			{
+				label : '나의보장금액  (단위:천원)',
+				data : [20000, 260000, 20000, 23000, 3000, 1000],
+				fill : false,
+				backgroundColor :  "rgba(255, 99, 132, 0.2)",
+				borderColor : "rgb(255, 99, 132)",
+				borderWidth : 1
+			}]
 		},
 		options : {
 			scales : {
 				xAxes : [ {
 					ticks : {
-						beginAtZero : true
+						beginAtZero : true,
+						fontSize: 13,
+						min: 0,
+						max: 270000,
+						stepSize:30000
+		
 					}
-				} ]
+				} ],
+				yAxes :[{
+					barPercentage: 0.8,
+					ticks: {
+                        fontSize: 13
+                    }
+				}]
 			},
 			legend : {
-				display : false,
+				display : true,
+				padding : 2
 			}
 		}
 	});
+	
+	
 
 
 //탭 이벤트 함수
