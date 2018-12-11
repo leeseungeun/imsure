@@ -380,6 +380,10 @@
   margin-bottom: -70%;
 }
 
+.already-has-insurance {
+  background: rgba(0, 0, 0, 0.5);
+}
+
 .modal-title{
   padding: 1rem;
     margin: -1rem -1rem -1rem auto;
@@ -637,6 +641,9 @@ function getPsychologicalRecommendationList() {
 				var tag = Utils.formatElement(insurance, Insurance.listCardFormat);
 				
 				$(formToAppend).append(tag);
+				if (insurance['hasSameType'] === 'Y') {
+					$('.insurance-card:last-child').addClass('already-has-insurance');
+				}
 			}
 			
 		},
@@ -668,6 +675,9 @@ function getDemographicRecommendationList() {
 				var tag = Utils.formatElement(insurance, Insurance.listCardFormat);
 				
 				$(formToAppend).append(tag);
+				if (insurance['hasSameType'] === 'Y') {
+					$('.insurance-card:last-child').addClass('already-has-insurance');
+				}
 			}
 			
 		},
