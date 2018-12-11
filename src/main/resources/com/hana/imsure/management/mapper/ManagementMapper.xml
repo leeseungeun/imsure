@@ -7,21 +7,39 @@
 	<select id="selectPsychologicalResults" resultType="java.util.Map">
 		SELECT TO_CHAR(insurance_id1) AS "insuranceId", 
 		       insurance_name AS "insuranceName",
-		       insurance_type AS "insuranceType"
+		       insurance_type AS "insuranceType",
+		       CASE 
+		       WHEN insurance_type IN (SELECT insurance_type 
+		                                 FROM imsure_insurance_possessions p
+		                                 LEFT OUTER JOIN imsure_insurances i ON p.insurance_id = i.insurance_id) THEN 'Y'
+		        ELSE 'N'
+		        END AS "hasSameType"
 		FROM imsure_psychologic_results
 		LEFT OUTER JOIN imsure_insurances ON imsure_insurances.insurance_id = imsure_psychologic_results.insurance_id1
 		WHERE user_id = #{userId}
 		UNION
 		SELECT TO_CHAR(insurance_id2), 
 		       insurance_name,
-		       insurance_type
+		       insurance_type,
+		       CASE 
+		       WHEN insurance_type IN (SELECT insurance_type 
+		                                 FROM imsure_insurance_possessions p
+		                                 LEFT OUTER JOIN imsure_insurances i ON p.insurance_id = i.insurance_id) THEN 'Y'
+		        ELSE 'N'
+		        END AS "hasSameType"
 		FROM imsure_psychologic_results
 		LEFT OUTER JOIN imsure_insurances ON imsure_insurances.insurance_id = imsure_psychologic_results.insurance_id2
 		WHERE user_id = #{userId}
 		UNION
 		SELECT TO_CHAR(insurance_id3), 
 		       insurance_name,
-		       insurance_type
+		       insurance_type,
+		       CASE 
+		       WHEN insurance_type IN (SELECT insurance_type 
+		                                 FROM imsure_insurance_possessions p
+		                                 LEFT OUTER JOIN imsure_insurances i ON p.insurance_id = i.insurance_id) THEN 'Y'
+		        ELSE 'N'
+		        END AS "hasSameType" 
 		FROM imsure_psychologic_results
 		LEFT OUTER JOIN imsure_insurances ON imsure_insurances.insurance_id = imsure_psychologic_results.insurance_id3
 		WHERE user_id = #{userId}
@@ -29,9 +47,15 @@
 	
 	<!-- 인구 통계학적 정보를 기반으로 생명 보험 추천한 결과를 가져오는 SQL -->
 	<select id="selectDemographicResults" resultType="java.util.Map">
-		SELECT TO_CHAR(d.insurance_id) AS "insuranceId", 
+		SELECT d.insurance_id AS "insuranceId", 
 		       insurance_name AS "insuranceName",
-		       insurance_type AS "insuranceType"
+		       insurance_type AS "insuranceType",
+		       CASE 
+		       WHEN insurance_type IN (SELECT insurance_type 
+		                                 FROM imsure_insurance_possessions p
+		                                 LEFT OUTER JOIN imsure_insurances i ON p.insurance_id = i.insurance_id) THEN 'Y'
+		        ELSE 'N'
+		        END AS "hasSameType"
 		FROM imsure_demographic_results d
 		LEFT OUTER JOIN imsure_insurances i ON d.insurance_id = i.insurance_id
 		WHERE user_id = #{userId}
