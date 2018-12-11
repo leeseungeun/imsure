@@ -565,7 +565,6 @@ $(".table-large-list tbody tr").on('click','#step3Button',function(event){
 		contentType : "application/json; charset=UTF-8",
 		success : function(data, status, xhr) {
 			console.log(data);
-			
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			alert(jqXHR.responseText);
