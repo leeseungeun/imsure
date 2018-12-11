@@ -112,61 +112,59 @@
   <!-- 보험리스트 클릭할 경우 보험 리스트 영역과 상세영역 -->
   </div>
   <!-- 보험찾기 눌러서 보험 찾고 난 뒤 뿌려줄 영역 끝 -->
-
-
-
-  <div class="findContainer" id="input-analys-info" style="display:none">
-    <div class="callaction bg-gray">
-      <div class="form-example-wrap mg-t-30">
-        <div class="cmp-tb-hd cmp-int-hd">
-          <h5>보험 분석을 위해 기본 정보를 입력해주세요</h5><br>
-        </div>
-        <div class="row">
-          <div class="col-sm-5">
+  
+  <!-- 보험분석하기 영역 -->
+  <div class="row"  >
+    <div class="col-sm-6"  id="input-analys-info">
+      <div class="findContainer" >
+        <div class="callaction bg-gray">
+          <div class="form-example-wrap mg-t-30">
+            <div class="cmp-tb-hd cmp-int-hd">
+              <h5>보험 분석을 위해 기본 정보를 입력해주세요</h5><br>
+              <h6>기본정보</h6><br>
+            </div>
             <div class="form-example-int form-example-st">
               <div class="form-group">
-                
-                  <label class="find-info-label">성별</label> 
-                  <ul class="phoneCarrier col-sm-10">
-                    <li class="custom-li-left">
-                      <input type="radio" id="M" name="gender" value="M"> 
-                      <label for="M">남자</label>
-               	    </li>
-                    <li class="custom-li-left">
-                      <input type="radio" id="W" name="gender" value="W"> 
-                      <label for="W">여자</label>
-                    </li>
-                  </ul>
-             
+                <label class="find-info-label">성별</label> 
+                <ul class="phoneCarrier col-sm-10">
+                  <li class="custom-li-left">
+                    <input type="radio" id="M" name="gender" value="M"> 
+                    <label for="M">남자</label>
+                  </li>
+                  <li class="custom-li-left">
+                    <input type="radio" id="F" name="gender" value="F"> 
+                    <label for="F">여자</label>
+                  </li>
+                </ul>
+                <span class="validation"></span>
               </div>
             </div>
-
-          </div>
-          <div class="col-sm-5">
             <div class="form-example-int form-example-st">
               <div class="form-group">
-                
-                  <label class="find-info-label">생년월일</label>
-                  <input
-                    type="text" class="input100" placeholder="ex) 19930131">
-              
+                <label class="find-info-label">생년월일</label>
+                <input type="text" class="input100" id="birth" placeholder="ex) 19930131">
+              </div>
+              <span class="validation"></span>
+            </div>
+            <div class="cmp-tb-hd cmp-int-hd" >
+              <br>
+              <h6 id="input-insurance-money">보험 보장 금액 ▼</h6><br>
+              <div id="insurance-money-input-wrapper">
+              <!-- 보험 보장 금액 입력창이 그려지는 부분 -->
               </div>
             </div>
+            
+            <!-- 성별, 생년월일에 따라 다르게 뿌려주는 영역 -->
+            
           </div>
-          <div class="col-sm-2">
-            <div class="form-example-int">
-              <button class="btn" id="btn-analys-myinsurance">분석하기</button>
-            </div>
+          <div class="col-sm-6" id="button-analys">
+            <!-- 버튼 붙여줘야함 -->
           </div>
         </div>
       </div>
     </div>
-  </div>
-
-  <!-- 보험분석하기 영역 -->
-  <div class="wrapper row"  >
   <!-- style="display:none" -->
-    <div class="col-sm-6" id="after-analys-graph" >
+    <div class="col-sm-6" id="after-analys-graph" style="display:none" >
       <div class="findContainer">
         <div class="callaction bg-gray">
           <div class="find-text">
@@ -176,14 +174,15 @@
               <canvas id="analysChart" width="300" height="250"></canvas>
             </div>
             <div class="analysText">
-             <span class="info-txt ng-binding">20대 </span> <span class="info-txt ng-binding">여자</span>평균에 비해<br>
-             <span class="info-txt ng-binding">암진단</span>보장 금액이 부족하십니다. <br>
+             <span class="info-txt ng-binding" id="age-info"></span> 대 <span class="info-txt ng-binding" id="gender-info"></span> 평균에 비해<br>
+             <span class="info-txt ng-binding" id="insurance-info"></span>의 보장 금액이 부족하십니다. <br>
             </div>
           </div>
         </div>
-
       </div>
     </div>
+   
+   
     <div class="col-sm-6" id="my-recommend-insurance">
       <div class="findContainer">
         <div class="callaction bg-gray">
@@ -424,6 +423,72 @@ th[scope="row"] {
 <script>
 	var loginUserId = '${userId}';
 	
+	// 보험보장금액 입력을 위한 보험종류
+	var genderAgeStatisticInformation = {
+   'M' : {
+       '00' : {
+           '암진단' : 39360,
+           '골절진단' : 352,
+           '질병입원일당' : 31,
+           '상해입원일당' : 33,
+           '암입원일당' : 89,
+           '특정질병수술' : 9189,
+           '화상진단' : 868,
+           '특정질병진단' : 31602,
+           '조혈모세포이식수술' : 19988,
+           '상해후유장애' : 112280,
+       },
+       '10' : {
+           '암진단' : 37730,
+           '골절진단' : 348,
+           '질병입원일당' : 29,
+           '상해입원일당' : 30,
+           '암입원일당' :    87,
+           '화상진단' : 1508,
+           '특정질병수술' : 11274,
+           '상해후유장애' : 91693,
+           '조혈모세포이식수술' : 19533,
+           '특정질병진단' : 15360,
+       },
+       '20' : {
+           '골절진단': 384,
+           '상해사망': 120541,
+           '암진단': 35047,
+           '암입원일당': 101,
+           '상해입원일당': 28,
+           '질병입원일당': 26,
+           '급성심근경색진단': 22479,
+           '특정질병수술': 10998,
+           '화상진단': 610,
+           '암수술': 3476,
+       },
+       '30' : {},
+       '40' : {},
+       '50' : {},
+       '60' : {},
+       },
+       'F' : {
+           '00' : {},
+           '10' : {},
+           '20' : {
+               '골절진단' : 369,
+               '암진단' : 36278,
+               '상해사망' : 123645,
+               '암입원일당' : 102,
+               '상해입원일당' : 28,
+               '질병인원일당' : 27,
+               '급성심근경색진단' : 22796,
+               '특정질병수술' : 10824,
+               '암수술' : 3523,
+               '질병진단' : 658
+           },
+           '30' : {},
+           '40' : {},
+           '50' : {},
+           '60' : {},
+       }
+    };
+	
 	// 처음 페이지 로딩 시 심리 추천 결과 가져오기
 	getPsychologicalRecommendationList();
 	
@@ -436,69 +501,6 @@ th[scope="row"] {
 	// getEnrolledInsurance() 함수가 보험 불러오기 div를 숨기고 가입 목록 div를 표시하므로 없을 경우 처리가 필요
 	getEnrolledInsurances();
 	
-	
-	// 그래프
-	$('#btn-analys-myinsurance').on('click', '#btn-analys-myinsurance', function () {
-		$('#after-analys-graph').css('display', 'block');
-		
-	});
-	
-	var ctx = $('#analysChart');
-	new Chart(ctx, {
-		type : "horizontalBar",
-		data : {
-			/*36278, 123645, 22796, 10824, 3523, 658
-				암진단, 상해사망, 급성심근경색단, 특정질병 수술, 암수술, 화상진단
-				20000, 260000, 20000, 23000, 3000, 1000
-			*/
-			
-			labels : [ "암진단", "상해", 
-				 "급성심근경색진단", "특정질병수술", "암수술", "화상진단" ],
-			datasets : [ {
-				label : '평균보장금액',
-				data : [36278, 123645, 22796, 10824, 3523, 658],
-				fill : false,
-				backgroundColor :  "rgba(75, 192, 192, 0.2)",
-				borderColor : "rgb(75, 192, 192)",
-				borderWidth : 1
-			},
-			{
-				label : '나의보장금액  (단위:천원)',
-				data : [20000, 260000, 20000, 23000, 3000, 1000],
-				fill : false,
-				backgroundColor :  "rgba(255, 99, 132, 0.2)",
-				borderColor : "rgb(255, 99, 132)",
-				borderWidth : 1
-			}]
-		},
-		options : {
-			scales : {
-				xAxes : [ {
-					ticks : {
-						beginAtZero : true,
-						fontSize: 13,
-						min: 0,
-						max: 270000,
-						stepSize:30000
-		
-					}
-				} ],
-				yAxes :[{
-					barPercentage: 0.8,
-					ticks: {
-                        fontSize: 13
-                    }
-				}]
-			},
-			legend : {
-				display : true,
-				padding : 2
-			}
-		}
-	});
-	
-	
-
 
 //탭 이벤트 함수
 function stepTabEvent(clickedTab) {
@@ -671,11 +673,7 @@ $(".table-large-list tbody").on('click','tr',function(event){
     			  					'</tr>' +
   			 					'</tbody>' + 
 			  				'</table>' +
-			  			'<div>' +
-			  			'<label id="insuranceMoney">보장금액</label><input type="text" class="input100" placeholder="숫자만">' +
-			  			'<span id="insuranceLink"><a href="">내 보장금액을 모른다면?</a></span>' +
-			  			'</div>' +
-			  		'</div>';
+			  		     '</div>';
 			  $('#enrolled-insurance-detail-wrapper').html(tag);
 			  $('#insurance-large-list').css('display','none');
 			  $('#detail-insurance').css('display','inline');
@@ -772,4 +770,139 @@ function tabFormCss(index) {
 	return formSelector;
 }
 
+// 보험 분석하기 보장 금액 입력 이벤트
+$('#input-insurance-money').click(function() {
+	
+	var genderKey = $('input:radio[name="gender"]:checked').val();
+	
+	var age = calcAge($('#birth').val());
+	var ageKey = parseInt(age / 10) + '0';
+	
+	var insuranceTypes = Object.keys(genderAgeStatisticInformation[genderKey][ageKey]).slice(0, 5);
+	var buttonTag = '<span id="insuranceLink"><a href="">내 보장금액을 모른다면?</a></span>'+
+					'<div class="form-example-int">'+
+					'<button class="btn" id="btn-analys-myinsurance">분석하기</button>'+
+					'</div>';
+	$('#insurance-money-input-wrapper').empty();
+	$('#button-analys').empty();
+	for ( var index in insuranceTypes) {
+		var insuranceType = insuranceTypes[index];
+		
+		var inputTag = '<div class="form-group">' + 
+          				'<label class="find-info-label">' + insuranceType + '</label>' +
+          				'<input type="text" class="input100 insurance-money-input" placeholder="ex) 천 원 단위 기입">' +
+        				'</div>';
+        $('#insurance-money-input-wrapper').append(inputTag);
+        
+	}
+	$('#button-analys').append(buttonTag);
+});
+
+// 내 보험 분석하기 결과 보여주기
+$('#button-analys').on('click', '#btn-analys-myinsurance', function() {
+	$('#after-analys-graph').css('display','block');
+	$('#after-analys-graph').css('display','block');
+	
+	var genderKey = $('input:radio[name="gender"]:checked').val();
+	
+	var age = calcAge($('#birth').val());
+	var ageKey = parseInt(age / 10) + '0';
+	
+	var dataList = [];
+	for (var i = 0; i < 5; i++) {
+		dataList[i] = $('.insurance-money-input').eq(i).val();
+	}
+	
+	var target = genderAgeStatisticInformation[genderKey][ageKey];
+	
+	var ctx = $('#analysChart');
+	new Chart(ctx, {
+		type : "horizontalBar",
+		data : {
+			labels : Object.keys(target).slice(0, 5),
+			datasets : [ {
+				label : '평균보장금액',
+				data : Object.values(target).slice(0, 5),
+				fill : false,
+				backgroundColor :  "rgba(75, 192, 192, 0.2)",
+				borderColor : "rgb(75, 192, 192)",
+				borderWidth : 1
+			},
+			{
+				label : '나의보장금액  (단위:천원)',
+				data : dataList,
+				fill : false,
+				backgroundColor :  "rgba(255, 99, 132, 0.2)",
+				borderColor : "rgb(255, 99, 132)",
+				borderWidth : 1
+			}]
+		},
+		options : {
+			scales : {
+				xAxes : [ {
+					ticks : {
+						beginAtZero : true,
+						fontSize: 13,
+						min: 0,
+						max: 130000,
+						stepSize:30000
+		
+					}
+				} ],
+				yAxes :[{
+					barPercentage: 0.8,
+					ticks: {
+	                    fontSize: 13
+	                }
+				}]
+			},
+			legend : {
+				display : true,
+				padding : 2
+			}
+		}
+	});
+	
+	var genderString = genderKey === 'M'? '남자' : '여자';
+	$('#gender-info').html(genderString);
+	$('#age-info').html(ageKey);
+	
+	var targetValues = Object.values(target).slice(0, 5);
+	var needInsurancesValues = targetValues.filter(function(money) {
+		return dataList[targetValues.indexOf(money)] < money;
+	});
+	console.log(needInsurancesValues);
+	var needInsuranceKey = needInsurancesValues.forEach(function(value, needInsuranceResult){
+		console.log(getKeyByValue(targetValues, value));
+		return getKeyByValue(targetValues, value);
+	});
+console.log(needInsuranceKey);
+	//$('#insurance-info').html(needInsuranceResult.substring(0, needInsuranceResult.length));
+});
+
+function getKeyByValue(object, value) {
+  return Object.keys(object).find(key => object[key] === value);
+}
+
+
+// 생년월일을 나이로 바꿔주는 함수
+function calcAge(birthday) {
+	
+	var bday=parseInt(birthday.substring(6,8)); 
+	var bmo=(parseInt(birthday.substring(4,6))-1); 
+	var byr=parseInt(birthday.substring(0,4));
+	var byr; 
+	var age; 
+	var now = new Date(); 
+	tday=now.getDate(); 
+	tmo=(now.getMonth()); 
+	tyr=(now.getFullYear()); 
+
+	if((tmo > bmo)||(tmo==bmo & tday>=bday)) { 
+		age=byr 
+	}else{ 
+		age=byr+1; 
+	} 
+	return tyr-age; 
+}
 </script>
