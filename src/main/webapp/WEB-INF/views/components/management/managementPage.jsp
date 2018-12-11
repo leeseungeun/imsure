@@ -867,23 +867,18 @@ $('#button-analys').on('click', '#btn-analys-myinsurance', function() {
 	$('#gender-info').html(genderString);
 	$('#age-info').html(ageKey);
 	
-	var targetValues = Object.values(target).slice(0, 5);
-	var needInsurancesValues = targetValues.filter(function(money) {
-		return dataList[targetValues.indexOf(money)] < money;
+	var targetArray = Object.entries(target).slice(0, 5);
+	// 평균보다 보장 금액이 작은 값을 가져옴
+	var needInsurancesArray = targetArray.filter(function(insuranceMoneyPair) {
+		return dataList[targetArray.indexOf(insuranceMoneyPair)] < insuranceMoneyPair[1];
 	});
-	console.log(needInsurancesValues);
-	var needInsuranceKey = needInsurancesValues.forEach(function(value, needInsuranceResult){
-		console.log(getKeyByValue(targetValues, value));
-		return getKeyByValue(targetValues, value);
-	});
-console.log(needInsuranceKey);
-	//$('#insurance-info').html(needInsuranceResult.substring(0, needInsuranceResult.length));
+	
+	var needInsurancesString = '';
+	for ( var index in needInsurancesArray) {
+		needInsurancesString += (needInsurancesArray[index][0] + ', ');
+	}
+	$('#insurance-info').html(needInsurancesString.trim().substring(0, needInsurancesString.trim().length - 1));
 });
-
-function getKeyByValue(object, value) {
-  return Object.keys(object).find(key => object[key] === value);
-}
-
 
 // 생년월일을 나이로 바꿔주는 함수
 function calcAge(birthday) {
