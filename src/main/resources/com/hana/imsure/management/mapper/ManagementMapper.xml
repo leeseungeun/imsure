@@ -11,7 +11,8 @@
 		       CASE 
 		       WHEN insurance_type IN (SELECT insurance_type 
 		                                 FROM imsure_insurance_possessions p
-		                                 LEFT OUTER JOIN imsure_insurances i ON p.insurance_id = i.insurance_id) THEN 'Y'
+		                                 LEFT OUTER JOIN imsure_insurances i ON p.insurance_id = i.insurance_id
+		                                 WHERE user_id = #{userId}) THEN 'Y'
 		        ELSE 'N'
 		        END AS "hasSameType"
 		FROM imsure_psychologic_results
@@ -24,7 +25,8 @@
 		       CASE 
 		       WHEN insurance_type IN (SELECT insurance_type 
 		                                 FROM imsure_insurance_possessions p
-		                                 LEFT OUTER JOIN imsure_insurances i ON p.insurance_id = i.insurance_id) THEN 'Y'
+		                                 LEFT OUTER JOIN imsure_insurances i ON p.insurance_id = i.insurance_id
+		                                 WHERE user_id = #{userId}) THEN 'Y'
 		        ELSE 'N'
 		        END AS "hasSameType"
 		FROM imsure_psychologic_results
@@ -37,7 +39,8 @@
 		       CASE 
 		       WHEN insurance_type IN (SELECT insurance_type 
 		                                 FROM imsure_insurance_possessions p
-		                                 LEFT OUTER JOIN imsure_insurances i ON p.insurance_id = i.insurance_id) THEN 'Y'
+		                                 LEFT OUTER JOIN imsure_insurances i ON p.insurance_id = i.insurance_id
+		                                 WHERE user_id = #{userId}) THEN 'Y'
 		        ELSE 'N'
 		        END AS "hasSameType" 
 		FROM imsure_psychologic_results
@@ -53,7 +56,8 @@
 		       CASE 
 		       WHEN insurance_type IN (SELECT insurance_type 
 		                                 FROM imsure_insurance_possessions p
-		                                 LEFT OUTER JOIN imsure_insurances i ON p.insurance_id = i.insurance_id) THEN 'Y'
+		                                 LEFT OUTER JOIN imsure_insurances i ON p.insurance_id = i.insurance_id
+		                                 WHERE user_id = #{userId}) THEN 'Y'
 		        ELSE 'N'
 		        END AS "hasSameType"
 		FROM imsure_demographic_results d

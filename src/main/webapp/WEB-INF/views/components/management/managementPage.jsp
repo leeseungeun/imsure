@@ -451,8 +451,14 @@
 	// 처음 페이지 로딩 시 심리 추천 결과 가져오기
 	getPsychologicalRecommendationList();
 	
-	// 상세보기
+	// 추천 보험 상세보기 이벤트
 	$('.recommendation-wrapper').on('click', '.insurance-card', Insurance.getInsuranceDetail);
+	
+	// 가입 보험 리스트가 비어 있는지 확인해
+	// 있을 경우 : 가입 보험 목록 표시
+	// 없을 경우 : 가입 보험 불러오기
+	// getEnrolledInsurance() 함수가 보험 불러오기 div를 숨기고 가입 목록 div를 표시하므로 없을 경우 처리가 필요
+	getEnrolledInsurances();
 	
 	var data = [ {
 		x : '2016-12-25',
@@ -597,26 +603,29 @@ function getEnrolledInsurances() {
 		contentType : "application/json; charset=UTF-8",
 		success : function(data, status, xhr) {
 			console.log(data);
-			$('#first-find-list').css('display','none');
-			$('#after-find-insurance').css('display','block');
-			
-			for ( var index in data) {
-				var insurance = data[index];
-				var tag = '<tr>'
-                		+ '	<input type="hidden" id="hidden-insuranceId" value="'+insurance.insuranceId+'">'
-  						+ '	<th scope="row">'+index+'</th>'
-  						+ '	<td>'+insurance.insuranceName+'</td>'
-  						+ '	<td>'+insurance.insuranceType+'</td>'
-			  			+ '</tr>';
-				$('.table-large-list tbody').append(tag);
+			if (data !== null
+				&& data !== undefined
+				&& data.length > 0) {
+		    	for ( var index in data) {
+		    		var insurance = data[index];
+		    		var tag = '<tr>'
+		            		+ '	<input type="hidden" id="hidden-insuranceId" value="'+insurance.insuranceId+'">'
+		    					+ '	<th scope="row">'+index+'</th>'
+		    					+ '	<td>'+insurance.insuranceName+'</td>'
+		    					+ '	<td>'+insurance.insuranceType+'</td>'
+		    	  			+ '</tr>';
+		    		$('.table-large-list tbody').append(tag);
+		    	}
+		    	$('#first-find-list').css('display','none');
+		    	$('#after-find-insurance').css('display','block');
 			}
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
 			alert(jqXHR.responseText);
 		}
+
 	});
 }
-
 
 // 심리 추천 결과를 표시하는 함수
 function getPsychologicalRecommendationList() {
