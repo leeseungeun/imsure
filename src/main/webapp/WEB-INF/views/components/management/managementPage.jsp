@@ -314,13 +314,13 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <span class="modal-title">보험상품 상세보기</span>
+        <span class="modal-title"><b>보험상품 상세보기</b></span>
           <button type="button" class="close" data-dismiss="modal" style="width:10%">&times;</button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="back">
         <!-- 보험 상세 내역이 들어가는 부분 -->
       </div>
-      <div class="modal-footer">'
+      <div class="modal-footer">
         <button type="button" class="btn" data-dismiss="modal" style="width:15%">닫기 </button>
       </div>
     </div>
@@ -336,13 +336,13 @@
 <div class="modal fade" id="chatbot" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered modal-notify modal-info" role="document">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header" id="chabot-modal-header">
         <h5 class="modal-title" id="exampleModalLabel">1:1 보험 상담</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="width:7%;">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" id="chabot-modal-body">
       	<div class="mesgs">
           <div class="received_msg">
             <div class="received_with_msg">
@@ -714,7 +714,7 @@ $(".table-large-list tbody").on('click','tr',function(event){
 		contentType : "application/json; charset=UTF-8",
 		success : function(data, status, xhr) {
 			var tag = '<div class="insurance-detail">' + 
-            			'<h5>해외여행보험</h5>' +
+            			'<h5 style="display: inline-block;">'+ data.insuranceName +'</h5>' +
 			  				'<button type="button" class="close" style="width:10%">&times;</button><br>' + 
 			  					'<table class="table">' + 
   								'<tbody>' +

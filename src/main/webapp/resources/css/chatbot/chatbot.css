@@ -111,12 +111,12 @@
 	font-size: 15px;
 }
 
-.modal-header {
+#chabot-modal-header {
 	background-color: #30b1b2;
 	color: white;
 }
 
-.modal-body {
+#chabot-modal-body {
 	height: 550px;
 	max-height: 550px;
 	background-color: #f0f8ff;

@@ -89,7 +89,7 @@
       <div class="modal-body">
         <!-- 보험 상세 내역이 들어가는 부분 -->
       </div>
-      <div class="modal-footer">'
+      <div class="modal-footer">
         <button type="button" class="btn" data-dismiss="modal" style="width:15%">닫기 </button>
       </div>
     </div>
