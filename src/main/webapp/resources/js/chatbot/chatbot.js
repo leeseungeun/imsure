@@ -143,7 +143,7 @@ $('.modal-content').on('click','#send',function(event) {
 			$('#chatbot .modal-body').scrollTop($('#chatbot .modal-body')[0].scrollHeight);
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
-			alert(jqXHR.responseText);
+			console.log(jqXHR.responseText);
 		}
 	});
 });
