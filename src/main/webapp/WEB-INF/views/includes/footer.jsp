@@ -15,7 +15,7 @@
         </a>
       </li>
        <li class="list-inline-item">
-        <a class="social-link rounded-circle text-primary" href="https://github.com/Honggiss01/imsure"> 
+        <a class="social-link rounded-circle text-primary" href="https://github.com/leeseungeun/imsure"> 
           <i class="icon-social-github"></i>
         </a>
       </li>

@@ -580,7 +580,7 @@ function stepTabEvent(clickedTab) {
 	$('.modal-body .form-area').eq(index).addClass('on');
 }
 
-stepTabEvent($('.step-tab:first'));
+stepTabEvent($('.step-tab')[2]);
 
 //탭클릭 이벤트
 $('.step-tab').click(function() {
@@ -615,7 +615,7 @@ $('.modal-body').on('click','#step1Button',function(event) {
 		}),
 		contentType : "application/json; charset=UTF-8",
 		success : function(data, status, xhr) {
-			stepTabEvent($('.step-tab')[1]);
+			stepTabEvent($('.step-tab')[3]);
 			imageAppend(data.imagePath);
 		},
 		error : function(jqXHR, textStatus, errorThrown) {
@@ -636,7 +636,7 @@ $('.modal-body').on('click','#step2Button',function(event) {
 		contentType : "application/json; charset=UTF-8",
 		success : function(data, status, xhr) {
 			if (data.is_success) {
-				stepTabEvent($('.step-tab')[2]);
+				stepTabEvent($('.step-tab')[4]);
 				$('#uuid').val(data.uuid);
 			} else {
 				imageAppend(data.uuid + '.png');
