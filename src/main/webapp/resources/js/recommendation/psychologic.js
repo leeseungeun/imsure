@@ -75,11 +75,14 @@ function calculateUserAnswers() {
 // 보험 추천 결과 함수
 function getPsychologicResult() {
 	
-	saveUserAnswers();
-	calculateUserAnswers();
+	var result = saveUserAnswers();
 	
-	//페이지 전환
-	Router.route('section', 'user/psychologicResultPage');
+	if (result) {
+		calculateUserAnswers();
+		
+		//페이지 전환
+		Router.route('section', 'user/psychologicResultPage');
+	}
 }
 
 // step에 따른 버튼 생성 함수
